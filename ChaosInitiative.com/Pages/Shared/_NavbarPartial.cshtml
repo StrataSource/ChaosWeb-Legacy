@@ -1,0 +1,35 @@
+@model Navbar
+
+<div class="bg-dark sticky-top">
+    <div class="container">
+
+        <header role="banner">
+            <nav role="navigation" class="navbar navbar-dark navbar-expand-md">
+                <div class="container">
+                    <div class="navbar-collapse justify-content-between collapse" id="collapsing-navbar">
+                        <ul class="navbar-nav">
+                            @{
+                                foreach (KeyValuePair<string, string> pair in Model.Pages)
+                                {
+                                    if (Model.ActivePage == pair.Key)
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="@pair.Key">@pair.Value</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@pair.Key">@pair.Value</a>
+                                        </li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+    </div>
+</div>
