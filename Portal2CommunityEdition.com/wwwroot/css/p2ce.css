@@ -41,8 +41,9 @@ tbody tr:nth-child(2n) {
 }
 
 .brand-colorbox {
-    padding: 4rem;
+    padding: 3rem;
     border: 1px solid #3b3b3b;
+    margin: 1rem;
 }
 
 .brand-colorbox p {
@@ -76,17 +77,6 @@ section > h1 {
 
 .contributors-list strong {
     color: #FF7B02;
-}
-
-#navbar {
-    position: sticky;
-    top: 0;
-    z-index: 99;
-    font-size: 140%;
-}
-
-#navbar-left-small {
-    padding-bottom: 1rem;
 }
 
 .navbar-icon {
