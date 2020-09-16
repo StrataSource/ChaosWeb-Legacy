@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ChaosInitiative.com.Pages
+namespace ChaosInitiative.Web.HomePage.Pages
 {
     public class EngineModel : PageModel
     {

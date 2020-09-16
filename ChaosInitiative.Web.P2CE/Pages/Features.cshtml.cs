@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Portal2CommunityEdition.com.Pages
-{
+namespace ChaosInitiative.Web.P2CE.Pages 
+{ 
     public class FeaturesModel : PageModel
     {
         public void OnGet()
