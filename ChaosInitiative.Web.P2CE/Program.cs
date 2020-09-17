@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Portal2CommunityEdition.com
+namespace ChaosInitiative.Web.P2CE
 {
     public class Program
     {

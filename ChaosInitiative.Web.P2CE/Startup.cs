@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Portal2CommunityEdition.com
+namespace ChaosInitiative.Web.P2CE
 {
     public class Startup
     {
@@ -24,6 +24,7 @@ namespace Portal2CommunityEdition.com
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
