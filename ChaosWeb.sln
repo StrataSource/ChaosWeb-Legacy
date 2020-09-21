@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "portal2communityedition.com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosInitiative.Web.Shared", "ChaosInitiative.Web.Shared\ChaosInitiative.Web.Shared.csproj", "{4DDC89A7-6CDC-4F0F-9459-EA1E23326F35}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosInitiative.Web.ControlPanel", "ChaosInitiative.Web.ControlPanel\ChaosInitiative.Web.ControlPanel.csproj", "{51377721-D369-4C00-99AB-2418BD3600B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{4DDC89A7-6CDC-4F0F-9459-EA1E23326F35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DDC89A7-6CDC-4F0F-9459-EA1E23326F35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DDC89A7-6CDC-4F0F-9459-EA1E23326F35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51377721-D369-4C00-99AB-2418BD3600B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51377721-D369-4C00-99AB-2418BD3600B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51377721-D369-4C00-99AB-2418BD3600B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51377721-D369-4C00-99AB-2418BD3600B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
