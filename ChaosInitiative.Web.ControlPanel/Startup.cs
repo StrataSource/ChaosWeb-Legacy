@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AspNet.Security.OAuth.GitHub;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,7 +20,25 @@ namespace ChaosInitiative.Web.ControlPanel
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddAuthentication(GitHubAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie()
+                .AddGitHub(options =>
+                    {
+                        //options.ClientId = "Iv1.14d48eeeba4723c3";
+                        //options.ClientSecret = "be5d2d6184401a484b07d4a15f6c7e64a3f2b134";
+                        options.ClientId = "Iv1.89b774c7a544eeb0";
+                        options.ClientSecret = "4c5e74f8860300767710ab6f54d9184cc4fc2537";
+                        options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                        options.AccessDeniedPath = "/OhNo";
+                        options.CallbackPath = "/Panel/LoggedIn";
+                    });
+            
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeFolder("/Panel");
+                options.Conventions.AllowAnonymousToPage("/Index");
+            });
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,9 +60,14 @@ namespace ChaosInitiative.Web.ControlPanel
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+            });
         }
     }
 }
