@@ -27,18 +27,26 @@ namespace ChaosInitiative.Web.ControlPanel
                         //options.ClientId = "Iv1.14d48eeeba4723c3";
                         //options.ClientSecret = "be5d2d6184401a484b07d4a15f6c7e64a3f2b134";
                         options.ClientId = "Iv1.89b774c7a544eeb0";
-                        options.ClientSecret = "4c5e74f8860300767710ab6f54d9184cc4fc2537";
+                        options.ClientSecret = "";
                         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                         options.AccessDeniedPath = "/OhNo";
                         options.CallbackPath = "/Panel/LoggedIn";
                     });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(PartOfOrganizationAuthorizeAttribute.POLICY_NAME, policy =>
+                {
+                    
+                });
+            });
             
             services.AddRazorPages(options =>
             {
                 options.Conventions.AuthorizeFolder("/Panel");
                 options.Conventions.AllowAnonymousToPage("/Index");
             });
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

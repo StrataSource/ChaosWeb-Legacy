@@ -5,8 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - Chaos Initiative Control Panel</title>
     <link rel="stylesheet" href="~/css/boosted_chaos.min.css"/>
+    <link rel="stylesheet" href="~/css/control_panel.css"/>
 </head>
 <body>
-@RenderBody()
+<div class="bg-primary p-2">
+    <h1 style="margin-bottom: 0">Dashboard</h1>
+</div>
+<div class="h-100">
+<div class="row h-100">
+    <div class="col col-lg-2 bg-light h-100">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link" asp-page="~/Panel/Dashboard">Dashboard</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link" asp-page="~/Panel/Dashboard">Login</a>
+                    }
+                }
+                
+            </li>
+        </ul>
+    </div>
+    
+    <div class="col col-auto">
+        @RenderBody()
+    </div>
+</div>
+</div>
+
 </body>
 </html>
