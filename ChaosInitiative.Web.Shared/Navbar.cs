@@ -31,6 +31,7 @@ namespace ChaosInitiative.Web.Shared
             navbar.Pages.Add("/features", "Features");
             navbar.Pages.Add("/team", "Who we are");
             navbar.Pages.Add("/wiki", "Wiki");
+            navbar.Pages.Add("/faq", "FAQ");
 
             navbar.ActivePage = activePage;
             

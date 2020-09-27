@@ -8,6 +8,18 @@
 <partial name="Shared/_NavbarPartial" model="@Navbar.GetDefaultNavbarP2CE("/features")"/>
 
 <!-- CONTENT STARTS HERE -->
-<div class="container bg-dark">
-    <h1 class="text-center">TODO: Hook up features to database</h1>
+<div class="bg-dark">
+<div class="container">
+    
+    <section class="text-center">
+        <h1>Features</h1>
+        <p>Everything that's new. All available right now.</p>
+        <a class="btn btn-primary" asp-page="FeaturesList">Full Feature List</a>
+    </section>
+    
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialPaintgun"/>
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialSchrodinger"/>
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialReflection"/>
+
+</div>
 </div>
