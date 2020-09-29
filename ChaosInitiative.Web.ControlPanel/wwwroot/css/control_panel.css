@@ -1,3 +1,21 @@
 html, body {
     height: 100%;
 }
+
+section {
+    display: block;
+    padding: 1.5rem;
+    margin: 2rem 1rem 1rem;
+    border: solid 1px #ccc;
+}
+
+section:first-child {
+    margin-top: 1rem;
+}
+
+section h1,
+section h2,
+section h3,
+section h4 {
+    color: #ee370e;
+}

@@ -4,7 +4,19 @@
     ViewData["Title"] = "Login";
 }
 
-<div class="container bg-primary">
-    <h1>Chaos Initiative Control Panel</h1>
-    <a class="btn btn-primary" asp-page="/Panel/Dashboard">Login</a>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <section>
+        <h1>Chaos Initiative Control Panel</h1>
+        <p>You are logged in as @User.Identity.Name</p>
+    </section>
+}
+else
+{
+    <section>
+        <h1>Chaos Initiative Control Panel</h1>
+        <p>You are not logged in.</p>
+
+        <a href="/Panel/Login" class="btn btn-light"><i class="fab fa-github"></i>Log in with GitHub</a>
+    </section>
+}
