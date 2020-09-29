@@ -19,6 +19,7 @@ namespace ChaosInitiative.Web.ControlPanel.Pages
 
         public void OnGet()
         {
+            
         }
     }
 }
