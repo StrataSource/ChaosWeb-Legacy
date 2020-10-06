@@ -1,53 +1,31 @@
 ﻿@page
-@using System.Security.Claims
 @model IndexModel
 @{
+    Layout = "Shared/_LayoutBare";
     ViewData["Title"] = "Login";
 }
 
-@if (User.Identity.IsAuthenticated)
-{
-    <section>
-        <h1>Chaos Initiative Control Panel</h1>
-        <p>You are logged in as @User.Identity.Name</p>
-        
-        <p>If you see this page, you are not authorized, as you're not part of the Chaos Initiative GitHub Organisation.</p>
-    </section>
+<div class="container">
     
     <section>
-        <h2>Debugging</h2>
-        
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#debugClaimsTable" aria-expanded="false" aria-controls="debugClaimsTable">
-            User Claims
-        </button>
-        
-        <div class="collapse" id="debugClaimsTable">
-            <table class="table">
-                <thead>
-                <tr><th>Issuer</th><th>Type</th><th>Value</th></tr>
-                </thead>
-                <tbody>
-                @{
-                    foreach (Claim claim in User.Claims)
-                    {
-                        <tr>
-                            <td>@claim.Issuer</td>
-                            <td>@claim.Type</td>
-                            <td>@claim.Value</td>
-                        </tr>
-                    }
-                }
-                </tbody>
-            </table>
-        </div>
-    </section>
-}
-else
-{
-    <section>
         <h1>Chaos Initiative Control Panel</h1>
-        <p>You are not logged in.</p>
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>You are logged in as <span class="text-primary">@User.Identity.Name</span>.</p>
+            <a asp-page="~/Panel/Dashboard" class="btn btn-primary">
+                Enter Dashboard
+            </a>
+            
+            <a asp-controller="Auth" asp-action="Logout" class="btn btn-light">
+                Log Out
+            </a>
+        }
+        else
+        {
+            <p>You are not logged in.</p>
+            <a asp-controller="Auth" asp-action="Login" class="btn btn-light"><i class="fab fa-github"></i>Log in with GitHub</a>
+        }
+   </section>
 
-        <a href="/Panel/Login" class="btn btn-light"><i class="fab fa-github"></i>Log in with GitHub</a>
-    </section>
-}
+</div>

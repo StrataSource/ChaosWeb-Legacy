@@ -2,8 +2,9 @@
 
 namespace ChaosInitiative.Web.ControlPanel.Pages.Panel
 {
-    public class Index : PageModel
+    public class DashboardModel : PageModel
     {
+        
         public void OnGet()
         {
             

@@ -50,7 +50,7 @@ namespace ChaosInitiative.Web.Shared
             }
             else
             {
-                navbar.Pages.Add("/Panel/Login", "Login");
+                navbar.Pages.Add("/Panel/Dashboard", "Login");
                 navbar.Pages.Add("https://www.chaosinitiative.com", "Homepage");
             }
 
