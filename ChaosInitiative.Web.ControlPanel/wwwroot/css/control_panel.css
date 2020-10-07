@@ -19,3 +19,20 @@ section h3,
 section h4 {
     color: #ee370e;
 }
+
+.page-title {
+    margin: 0;
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
+    color: #ee370e;
+}
+
+.page-title > span {
+    font-size: 65%;
+}
+
+.table {
+    max-width: 100%;
+    word-wrap: break-word;
+    table-layout: fixed;
+}

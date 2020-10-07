@@ -17,6 +17,15 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
     [Route("Auth")]
     public class AuthController : Controller
     {
+
+        private SignInManager<IdentityUser> _signInManager;
+        private UserManager<IdentityUser> _userManager;
+
+        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+        }
         
         [Route("Logout")]
         public async Task<IActionResult> Logout()
@@ -40,9 +49,11 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
             string accessToken = result.Properties.GetTokenValue("access_token");
             string userName = User.Identity.Name;
             
+            Console.WriteLine($"{User.Identity.Name} is authenticated: " + User.Identity.IsAuthenticated);
+            
             // Find out if github account is part of the organisation
             // TODO: This currently only works on members who show their membership publicly, because github's api 
-            // for authenticated access on that endpoint is broken or whatever
+            //       for authenticated access on that endpoint is broken or whatever
             GitHubClient client = new GitHubClient(new ProductHeaderValue("ChaosInitiativeControlPanel"));
 
             bool isOrgMember = await client.Organization.Member.CheckMember(Constants.GITHUB_ORG_NAME, userName);
@@ -51,15 +62,20 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
             
             if (isOrgMember)
             {
-                ClaimsIdentity chaosIdentity = new ClaimsIdentity();
-                chaosIdentity.AddClaim(new Claim(ClaimTypes.Role, "Member"));
+                Claim memberClaim = new Claim(ClaimTypes.Role, 
+                                             "Member", 
+                                             ClaimValueTypes.String, 
+                                             "Chaos Initiative");
                 
-                ClaimsPrincipal principal = new ClaimsPrincipal();
-                principal.AddIdentity(chaosIdentity);
+                var signInInfo = await _signInManager.GetExternalLoginInfoAsync();
+                var user = await _userManager.GetUserAsync(signInInfo.Principal);
+                await _userManager.AddClaimAsync(user, memberClaim);
+
+                await _signInManager.RefreshSignInAsync(user);
                 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                return Ok();
-                //return RedirectToPage("/Panel/Dashboard");
+                //await HttpContext.SignOutAsync();
+                //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                return RedirectToPage("/Index");
             }
             else
             {

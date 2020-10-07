@@ -43,12 +43,12 @@ namespace ChaosInitiative.Web.ControlPanel
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.RequireAuthenticatedSignIn = false;
+                //options.RequireAuthenticatedSignIn = false;
             }).AddCookie(options =>
             {
                 options.LoginPath = "/Auth/Login";
                 options.LogoutPath = "/Auth/Logout";
-                options.AccessDeniedPath = "/OhNo";
+                options.AccessDeniedPath = "/Auth/AccessDenied";
             }).AddGitHub(
                 options =>
                 {
@@ -59,7 +59,6 @@ namespace ChaosInitiative.Web.ControlPanel
 
                     options.ForwardSignOut = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.AccessDeniedPath = "/OhNo";
                     options.CallbackPath = "/Auth/LoggedIn";
                 });
 
