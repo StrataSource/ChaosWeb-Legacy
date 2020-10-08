@@ -13,25 +13,34 @@ namespace ChaosInitiative.Web.Shared
         
         public static string Get(string key, DeploymentType deploymentType = DeploymentType.Production)
         {
-            if (File.Exists(SECRETS_FILE))
+
+            string secretsFilePath = SECRETS_FILE;
+            bool configFileExists = File.Exists(secretsFilePath);
+
+            if (!configFileExists && deploymentType == DeploymentType.Development)
+            {
+                secretsFilePath = $"../{secretsFilePath}";
+                configFileExists = File.Exists(secretsFilePath); // I know, I love this double execution too :)
+            }
+
+            if (configFileExists)
             {
 
-                string jsonString = File.ReadAllText(SECRETS_FILE);
+                string jsonString = File.ReadAllText(secretsFilePath);
                 Console.WriteLine(jsonString);
                 SecretsModel model = JsonSerializer.Deserialize<SecretsModel>(jsonString);
-
+                
                 if (model == null) return null;
-
+                var appSecrets = model.appSecrets;
+                
                 switch (deploymentType)
                 {
                     case DeploymentType.Production:
-                        return model.production.FirstOrDefault(i => i.Key == key).Value;
+                        return appSecrets.production.FirstOrDefault(i => i.Key == key).Value;
                     case DeploymentType.Staging:
-                        return model.staging.FirstOrDefault(i => i.Key == key).Value;
+                        return appSecrets.staging.FirstOrDefault(i => i.Key == key).Value;
                     case DeploymentType.Development:
-
-                        Console.WriteLine(model.development.Count);
-                        return model.development.FirstOrDefault(i => i.Key == key).Value;
+                        return appSecrets.development.FirstOrDefault(i => i.Key == key).Value;
                     default:
                         throw new Exception("Invalid deployment type");
                 }
@@ -49,6 +58,11 @@ namespace ChaosInitiative.Web.Shared
     }
     
     public class SecretsModel
+    {
+        public SecretsModelAppSecrets appSecrets { get; set; }
+    }
+
+    public class SecretsModelAppSecrets
     {
         public Dictionary<string, string> production { get; set; }
         public Dictionary<string, string> staging { get; set; }

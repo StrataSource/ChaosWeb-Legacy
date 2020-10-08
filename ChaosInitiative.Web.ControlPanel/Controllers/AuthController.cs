@@ -1,15 +1,11 @@
 using System;
-using System.Linq;
-using System.Reflection.Metadata;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using AspNet.Security.OAuth.GitHub;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Octokit;
 
 namespace ChaosInitiative.Web.ControlPanel.Controllers
@@ -27,67 +23,74 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
             _userManager = userManager;
         }
         
-        [Route("Logout")]
-        public async Task<IActionResult> Logout()
+        [HttpGet("Logout")]
+        public async Task<IActionResult> SignOutAsync()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToPage("/Index");
         }
         
-        [Route("Login")]
-        [Authorize(AuthenticationSchemes = GitHubAuthenticationDefaults.AuthenticationScheme)]
-        public async Task<IActionResult> Login()
+        [HttpGet("Login")]
+        public async Task<IActionResult> SignInAsync()
         {
-            var authenticationService = HttpContext.RequestServices.GetRequiredService<IAuthenticationService>();
-            var result = await authenticationService.AuthenticateAsync(HttpContext, GitHubAuthenticationDefaults.AuthenticationScheme);
+            
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            foreach (var token in result.Properties.GetTokens())
+            if (!User.Identity.IsAuthenticated)
             {
-                Console.WriteLine($"{token.Name}: {token.Value}");
-            }
-            
-            string accessToken = result.Properties.GetTokenValue("access_token");
-            string userName = User.Identity.Name;
-            
-            Console.WriteLine($"{User.Identity.Name} is authenticated: " + User.Identity.IsAuthenticated);
-            
-            // Find out if github account is part of the organisation
-            // TODO: This currently only works on members who show their membership publicly, because github's api 
-            //       for authenticated access on that endpoint is broken or whatever
-            GitHubClient client = new GitHubClient(new ProductHeaderValue("ChaosInitiativeControlPanel"));
-
-            bool isOrgMember = await client.Organization.Member.CheckMember(Constants.GITHUB_ORG_NAME, userName);
-            
-            Console.WriteLine($"{userName} is member of {Constants.GITHUB_ORG_NAME}: {isOrgMember}");
-            
-            if (isOrgMember)
-            {
-                Claim memberClaim = new Claim(ClaimTypes.Role, 
-                                             "Member", 
-                                             ClaimValueTypes.String, 
-                                             "Chaos Initiative");
+                string state = GitHubUtil.GenerateState(32);
+                Console.WriteLine(state);
+                var request = new OauthLoginRequest(GitHubUtil.ApplicationClientId)
+                {
+                    State = state
+                };
+                var client = GitHubUtil.CreateClient();
                 
-                var signInInfo = await _signInManager.GetExternalLoginInfoAsync();
-                var user = await _userManager.GetUserAsync(signInInfo.Principal);
-                await _userManager.AddClaimAsync(user, memberClaim);
+                HttpContext.Session.Set("csrf:state", System.Text.Encoding.ASCII.GetBytes(state));
 
-                await _signInManager.RefreshSignInAsync(user);
-                
-                //await HttpContext.SignOutAsync();
-                //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                return RedirectToPage("/Index");
+                return Redirect(client.Oauth.GetGitHubLoginUrl(request).ToString());
             }
-            else
-            {
-                return RedirectToPage("/Auth/NoMember");
-            }
-            
+
+            return RedirectToPage("/Index");
+
         }
 
-        [Route("LoggedIn")]
-        public IActionResult LoggedIn()
+        [HttpGet("LoggedIn")]
+        public async Task<IActionResult> AuthorizeAsync(string code, string state)
         {
-            return Ok();
+            if (String.IsNullOrWhiteSpace(code)) return RedirectToPage("/Auth/Error");
+
+            if (state != HttpContext.Session.Get("csrf:state").ToString()) return Unauthorized();
+            
+            // Get token
+            
+            var request = new OauthTokenRequest(GitHubUtil.ApplicationClientId, GitHubUtil.ApplicationClientSecret, code);
+            var client = GitHubUtil.CreateClient();
+            string token = (await client.Oauth.CreateAccessToken(request)).AccessToken;
+
+            if (String.IsNullOrWhiteSpace(token)) return RedirectToPage("/Auth/Error");
+            client.Credentials = new Credentials(token);
+            
+            // Get user details
+
+            var user = await client.User.Current();
+            if (!await client.Organization.Member.CheckMember(GitHubUtil.GITHUB_ORG_NAME, user.Login))
+                return RedirectToPage("/Auth/NoMember");
+            
+            // Now we're authenticated and checked if we're an org member :)
+
+            string issuer = "Chaos Initiative";
+            
+            Claim memberClaim = new Claim(ClaimTypes.Role, "Member", ClaimValueTypes.String, issuer);
+            Claim nameClaim = new Claim(ClaimTypes.Name, user.Login, ClaimValueTypes.String, issuer);
+            
+            ClaimsIdentity identity = new ClaimsIdentity(
+                new []{ memberClaim, nameClaim }, 
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+
+            return RedirectToPage("/Index");
         }
         
     }

@@ -10,7 +10,7 @@
 <p>
     This is a web control panel used internally by <a href="https://www.chaosinitiative.com">Chaos Initiative</a>.
     You may only enter this page as a member of the team. 
-    For any questions, we can be contacted <a href="https://www.chaosinitiative.com/contact">here</a>.
+    Contact: <a href="https://www.chaosinitiative.com/contact">here</a>.
 </p>
 
 @if (User.Identity.IsAuthenticated)
@@ -19,18 +19,22 @@
         You are logged in as
         <partial name="Shared/Partials/IdentityCapsulePartial"/>
     </p>
-    <a asp-page="~/Panel/Dashboard" class="btn btn-primary">
+    <a asp-page="/Panel/Dashboard" class="btn btn-primary">
         Enter Dashboard
     </a>
     
-    <a asp-controller="Auth" asp-action="Logout" class="btn btn-light">
+    <a asp-controller="Auth" asp-action="SignOutAsync" class="btn btn-light">
         Log Out
     </a>
+    
+    <a asp-page="/Debug" class="btn btn-link">Debug</a>
 }
 else
 {
     <p>You are not logged in.</p>
-    <a asp-controller="Auth" asp-action="Login" class="btn btn-light mt-3 mb-3"><i class="fab fa-github"></i>Log in with GitHub</a>
+    <a asp-controller="Auth" asp-action="SignInAsync" class="btn btn-light mt-3 mb-3">
+        <i class="fab fa-github"></i>Log in with GitHub
+    </a>
     
-    <p class="pt-3">After authenticating, your <strong>public</strong> membership of the Chaos Initiative GitHub organisation will be checked to authorize.</p>
+    <p class="pt-3">After authenticating, your membership of the Chaos Initiative GitHub organisation will be checked to authorize.</p>
 }

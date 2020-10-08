@@ -1,3 +1,5 @@
+using System;
+using System.Security.Claims;
 using AspNet.Security.OAuth.GitHub;
 using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -19,6 +21,8 @@ namespace ChaosInitiative.Web.ControlPanel
         {
             Configuration = configuration;
             Environment = environment;
+            
+            GitHubUtil.Init(Environment.IsDevelopment() ? DeploymentType.Development : DeploymentType.Production);
         }
 
         public IConfiguration Configuration { get; }
@@ -27,12 +31,18 @@ namespace ChaosInitiative.Web.ControlPanel
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.IsEssential = true;
+            });
             services.AddDbContext<ApplicationContext>(options =>
             {
                 if (Environment.IsDevelopment())
-                    options.UseSqlite("DataSource=Chaos.db");
+                    options.UseSqlite(Secrets.Get("db.connect", DeploymentType.Development));
                 else
-                    options.UseMySql(Secrets.Get("db.connect"));
+                    options.UseMySql(Secrets.Get("db.connect", DeploymentType.Production));
             });
 
             services.AddDbContext<IdentityDbContext>(options =>
@@ -40,33 +50,18 @@ namespace ChaosInitiative.Web.ControlPanel
                 options.UseInMemoryDatabase("InMemoryDb");
             });
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                //options.RequireAuthenticatedSignIn = false;
-            }).AddCookie(options =>
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
                 options.LoginPath = "/Auth/Login";
                 options.LogoutPath = "/Auth/Logout";
                 options.AccessDeniedPath = "/Auth/AccessDenied";
-            }).AddGitHub(
-                options =>
-                {
-                    //options.ClientId = Secrets.Get("oauthClientId", Environment.IsDevelopment() ? DeploymentType.Development : DeploymentType.Production);
-                    //options.ClientSecret = Secrets.Get("oauthClientSecret", Environment.IsDevelopment() ? DeploymentType.Development : DeploymentType.Production);
-                    options.ClientId = "Iv1.89b774c7a544eeb0";
-                    options.ClientSecret = "4c5e74f8860300767710ab6f54d9184cc4fc2537";
-
-                    options.ForwardSignOut = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.CallbackPath = "/Auth/LoggedIn";
-                });
+            });
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Member", policy =>
                 {
-                    policy.RequireClaim("Member");
+                    policy.RequireClaim(ClaimTypes.Role, "Member");
                     policy.AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme);
                 });
             });
@@ -99,10 +94,12 @@ namespace ChaosInitiative.Web.ControlPanel
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
