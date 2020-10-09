@@ -16,11 +16,7 @@
         @{
             if (User.Identity.IsAuthenticated)
             {
-                string avatarUrl = $"https://github.com/{User.Identity.Name}.png";
-                <a href="https://github.com/@User.Identity.Name" style="color: white; text-decoration: none">
-                    <img src="@avatarUrl" alt="Avatar of @User.Identity.Name" width="30" height="30"/>
-                    <span>@User.Identity.Name</span>
-                </a>
+                <partial name="Partials/IdentityCapsulePartial"/>
             }
             else
             {
@@ -36,7 +32,7 @@
         <ul class="nav flex-column nav-pills">
             @{
 
-                Navbar navbar = Navbar.GetNavbarControlPanel(User.Identity.IsAuthenticated);
+                Navbar navbar = Navbar.GetNavbarControlPanel();
 
                 foreach (KeyValuePair<string, string> pair in navbar.Pages)
                 {
