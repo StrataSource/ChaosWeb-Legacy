@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ChaosInitiative.Web.Shared;
 using Octokit;
@@ -65,7 +64,7 @@ namespace ChaosInitiative.Web.ControlPanel
 
         public static GitHubClient CreateClient()
         {
-            return new GitHubClient(GitHubUtil.ProductHeader);
+            return new GitHubClient(ProductHeader);
         }
 
         public static readonly string GITHUB_ORG_NAME = "ChaosInitiative";

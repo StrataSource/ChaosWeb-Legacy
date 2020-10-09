@@ -1,11 +1,12 @@
 using System;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Octokit;
 
 namespace ChaosInitiative.Web.ControlPanel.Controllers
@@ -14,13 +15,11 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
     public class AuthController : Controller
     {
 
-        private SignInManager<IdentityUser> _signInManager;
-        private UserManager<IdentityUser> _userManager;
+        private ILogger _logger;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public AuthController(LoggerFactory loggerFactory)
         {
-            _signInManager = signInManager;
-            _userManager = userManager;
+            _logger = loggerFactory.CreateLogger<AuthController>();
         }
         
         [HttpGet("Logout")]
@@ -40,13 +39,13 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
             {
                 string state = GitHubUtil.GenerateState(32);
                 
-                var request = new OauthLoginRequest(GitHubUtil.ApplicationClientId)
+                OauthLoginRequest request = new OauthLoginRequest(GitHubUtil.ApplicationClientId)
                 {
                     State = state
                 };
-                var client = GitHubUtil.CreateClient();
+                GitHubClient client = GitHubUtil.CreateClient();
                 
-                HttpContext.Session.Set("csrf:state", System.Text.Encoding.ASCII.GetBytes(state));
+                HttpContext.Session.Set("csrf:state", Encoding.ASCII.GetBytes(state));
 
                 return Redirect(client.Oauth.GetGitHubLoginUrl(request).ToString());
             }
@@ -60,52 +59,52 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
         {
             if (String.IsNullOrWhiteSpace(code)) return RedirectToPage("/Auth/Error");
             
-            Console.WriteLine("====================================================");
-            Console.WriteLine($"New authentication request from {HttpContext.Connection.RemoteIpAddress}. Code: {code}");
-            Console.WriteLine("====================================================");
+            _logger.LogInformation("====================================================");
+            _logger.LogInformation($"New authentication request from {HttpContext.Connection.RemoteIpAddress}. Code: {code}");
+            _logger.LogInformation("====================================================");
 
-            string expectedState = System.Text.Encoding.ASCII.GetString(HttpContext.Session.Get("csrf:state"));
+            string expectedState = Encoding.ASCII.GetString(HttpContext.Session.Get("csrf:state"));
             if (state != expectedState)
             {
-                Console.WriteLine(" - Authentication state doesn't match! Aborting");
-                Console.WriteLine($" - Expected: {expectedState}");
-                Console.WriteLine($" - Got: {state}");
+                _logger.LogInformation(" - Authentication state doesn't match! Aborting");
+                _logger.LogInformation($" - Expected: {expectedState}");
+                _logger.LogInformation($" - Got: {state}");
                 return Unauthorized();
             }
             
-            Console.WriteLine(" - Authentication state matches.");
-            Console.WriteLine(" - Requesting github api token...");
+            _logger.LogInformation(" - Authentication state matches.");
+            _logger.LogInformation(" - Requesting github api token...");
 
             // Get token
             
-            var request = new OauthTokenRequest(GitHubUtil.ApplicationClientId, GitHubUtil.ApplicationClientSecret, code);
-            var client = GitHubUtil.CreateClient();
+            OauthTokenRequest request = new OauthTokenRequest(GitHubUtil.ApplicationClientId, GitHubUtil.ApplicationClientSecret, code);
+            GitHubClient client = GitHubUtil.CreateClient();
             string token = (await client.Oauth.CreateAccessToken(request)).AccessToken;
             
-            Console.WriteLine($" - Token: {token}");
+            _logger.LogInformation($" - Token: {token}");
 
             if (String.IsNullOrWhiteSpace(token)) return RedirectToPage("/Auth/Error");
             client.Credentials = new Credentials(token);
             
-            Console.WriteLine(" - Requesting user info...");
+            _logger.LogInformation(" - Requesting user info...");
             
             // Get user details
             
             var user = await client.User.Current();
             
-            Console.WriteLine("--------------------");
-            Console.WriteLine($" - Username: {user.Login}");
-            Console.WriteLine($" - E-Mail: {user.Email ?? "(none)"}");
-            Console.WriteLine("--------------------");
-            Console.WriteLine(" - Checking organization membership...");
+            _logger.LogInformation("--------------------");
+            _logger.LogInformation($" - Username: {user.Login}");
+            _logger.LogInformation($" - E-Mail: {user.Email ?? "(none)"}");
+            _logger.LogInformation("--------------------");
+            _logger.LogInformation(" - Checking organization membership...");
             
             if (!await client.Organization.Member.CheckMember(GitHubUtil.GITHUB_ORG_NAME, user.Login))
             {
-                Console.WriteLine(" - Not an organization member! Not logging in.");
+                _logger.LogInformation(" - Not an organization member! Not logging in.");
                 return RedirectToPage("/Auth/NoMember");
             }
             
-            Console.WriteLine(" - User is organization member. Creating claims.");
+            _logger.LogInformation(" - User is organization member. Creating claims.");
             
             // Now we're authenticated and checked if we're an org member :)
 
@@ -118,7 +117,7 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
                 new []{ memberClaim, nameClaim }, 
                 CookieAuthenticationDefaults.AuthenticationScheme);
             
-            Console.WriteLine($" - Signing user in using {CookieAuthenticationDefaults.AuthenticationScheme}");
+            _logger.LogInformation($" - Signing user in using {CookieAuthenticationDefaults.AuthenticationScheme}");
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
 
