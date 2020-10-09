@@ -1,9 +1,7 @@
 using System;
 using System.Security.Claims;
-using AspNet.Security.OAuth.GitHub;
 using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -50,16 +48,23 @@ namespace ChaosInitiative.Web.ControlPanel
                 options.UseInMemoryDatabase("InMemoryDb");
             });
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Auth/Login";
                 options.LogoutPath = "/Auth/Logout";
                 options.AccessDeniedPath = "/Auth/AccessDenied";
             });
+            
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie();
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Member", policy =>
+                options.AddPolicy("IsMember", policy =>
                 {
                     policy.RequireClaim(ClaimTypes.Role, "Member");
                     policy.AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -69,8 +74,9 @@ namespace ChaosInitiative.Web.ControlPanel
 
             services.AddRazorPages(options =>
             {
-                options.Conventions.AuthorizeFolder("/Panel", "Member");
+                options.Conventions.AuthorizeFolder("/Panel", "IsMember");
                 options.Conventions.AllowAnonymousToPage("/Index");
+                options.Conventions.AllowAnonymousToFolder("/Auth");
             }).AddRazorRuntimeCompilation();
 
             services.AddControllersWithViews();

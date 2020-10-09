@@ -39,7 +39,7 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
             if (!User.Identity.IsAuthenticated)
             {
                 string state = GitHubUtil.GenerateState(32);
-                Console.WriteLine(state);
+                
                 var request = new OauthLoginRequest(GitHubUtil.ApplicationClientId)
                 {
                     State = state
@@ -59,23 +59,53 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
         public async Task<IActionResult> AuthorizeAsync(string code, string state)
         {
             if (String.IsNullOrWhiteSpace(code)) return RedirectToPage("/Auth/Error");
-
-            if (state != HttpContext.Session.Get("csrf:state").ToString()) return Unauthorized();
             
+            Console.WriteLine("====================================================");
+            Console.WriteLine($"New authentication request from {HttpContext.Connection.RemoteIpAddress}. Code: {code}");
+            Console.WriteLine("====================================================");
+
+            string expectedState = System.Text.Encoding.ASCII.GetString(HttpContext.Session.Get("csrf:state"));
+            if (state != expectedState)
+            {
+                Console.WriteLine(" - Authentication state doesn't match! Aborting");
+                Console.WriteLine($" - Expected: {expectedState}");
+                Console.WriteLine($" - Got: {state}");
+                return Unauthorized();
+            }
+            
+            Console.WriteLine(" - Authentication state matches.");
+            Console.WriteLine(" - Requesting github api token...");
+
             // Get token
             
             var request = new OauthTokenRequest(GitHubUtil.ApplicationClientId, GitHubUtil.ApplicationClientSecret, code);
             var client = GitHubUtil.CreateClient();
             string token = (await client.Oauth.CreateAccessToken(request)).AccessToken;
+            
+            Console.WriteLine($" - Token: {token}");
 
             if (String.IsNullOrWhiteSpace(token)) return RedirectToPage("/Auth/Error");
             client.Credentials = new Credentials(token);
             
+            Console.WriteLine(" - Requesting user info...");
+            
             // Get user details
-
+            
             var user = await client.User.Current();
+            
+            Console.WriteLine("--------------------");
+            Console.WriteLine($" - Username: {user.Login}");
+            Console.WriteLine($" - E-Mail: {user.Email ?? "(none)"}");
+            Console.WriteLine("--------------------");
+            Console.WriteLine(" - Checking organization membership...");
+            
             if (!await client.Organization.Member.CheckMember(GitHubUtil.GITHUB_ORG_NAME, user.Login))
+            {
+                Console.WriteLine(" - Not an organization member! Not logging in.");
                 return RedirectToPage("/Auth/NoMember");
+            }
+            
+            Console.WriteLine(" - User is organization member. Creating claims.");
             
             // Now we're authenticated and checked if we're an org member :)
 
@@ -87,6 +117,8 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
             ClaimsIdentity identity = new ClaimsIdentity(
                 new []{ memberClaim, nameClaim }, 
                 CookieAuthenticationDefaults.AuthenticationScheme);
+            
+            Console.WriteLine($" - Signing user in using {CookieAuthenticationDefaults.AuthenticationScheme}");
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
 

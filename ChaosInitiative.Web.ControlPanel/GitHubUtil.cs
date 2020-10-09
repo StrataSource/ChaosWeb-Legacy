@@ -26,13 +26,13 @@ namespace ChaosInitiative.Web.ControlPanel
             Console.WriteLine($"Client Secret: {ApplicationClientSecret}");
         }
 
-        public static readonly ProductHeaderValue PRODUCT_HEADER = new ProductHeaderValue("ChaosInitiativeControlPanel");
+        public static readonly ProductHeaderValue ProductHeader = new ProductHeaderValue("ChaosInitiativeControlPanel");
         
         public static async Task<bool> IsUserOrganizationMember(string gitHubUserName, string gitHubOrgName, string token)
         {
             // TODO: This currently only works on members who show their membership publicly, because github's api 
             //       for authenticated access on that endpoint is broken or whatever
-            GitHubClient client = new GitHubClient(PRODUCT_HEADER);
+            GitHubClient client = new GitHubClient(ProductHeader);
             client.Credentials = new Credentials(token);
             
             return await client.Organization.Member.CheckMember(gitHubOrgName, gitHubUserName);
@@ -65,7 +65,7 @@ namespace ChaosInitiative.Web.ControlPanel
 
         public static GitHubClient CreateClient()
         {
-            return new GitHubClient(GitHubUtil.PRODUCT_HEADER);
+            return new GitHubClient(GitHubUtil.ProductHeader);
         }
 
         public static readonly string GITHUB_ORG_NAME = "ChaosInitiative";
@@ -91,13 +91,12 @@ namespace ChaosInitiative.Web.ControlPanel
             }
             
             chars.Add('+');
-            chars.Add('*');
 
             string output = "";
             for (int i = 0; i < length; i++)
             {
                 Random rng = new Random();
-                output.Append(chars[rng.Next(0, chars.Count)]);
+                output += chars[rng.Next(0, chars.Count)];
             }
 
             return output;
