@@ -1,10 +1,40 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    Layout = "Shared/_LayoutPaper";
+    ViewData["Title"] = "Login";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Chaos Initiative Control Panel</h2>
+
+<p>
+    This is a web control panel used internally by <a href="https://www.chaosinitiative.com">Chaos Initiative</a>.
+    You may only enter this page as a member of the team. 
+    Contact: <a href="https://www.chaosinitiative.com/contact">here</a>.
+</p>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        You are logged in as
+        <partial name="Shared/Partials/IdentityCapsulePartial"/>
+    </p>
+    <a asp-page="/Panel/Dashboard" class="btn btn-primary">
+        Enter Dashboard
+    </a>
+    
+    <a asp-controller="Auth" asp-action="SignOutAsync" class="btn btn-light">
+        Log Out
+    </a>
+    
+    <a asp-page="/Debug" class="btn btn-link">Debug</a>
+}
+else
+{
+    <p>You are not logged in.</p>
+    <a asp-controller="Auth" asp-action="SignInAsync" class="btn btn-light mt-3 mb-3">
+        <i class="fab fa-github"></i>Log in with GitHub
+    </a>
+    
+    <p class="pt-3">After authenticating, your membership of the Chaos Initiative GitHub organisation will be checked to authorize.</p>
+}

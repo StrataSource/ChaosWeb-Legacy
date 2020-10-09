@@ -37,5 +37,26 @@ namespace ChaosInitiative.Web.Shared
             
             return navbar;
         }
+
+        public static Navbar GetNavbarControlPanel(bool authenticated = false)
+        {
+            Navbar navbar = new Navbar();
+            if (authenticated)
+            {
+                navbar.Pages.Add("/Panel/Dashboard", "Dashboard");
+                navbar.Pages.Add("/Panel/Releases", "Releases");
+                navbar.Pages.Add("/Panel/Features", "Features");
+                navbar.Pages.Add("/Panel/Tools", "Tools");
+            }
+            else
+            {
+                navbar.Pages.Add("/Panel/Dashboard", "Login");
+                navbar.Pages.Add("https://www.chaosinitiative.com", "Homepage");
+            }
+
+            navbar.ActivePage = null;
+
+            return navbar;
+        }
     }
 }

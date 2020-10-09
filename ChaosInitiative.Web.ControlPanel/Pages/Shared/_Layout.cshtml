@@ -1,50 +1,66 @@
-﻿<!DOCTYPE html>
+﻿@using ChaosInitiative.Web.Shared
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - ChaosInitiative.Web.ControlPanel</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css"/>
+    <title>@ViewData["Title"] - Chaos Initiative Control Panel</title>
+    <partial name="_LayoutHeadPartial"/>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-page="/Index">ChaosInitiative.Web.ControlPanel</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
+<nav role="navigation" class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand pl-3 mr-auto" href="/">
+        <img src="~/img/chaos_logo_square.png" alt="Chaos Logo" class="d-inline-block align-bottom mr-3" loading="lazy" width="50" height="50"/>
+        <span class="h1 m-0">@ViewData["Title"]</span>
+    </a>
+    
+    <span class="navbar-text pr-3">
+        @{
+            if (User.Identity.IsAuthenticated)
+            {
+                string avatarUrl = $"https://github.com/{User.Identity.Name}.png";
+                <a href="https://github.com/@User.Identity.Name" style="color: white; text-decoration: none">
+                    <img src="@avatarUrl" alt="Avatar of @User.Identity.Name" width="30" height="30"/>
+                    <span>@User.Identity.Name</span>
+                </a>
+            }
+            else
+            {
+                <p>Not logged in</p>
+            }
+        }
+    </span>
+    
+</nav>
+
+<div class="row h-100">
+    <div class="col col-md-2 bg-light h-100">
+        <ul class="nav flex-column nav-pills">
+            @{
+
+                Navbar navbar = Navbar.GetNavbarControlPanel(User.Identity.IsAuthenticated);
+
+                foreach (KeyValuePair<string, string> pair in navbar.Pages)
+                {
+                    if (Context.Request.Path.ToString().StartsWith(pair.Key))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="@pair.Key">@pair.Value</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@pair.Key">@pair.Value</a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+
+    <div class="col col-md-8 col-sm-12 justify-content-around p-0">
         @RenderBody()
-    </main>
+    </div>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2020 - ChaosInitiative.Web.ControlPanel - <a asp-area="" asp-page="/Privacy">Privacy</a>
-    </div>
-</footer>
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-
-@RenderSection("Scripts", required: false)
 </body>
 </html>
