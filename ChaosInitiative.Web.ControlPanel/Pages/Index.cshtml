@@ -23,7 +23,7 @@
         Enter Dashboard
     </a>
     
-    <a asp-controller="Auth" asp-action="SignOutAsync" class="btn btn-light">
+    <a href="/Auth/Logout" class="btn btn-light">
         Log Out
     </a>
     
@@ -32,7 +32,7 @@
 else
 {
     <p>You are not logged in.</p>
-    <a asp-controller="Auth" asp-action="SignInAsync" class="btn btn-light mt-3 mb-3">
+    <a href="/Auth/Login" class="btn btn-light mt-3 mb-3">
         <i class="fab fa-github"></i>Log in with GitHub
     </a>
     
