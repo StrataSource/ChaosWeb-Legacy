@@ -27,7 +27,6 @@ namespace ChaosInitiative.Web.Shared
             {
 
                 string jsonString = File.ReadAllText(secretsFilePath);
-                Console.WriteLine(jsonString);
                 SecretsModel model = JsonSerializer.Deserialize<SecretsModel>(jsonString);
                 
                 if (model == null) return null;
@@ -46,7 +45,7 @@ namespace ChaosInitiative.Web.Shared
                 }
             }
 
-            throw new FileNotFoundException("Can't load secrets.json.");
+            throw new FileNotFoundException($"Can't load {Environment.CurrentDirectory}/secrets.json.");
         }
     }
 
