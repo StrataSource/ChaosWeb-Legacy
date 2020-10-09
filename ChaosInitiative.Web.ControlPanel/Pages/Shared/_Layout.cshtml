@@ -32,9 +32,9 @@
         <ul class="nav flex-column nav-pills">
             @{
 
-                Navbar navbar = Navbar.GetNavbarControlPanel();
+                var navbar = NavbarControlPanel.GetNavbar();
 
-                foreach (KeyValuePair<string, string> pair in navbar.Pages)
+                foreach (KeyValuePair<string, string> pair in navbar)
                 {
                     if (Context.Request.Path.ToString().StartsWith(pair.Key))
                     {
