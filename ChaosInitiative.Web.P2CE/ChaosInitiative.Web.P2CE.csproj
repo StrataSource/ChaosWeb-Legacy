@@ -73,9 +73,14 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+      <Content Update="Pages\Shared\ModsPartials\_ModPartialDefault.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="wwwroot\img\mod\revolution" />
       <Folder Include="wwwroot\js" />
     </ItemGroup>
 

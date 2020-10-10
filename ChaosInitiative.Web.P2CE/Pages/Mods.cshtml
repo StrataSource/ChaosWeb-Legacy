@@ -11,42 +11,13 @@
 <div class="row">
 
     <div class="col col-sm-12 col-lg-12">
-        <section>
-            
-            <div class="row">
-                <div class="col col-auto">
-                    <img src="https://via.placeholder.com/360x240" alt="Image"/>
-                </div>
-                <div class="col">
-                    <h1>Mod Title</h1>
-                    <p>Developers</p>
-                    <p>
-                        <a href="#">Links</a>
-                        <a href="#">Links</a>
-                        <a href="#">Links</a>
-                    </p>
-                    <p>
-                        Explain why you used p2ce here
-                    </p>
-                </div>
-            </div>
-            
-            <div class="row pt-2">
-                
-                <div class="col-4">
-                    <img src="https://via.placeholder.com/1600x1200" width="100%"/>
-                </div>
-                <div class="col-4">
-                    <img src="https://via.placeholder.com/1600x1200" width="100%"/>
-                </div>
-                <div class="col-4">
-                    <img src="https://via.placeholder.com/1600x1200" width="100%"/>
-                </div>
-                
-            </div>
-            
-            
-        </section>
+        @{
+            foreach (Mod mod in Model.Mods)
+            {
+                <partial name="Shared/ModsPartials/_ModPartialDefault" model="mod"/>
+            }
+        }
+        
     </div>
 </div>
 </div>
