@@ -40,9 +40,10 @@
                         <ul class="navbar-nav">
                             @{
                                 Dictionary<string, string> navbar = NavbarHomePage.GetNavbar();
+                                string requestPath = Context.Request.Path.ToString();
                                 foreach (KeyValuePair<string, string> pair in navbar)
                                 {
-                                    if (Context.Request.Path.ToString().StartsWith(pair.Key))
+                                    if (requestPath == pair.Key)
                                     {
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page" href="@pair.Key">@pair.Value</a>
