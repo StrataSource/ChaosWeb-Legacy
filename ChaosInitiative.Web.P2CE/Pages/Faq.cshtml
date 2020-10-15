@@ -13,30 +13,17 @@
             <p>Your question might already be answered here. If not, feel free to ask!</p>
         </section>
         
-        @{
+        <section class="faq-container">
+            @{
             foreach(var faq in Model.faqs)
             {
-                <section>
-                    <div class="row faq-question">
-                        <div class="col col-1">
-                            <h2>Q:</h2>
-                        </div>
-                        <div class="col col-auto">
-                            <h2>@faq.Question</h2>
-                        </div>
-                    </div>
-                    <div class="row faq-answer">
-                        <div class="col col-1">
-                            <h2>A:</h2>
-                        </div>
-                        <div class="col col-auto">
-                            <p>@faq.Answer</p>
-                        </div>
-                    </div>
-                    
-                </section>
+            
+                <h2>@faq.Question</h2>
+                <p>@faq.Answer</p>
+            
             }
         }
+        </section>
     
 
     </div>
