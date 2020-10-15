@@ -78,7 +78,7 @@ namespace ChaosInitiative.Web.ControlPanel
                 options.Conventions.AllowAnonymousToPage("/Index");
                 options.Conventions.AllowAnonymousToFolder("/Auth");
             }).AddRazorRuntimeCompilation();
-
+            
             services.AddControllersWithViews();
         }
 

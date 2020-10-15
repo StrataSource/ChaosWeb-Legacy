@@ -17,9 +17,9 @@ namespace ChaosInitiative.Web.ControlPanel.Controllers
 
         private ILogger _logger;
 
-        public AuthController(LoggerFactory loggerFactory)
+        public AuthController(ILogger<AuthController> logger)
         {
-            _logger = loggerFactory.CreateLogger<AuthController>();
+            _logger = logger;
         }
         
         [HttpGet("Logout")]
