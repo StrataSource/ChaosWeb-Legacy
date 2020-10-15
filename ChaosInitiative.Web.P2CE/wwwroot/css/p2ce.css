@@ -179,12 +179,18 @@ pre.display-inline {
     color: #FF7B02;
 }
 
-.faq-question > span,
-.faq-answer > span {
-    font-size: 140%;
-    color: #FF7B02;
+.faq-container p {
+    padding-bottom: 2rem;
 }
 
-.faq-answer > span {
-    
+.features-closed-issue-display {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.features-closed-issue-display h2,
+.features-closed-issue-display h3,
+.features-closed-issue-display h4
+{
+    border-bottom: none;
 }
