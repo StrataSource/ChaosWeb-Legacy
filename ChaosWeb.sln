@@ -8,6 +8,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosInitiative.Web.Shared"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosInitiative.Web.ControlPanel", "ChaosInitiative.Web.ControlPanel\ChaosInitiative.Web.ControlPanel.csproj", "{51377721-D369-4C00-99AB-2418BD3600B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosInitiative.Web.ControlPanel.Tests", "ChaosInitiative.Web.ControlPanel.Tests\ChaosInitiative.Web.ControlPanel.Tests.csproj", "{5674BA92-C322-44A7-A1DD-2010F9C175BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosInitiative.Web.Shared.Tests", "ChaosInitiative.Web.Shared.Tests\ChaosInitiative.Web.Shared.Tests.csproj", "{01243468-986A-4397-A94A-1E0A3DBB13C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosInitiative.Web.P2CE.Tests", "ChaosInitiative.Web.P2CE.Tests\ChaosInitiative.Web.P2CE.Tests.csproj", "{4FF7D223-1D7D-42A2-9002-62CD4DE803FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaosInitiative.Web.HomePage.Tests", "ChaosInitiative.Web.HomePage.Tests\ChaosInitiative.Web.HomePage.Tests.csproj", "{111F590B-CF80-4753-A22A-1D977F9E2A67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +38,21 @@ Global
 		{51377721-D369-4C00-99AB-2418BD3600B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51377721-D369-4C00-99AB-2418BD3600B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51377721-D369-4C00-99AB-2418BD3600B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5674BA92-C322-44A7-A1DD-2010F9C175BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5674BA92-C322-44A7-A1DD-2010F9C175BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5674BA92-C322-44A7-A1DD-2010F9C175BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5674BA92-C322-44A7-A1DD-2010F9C175BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01243468-986A-4397-A94A-1E0A3DBB13C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01243468-986A-4397-A94A-1E0A3DBB13C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01243468-986A-4397-A94A-1E0A3DBB13C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01243468-986A-4397-A94A-1E0A3DBB13C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FF7D223-1D7D-42A2-9002-62CD4DE803FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FF7D223-1D7D-42A2-9002-62CD4DE803FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FF7D223-1D7D-42A2-9002-62CD4DE803FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FF7D223-1D7D-42A2-9002-62CD4DE803FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{111F590B-CF80-4753-A22A-1D977F9E2A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{111F590B-CF80-4753-A22A-1D977F9E2A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{111F590B-CF80-4753-A22A-1D977F9E2A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{111F590B-CF80-4753-A22A-1D977F9E2A67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

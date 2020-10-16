@@ -5,9 +5,43 @@
     ViewData["Title"] = "Features";
 }
 
-<partial name="Shared/_NavbarPartial" model="@Navbar.GetDefaultNavbarP2CE("/features")"/>
-
 <!-- CONTENT STARTS HERE -->
-<div class="container bg-dark">
-    <h1 class="text-center">TODO: Hook up features to database</h1>
+<div class="bg-dark">
+<div class="container">
+    
+    <section class="text-center">
+        <h1>Features</h1>
+        <p>Everything that's new. All available right now.</p>
+        
+        <div class="container-md">
+            <div class="row features-closed-issue-display">
+                @{
+                    foreach (var closedIssues in Model.ClosedIssuesDisplays)
+                    {
+                        <div class="col">
+                            <h2>
+                                @closedIssues.DisplayName
+                            </h2>
+                            
+                            <h4>
+                                @closedIssues.GetCount()
+                            </h4>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        
+        <a class="btn btn-primary" asp-page="FeaturesList">Full Feature List</a>
+        
+        <div class="p-2">
+            <a class="btn btn-link" href="@Constants.LINK_GITHUB_P2CE_ISSUES">Browse GitHub Issues</a>
+        </div>
+    </section>
+    
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialPaintgun"/>
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialSchrodinger"/>
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialReflection"/>
+
+</div>
 </div>

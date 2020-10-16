@@ -66,7 +66,10 @@ section:first-child {
     padding-top: 2rem;
 }
 
-section > h1 {
+section h1,
+section h2,
+section h3,
+section h4 {
     border-bottom: 1px #151515 solid;
     color: #FF7B02;
 }
@@ -174,4 +177,20 @@ pre.display-inline {
     text-align: center;
     font-size: 2rem;
     color: #FF7B02;
+}
+
+.faq-container p {
+    padding-bottom: 2rem;
+}
+
+.features-closed-issue-display {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.features-closed-issue-display h2,
+.features-closed-issue-display h3,
+.features-closed-issue-display h4
+{
+    border-bottom: none;
 }

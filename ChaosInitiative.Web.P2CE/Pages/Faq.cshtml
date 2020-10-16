@@ -1,0 +1,30 @@
+@page
+@model ChaosInitiative.Web.P2CE.Pages.FaqModel
+@{
+    ViewData["Title"] = "FAQ";
+}
+
+<!-- CONTENT STARTS HERE -->
+<div class="bg-dark">
+    <div class="container">
+    
+        <section>
+            <h1>Frequently asked Questions</h1>
+            <p>Your question might already be answered here. If not, feel free to ask!</p>
+        </section>
+        
+        <section class="faq-container">
+            @{
+            foreach(var faq in Model.faqs)
+            {
+            
+                <h2>@faq.Question</h2>
+                <p>@faq.Answer</p>
+            
+            }
+        }
+        </section>
+    
+
+    </div>
+</div>

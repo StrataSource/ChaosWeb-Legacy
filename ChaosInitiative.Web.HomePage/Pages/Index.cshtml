@@ -1,12 +1,9 @@
 ﻿@page
-@using ChaosInitiative.Web.Shared
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
     ViewData["Description"] = "Bringing Source Engine to the next level";
 }
-
-<partial name="Shared/_NavbarPartial" model="@Navbar.GetDefaultNavbarChaos("/")"/>
 
 <div class="bg-primary">
 <section class="container">
@@ -29,17 +26,48 @@
 </div>
 
 <div class="bg-light">
-<section class="container">
+    <section class="container">
 
-    <h1>Content here</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu risus quis varius quam quisque id diam vel quam. Dolor sit amet consectetur adipiscing. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. A cras semper auctor neque vitae tempus quam pellentesque. Diam in arcu cursus euismod quis viverra nibh cras. Velit ut tortor pretium viverra suspendisse potenti nullam. Arcu non odio euismod lacinia at quis risus sed vulputate. Turpis egestas sed tempus urna et pharetra pharetra. Quisque non tellus orci ac auctor augue. Id aliquet lectus proin nibh nisl condimentum id.
-    </p>
-    <p>
-        Aliquam sem et tortor consequat id porta nibh venenatis cras. Aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Habitant morbi tristique senectus et netus. Felis eget velit aliquet sagittis id consectetur purus ut faucibus. Nunc id cursus metus aliquam eleifend mi in nulla. Non enim praesent elementum facilisis leo vel. Augue eget arcu dictum varius duis. Magna fermentum iaculis eu non. Quam pellentesque nec nam aliquam sem et tortor consequat. Viverra adipiscing at in tellus integer feugiat.
-    </p>
+        <h1>How we started</h1>
+        <p>
+            Chaos Initiative was founded through our frustration of how closed off and non-collaborative the Source Engine 
+            licensing community seemed to have been.<br/>
+            The path to getting Source Engine's source code was untransparent and confusing. 
+            And even then, the few people that actually had access would often not make use of it properly and never release a game, wasting all their efforts.
+        </p>
+        <p>
+            We're trying to change this for the better by encouraging collaboration and opening up our engine base
+            for anyone to contribute to it and use it for their own games.
+        </p>
 
-</section>
+    </section>
+    
+    <section class="container">
+        
+        <h1>How do I join Chaos Initiative?</h1>
+        <p>
+            Anybody can apply to join us, but there are some <strong>hard requirements</strong> that have
+            to be fulfilled under any circumstances.
+        </p>
+        
+        <div class="container-md">
+            <ol>
+                <li>You must be at least or over 18 years old</li>
+                <li>You have to speak and understand english</li>
+                <li>You must have knowledge in programming (Show us your projects)</li>
+                <li>You must have never broken Valve NDA or had any other negative experiences with Valve like it</li>
+            </ol>
+            
+            <small><strong>Note: </strong>You can still apply if you're not already under Valve NDA</small>
+        </div>
+        
+        <div>
+            <h2>Ready to join us?</h2>
+            <p>Direct message <code>Tewan#0087</code> on Discord (No need to send a friend request) 
+                or send an E-Mail to <a href="mailto://contact@chaosinitiative.com">contact@chaosinitiative.com</a></p>
+        </div>
+        
+    </section>
 </div>
 
 <section class="container text-center" style="color: #555">
