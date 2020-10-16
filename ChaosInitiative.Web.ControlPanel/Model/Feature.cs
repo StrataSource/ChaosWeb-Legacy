@@ -13,10 +13,10 @@ namespace ChaosInitiative.Web.ControlPanel.Model
 
     public enum FeatureType
     {
-        ADDITION = 0,
-        FIX,
-        CHANGE,
-        REFACTOR,
-        OTHER
+        Addition = 0,
+        Fix,
+        Change,
+        Refactor,
+        Other
     }
 }
