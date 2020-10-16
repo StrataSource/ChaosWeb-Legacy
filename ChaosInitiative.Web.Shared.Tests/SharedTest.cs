@@ -1,10 +1,8 @@
-using System;
-using ChaosInitiative.Web.Shared;
 using NUnit.Framework;
 
-namespace ChaosInitiative.Web.Test
+namespace ChaosInitiative.Web.Shared.Tests
 {
-    public class SharedTests
+    public class SecretsTests
     {
         [Test]
         public void TestIfSecretsConfigCanBeLoaded()

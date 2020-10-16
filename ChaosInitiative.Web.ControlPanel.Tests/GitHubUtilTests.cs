@@ -1,9 +1,8 @@
-using ChaosInitiative.Web.ControlPanel;
 using NUnit.Framework;
 
-namespace ChaosInitiative.Web.Test
+namespace ChaosInitiative.Web.ControlPanel.Tests
 {
-    public class ControlPanelTest
+    public class GitHubUtilTests
     {
         [SetUp]
         public void Setup()
