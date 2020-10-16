@@ -7,7 +7,7 @@ namespace ChaosInitiative.Web.ControlPanel.Model
         public int FeatureId { get; set; }
         public string Name { get; set; }
         public FeatureType Type { get; set; }
-        public List<string> RelatedIssues { get; set; }
+        public List<Issue> RelatedIssues { get; set; }
         public bool Completed { get; set; }
     }
 
