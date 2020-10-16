@@ -16,7 +16,7 @@ namespace ChaosInitiative.Web.ControlPanel
                 .ConfigureLogging(builder =>
                 {
                     builder.ClearProviders();
-                    builder.AddDebug();
+                    //builder.AddDebug();
                     builder.AddConsole();
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
