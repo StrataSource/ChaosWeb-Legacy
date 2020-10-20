@@ -38,9 +38,9 @@ namespace ChaosInitiative.Web.ControlPanel
             services.AddDbContext<ApplicationContext>(options =>
             {
                 if (Environment.IsDevelopment())
-                    options.UseSqlite(Secrets.Get("db.connect", DeploymentType.Development));
+                    options.UseSqlite(Secrets.Get("dbConnect", DeploymentType.Development));
                 else
-                    options.UseMySql(Secrets.Get("db.connect", DeploymentType.Production));
+                    options.UseMySql(Secrets.Get("dbConnect", DeploymentType.Production));
             });
 
             services.AddDbContext<IdentityDbContext>(options =>
