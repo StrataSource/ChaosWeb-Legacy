@@ -1,21 +1,21 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ChaosInitiative.Web.ControlPanel.Model
 {
+    [Table("Games")]
     public class Game
     {
+        [Key]
+        public int Id { get; set; }
         public string Name { get; set; }
-        private string _repository;
 
-        public string Repository
+        public string RepositoryOwner { get; set; }
+        public string RepositoryName { get; set; }
+
+        public string GetGitHubRepositoryUri()
         {
-            get => _repository;
-            set
-            {
-                // Strip trailing slashes
-                if (value.EndsWith("/"))
-                    value = value.Substring(0, value.Length - 1);
-
-                _repository = value;
-            }
+            return $"https://github.com/{RepositoryOwner}/{RepositoryName}";
         }
     }
 }
