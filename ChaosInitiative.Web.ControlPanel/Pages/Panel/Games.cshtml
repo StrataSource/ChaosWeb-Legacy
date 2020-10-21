@@ -1,4 +1,5 @@
 @page
+@using ChaosInitiative.Web.ControlPanel.Model
 @model ChaosInitiative.Web.ControlPanel.Pages.Panel.GamesModel
 
 @{
@@ -8,12 +9,134 @@
 
 <section>
     
-    <h2>
-        This is a template page
-    </h2>
-
-    <p>
-        Please replace me!
-    </p>
+    <h1>Games</h1>
     
+    <div class="accordion" id="gamesAccordion">
+        
+        @{
+            int i = 0; // Super janky way of getting the index of a foreach loop...
+            foreach (Game game in Model.Games)
+            {
+                <div class="card">
+                    
+                    <!-- Accordion head -->
+                    <div class="card-header" id="game_heading_0">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left"
+                                    type="button"
+                                    data-toggle="collapse"
+                                    data-target="#game_collapse_@i">
+                                @game.Name
+                            </button>
+                        </h2>
+                    </div>
+
+                    <!-- Accordion content -->
+                    <div class="collapse pt-3 pb-4" 
+                         id="game_collapse_@i"
+                         aria-labelledby="game_heading_0"
+                         data-parent="#gamesAccordion">
+
+                        <form asp-controller="Game" asp-action="OnPut">
+                            <input class="d-none" type="hidden" name="Id" value="@i">
+                            
+                            <div class="form-group">
+                                <label for="game_form_name_@i">Name</label>
+                                <input class="form-control" type="text" id="game_form_name_@i" placeholder="Name" name="Name" value="@game.Name"/>
+                                <small class="form-text text-muted">This is only for display</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="game_form_repo_owner_@i">GitHub Repository</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control" type="text" id="game_form_repo_owner_@i" placeholder="Owner" name="RepositoryOwner" value="@game.RepositoryOwner"/>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control" type="text" id="game_form_repo_name_@i" placeholder="Name" name="RepositoryName" value="@game.RepositoryName"/>
+                                    </div>
+                                    <div class="col col-auto">
+                                        <a class="btn btn-secondary" href="#" onclick="isGameRepositoryValid('game_form_repo_@i')">Check</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input class="btn btn-primary" type="submit" value="Update"/>
+                        </form>
+
+                    </div>
+                </div>
+                i++;
+            }
+        }
+        
+        <button class="btn btn-secondary btn-block mt-4 mb-3" data-toggle="collapse" data-target="#game_new_collapse">
+            Add
+        </button>
+        
+        <div class="collapse pt-2 pb-2" id="game_new_collapse">
+            
+            <form asp-controller="Game" asp-action="OnPost">
+                <div class="form-group">
+                    <label for="game_new_form_name">Name</label>
+                    <input class="form-control" type="text" id="game_new_form_name" placeholder="Name" name="Name"/>
+                    <small class="form-text text-muted">This is only for display</small>
+                </div>
+                                            
+                <div class="form-group">
+                    <label for="game_new_form_repo_owner">GitHub Repository</label>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-control" type="text" id="game_new_form_repo_owner" placeholder="Owner" name="RepositoryOwner"/>
+                        </div>
+                        <div class="col">
+                            <input class="form-control" type="text" id="game_new_form_repo_name" placeholder="Name" name="RepositoryName"/>
+                        </div>
+                        <div class="col col-auto">
+                            <a class="btn btn-secondary" href="#" onclick="isGameRepositoryValid('game_new_form_repo')">Check</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <input class="btn btn-primary" type="submit" value="Create"/>
+            </form>
+            
+        </div>
+        
+    </div>
 </section>
+
+<!-- TODO: Maybe clean this script mess up -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.2/URI.min.js"></script> 
+<script>
+
+function isGameRepositoryValid(formId) {
+    
+    let form = $(`#${formId}`);
+    let repoPath = form.val();
+    
+    const uri = new URI(repoPath);
+    let splits = uri.path().split("/");
+    if (splits.length !== 3) {
+        alertRepositoryValidity(form,  false);
+        return;
+    }
+    
+    // [0] is empty, since the string starts with /.
+    let org = splits[1];
+    let name = splits[2];
+    
+    fetch(`https://api.github.com/repos/${org}/${name}`)
+    .then(response => {
+        alertRepositoryValidity(form, response.ok);
+    });
+}
+
+function alertRepositoryValidity(form, isValid) {
+    if (isValid) {
+       alert("Is valid");
+   } else {  
+       alert("Is invalid");
+    }
+}
+</script>
