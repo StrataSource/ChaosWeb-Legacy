@@ -3,7 +3,7 @@
 @model ChaosInitiative.Web.ControlPanel.Pages.Panel.GamesModel
 
 @{
-    ViewData["Title"] = "New Page";
+    ViewData["Title"] = "Games";
     Layout = "Shared/_LayoutDashboard";
 }
 
@@ -41,22 +41,47 @@
                             <input class="d-none" type="hidden" name="Id" value="@i">
                             
                             <div class="form-group">
-                                <label for="game_form_name_@i">Name</label>
-                                <input class="form-control" type="text" id="game_form_name_@i" placeholder="Name" name="Name" value="@game.Name"/>
+                                <label for="game_form_name_@i" class="is-required">Name</label>
+                                <input class="form-control" 
+                                       type="text" 
+                                       id="game_form_name_@i" 
+                                       placeholder="Name" 
+                                       name="Name" 
+                                       value="@game.Name" 
+                                       aria-describedby="game_form_name_invalid_feedback_@i"
+                                       required/>
                                 <small class="form-text text-muted">This is only for display</small>
+                                <div class="invalid-feedback" id="game_form_name_invalid_feedback_@i">
+                                    
+                                </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="game_form_repo_owner_@i">GitHub Repository</label>
+                                <label for="game_form_repo_owner_@i" class="is-required">GitHub Repository</label>
                                 <div class="row">
                                     <div class="col">
-                                        <input class="form-control" type="text" id="game_form_repo_owner_@i" placeholder="Owner" name="RepositoryOwner" value="@game.RepositoryOwner"/>
+                                        <select class="custom-select"
+                                                id="game_form_repo_owner_@i"
+                                                name="RepositoryOwner"
+                                                required
+                                                asp-items="Model.AvailableRepoOwners">
+                                        </select>
                                     </div>
                                     <div class="col">
-                                        <input class="form-control" type="text" id="game_form_repo_name_@i" placeholder="Name" name="RepositoryName" value="@game.RepositoryName"/>
+                                        <input class="form-control" 
+                                               type="text" 
+                                               id="game_form_repo_name_@i" 
+                                               placeholder="Name" 
+                                               name="RepositoryName" 
+                                               value="@game.RepositoryName" 
+                                               required/>
+                                               
+                                        <div class="valid-feedback" id="game_form_repo_name_valid_feedback_@i">
+                                            All good!
+                                        </div>
                                     </div>
                                     <div class="col col-auto">
-                                        <a class="btn btn-secondary" href="#" onclick="isGameRepositoryValid('game_form_repo_@i')">Check</a>
+                                        <a class="btn btn-secondary" href="#" onclick="isGameRepositoryValid('game_form_repo_owner_@i', 'game_form_repo_name_@i')">Check</a>
                                     </div>
                                 </div>
                             </div>
@@ -76,24 +101,29 @@
         
         <div class="collapse pt-2 pb-2" id="game_new_collapse">
             
-            <form asp-controller="Game" asp-action="OnPost">
+            <form asp-controller="Game" asp-action="OnPost" class="needs-validation">
                 <div class="form-group">
-                    <label for="game_new_form_name">Name</label>
+                    <label for="game_new_form_name" class="is-required">Name</label>
                     <input class="form-control" type="text" id="game_new_form_name" placeholder="Name" name="Name"/>
                     <small class="form-text text-muted">This is only for display</small>
                 </div>
                                             
                 <div class="form-group">
-                    <label for="game_new_form_repo_owner">GitHub Repository</label>
+                    <label for="game_new_form_repo_owner" class="is-required">GitHub Repository</label>
                     <div class="row">
                         <div class="col">
-                            <input class="form-control" type="text" id="game_new_form_repo_owner" placeholder="Owner" name="RepositoryOwner"/>
+                            <select class="custom-select"
+                                    id="game_form_repo_owner_@i"
+                                    name="RepositoryOwner"
+                                    required
+                                    asp-items="Model.AvailableRepoOwners">
+                            </select>
                         </div>
                         <div class="col">
                             <input class="form-control" type="text" id="game_new_form_repo_name" placeholder="Name" name="RepositoryName"/>
                         </div>
                         <div class="col col-auto">
-                            <a class="btn btn-secondary" href="#" onclick="isGameRepositoryValid('game_new_form_repo')">Check</a>
+                            <a class="btn btn-secondary" href="#" onclick="isGameRepositoryValid('game_new_form_repo', 'game_new_form_repo_name')">Check</a>
                         </div>
                     </div>
                 </div>
@@ -110,25 +140,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.2/URI.min.js"></script> 
 <script>
 
-function isGameRepositoryValid(formId) {
+function isGameRepositoryValid(formOwner, formName) {
     
-    let form = $(`#${formId}`);
-    let repoPath = form.val();
+    let owner = $(`#${formOwner}`).val();
+    let name = $(`#${formName}`).val();
     
-    const uri = new URI(repoPath);
-    let splits = uri.path().split("/");
-    if (splits.length !== 3) {
-        alertRepositoryValidity(form,  false);
-        return;
-    }
-    
-    // [0] is empty, since the string starts with /.
-    let org = splits[1];
-    let name = splits[2];
-    
-    fetch(`https://api.github.com/repos/${org}/${name}`)
+    fetch(`https://api.github.com/repos/${owner}/${name}`)
     .then(response => {
-        alertRepositoryValidity(form, response.ok);
+        alertRepositoryValidity(owner, response.ok);
     });
 }
 
@@ -139,4 +158,25 @@ function alertRepositoryValidity(form, isValid) {
        alert("Is invalid");
     }
 }
+</script>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Boosted validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
 </script>
