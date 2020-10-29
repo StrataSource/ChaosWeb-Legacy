@@ -12,7 +12,7 @@ namespace ChaosInitiative.Web.P2CE
                 {"/features", "Features"},
                 {"/team", "Who we are"},
                 {"/mods", "Mods"},
-                {"/wiki", "Wiki"},
+                //{"/wiki", "Wiki"},
                 {"/faq", "FAQ"},
             };
 

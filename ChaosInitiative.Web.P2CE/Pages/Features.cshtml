@@ -16,32 +16,36 @@
         <div class="container-md">
             <div class="row features-closed-issue-display">
                 @{
-                    foreach (var closedIssues in Model.ClosedIssuesDisplays)
+                    foreach (IssuesCache closedIssues in Model.Caches)
                     {
                         <div class="col">
-                            <h2>
+                            <h1>
                                 @closedIssues.DisplayName
-                            </h2>
+                            </h1>
                             
-                            <h4>
-                                @closedIssues.GetCount()
-                            </h4>
+                            <h3>
+                                @closedIssues.Count
+                            </h3>
                         </div>
                     }
                 }
             </div>
         </div>
         
-        <a class="btn btn-primary" asp-page="FeaturesList">Full Feature List</a>
-        
+        @if (false)
+        {
+            <a class="btn btn-primary" asp-page="FeaturesList">Full Feature List</a>
+        }
         <div class="p-2">
             <a class="btn btn-link" href="@Constants.LINK_GITHUB_P2CE_ISSUES">Browse GitHub Issues</a>
         </div>
     </section>
     
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialWebm"/>
     <partial name="Shared/FeaturesPartials/_FeaturesPartialPaintgun"/>
     <partial name="Shared/FeaturesPartials/_FeaturesPartialSchrodinger"/>
     <partial name="Shared/FeaturesPartials/_FeaturesPartialReflection"/>
-
+    
+        
 </div>
 </div>

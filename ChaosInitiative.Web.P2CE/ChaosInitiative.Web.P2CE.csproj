@@ -41,10 +41,6 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <Content Update="Pages\Wiki.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
       <Content Update="Pages\Brand.cshtml">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -80,8 +76,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="wwwroot\img\features" />
       <Folder Include="wwwroot\img\mod\revolution" />
-      <Folder Include="wwwroot\js" />
     </ItemGroup>
 
     <ItemGroup>

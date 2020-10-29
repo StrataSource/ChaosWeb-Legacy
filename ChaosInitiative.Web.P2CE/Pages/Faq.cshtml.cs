@@ -13,7 +13,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
             faqs = new List<FaqElement>()
             {
                 //new FaqElement("How did you get the source code?", "We don't feel comfortable putting details on Valve's internal processes openly on the internet. If you've got a specific question regarding this, ask us directly."),
-                new FaqElement("Will this support BEE-Mod?", "No. But not because we don't like BEE, but because we're rebuilding the entire in-game puzzle maker from scratch, which makes BEE obsolete. However, we work closely with the developers to satisfy the needs of everyone."),
+                new FaqElement("Will this support BEE-Mod?", "No, But not because we don't like BEE, but because we're rebuilding the entire in-game puzzle maker from scratch, which makes BEE obsolete. However, we work closely with the BEE-Mod developers to satisfy the needs of everyone."),
                 new FaqElement("How much does it cost?", "Nothing. P2CE is non-profit and fully free to play without any micro-transactions or the like. All you need is Portal 2!"),
                 new FaqElement("Do I need to own Portal 2 to play P2CE?", "Yes. You need to own Portal 2 on Steam to download P2CE. If Portal 2 is installed, P2CE will automatically detect and mount it. We're planning to add the ability for P2CE to download Portal 2 for you if you don't have already."),
                 new FaqElement("How do I get access to the closed beta?", "You can't. The closed beta is only accessible to testers. Please be patient."),
