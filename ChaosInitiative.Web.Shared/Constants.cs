@@ -11,5 +11,7 @@ namespace ChaosInitiative.Web.Shared
         public static readonly string LINK_DISCORD_P2CE = "https://discord.gg/NcHSmgb";
         public static readonly string LINK_DISCORD_CHAOS = "https://discord.gg/AhkqPBb";
         public static readonly string LINK_TWITTER_P2CE = "https://twitter.com/portal2ce";
+        public static readonly string EMAIL_CHAOS_CONTACT = "contact@chaosinitiative.com";
+        public static readonly string LINK_EMAIL_CHAOS_CONTACT = "mailto://" + EMAIL_CHAOS_CONTACT;
     }
 }

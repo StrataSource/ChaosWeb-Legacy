@@ -1,4 +1,8 @@
 
+html, body {
+    height: 100%;
+}
+
 .bg-p2ce {
     background-color: #ff7b02;
 }
