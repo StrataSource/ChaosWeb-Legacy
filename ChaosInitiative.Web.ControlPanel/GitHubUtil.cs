@@ -92,9 +92,9 @@ namespace ChaosInitiative.Web.ControlPanel
             chars.Add('+');
 
             string output = "";
+            Random rng = new Random();
             for (int i = 0; i < length; i++)
             {
-                Random rng = new Random();
                 output += chars[rng.Next(0, chars.Count)];
             }
 

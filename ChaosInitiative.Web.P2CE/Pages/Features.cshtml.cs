@@ -65,17 +65,20 @@ namespace ChaosInitiative.Web.P2CE.Pages
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            _logger.LogInformation("Refreshing issue cache");
             while (!stoppingToken.IsCancellationRequested)
             {
-                try
+                IssuesCache.ClosedIssuesCaches.ForEach(async cache =>
                 {
-                    IssuesCache.ClosedIssuesCaches.ForEach(async cache => await cache.RefreshCount());
-                    _logger.LogInformation("Refreshed issue cache");
-                }
-                catch (RateLimitExceededException exception)
-                {
-                    _logger.LogCritical($"GitHub API rate limit exceeded when trying to refresh issue cache. Limit: {exception.Limit}");
-                }
+                    try
+                    {
+                        await cache.RefreshCount();
+                    }
+                    catch (RateLimitExceededException exception)
+                    {
+                        _logger.LogCritical($"GitHub API rate limit exceeded when trying to refresh issue cache. Limit: {exception.Limit}");
+                    }
+                });
 
                 await Task.Delay(TimeSpan.FromMinutes(10), stoppingToken);
             }

@@ -193,15 +193,15 @@ $sizes: map-merge(
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   $white !default;
-$body-color:                $black !default;
+$body-bg:                   $dark !default;
+$body-color:                $white !default;
 
 
 // Links
 //
 // Style anchor elements.
 
-$link-color:                              theme-color("dark") !default;
+$link-color:                              $white !default;
 $link-decoration:                         underline !default;
 $link-hover-color:                        $orange-2 !default;
 $link-hover-decoration:                   underline !default;
@@ -440,17 +440,17 @@ $table-hover-bg:              $gray-300 !default; // Boosted mod : #eee on white
 // $table-active-bg:             $gray-400 !default; // Boosted mod
 
 $table-border-width:          $border-width / 2 !default; // Boosted mod :  1px
-$table-border-color:          $gray-500 !default;
+$table-border-color:          $gray-800 !default;
 
 // $table-head-bg:               $white !default; // Boosted mod
 // $table-head-color:            $black !default; // Boosted mod
 
 $table-dark-color:            $white !default;
-$table-dark-bg:               $black !default;
+$table-dark-bg:               $gray-1000 !default;
 // $table-dark-accent-bg:        $gray-900 !default; // Boosted mod
 $table-dark-hover-color:      $table-dark-color !default;
 $table-dark-hover-bg:         $gray-900 !default;
-$table-dark-border-color:     $gray-700 !default;
+$table-dark-border-color:     $gray-800 !default;
 
 // $table-striped-order:         odd !default;$table-striped-order
 
@@ -979,13 +979,13 @@ $card-spacer-y:                     .75rem !default;
 $card-spacer-x:                     $spacer !default; // Boosted mod
 $card-border-width:                 $border-width !default;
 $card-border-radius:                $border-radius !default;
-$card-border-color:                 $gray-500 !default; // Boosted mod
+$card-border-color:                 $gray-900 !default; // Boosted mod
 $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
 $card-cap-bg:                       $black !default; // Boosted mod
 $card-cap-color:                    $white !default; // Boosted mod
 $card-height:                       null !default;
 $card-color:                        null !default;
-$card-bg:                           $white !default;
+$card-bg:                           $dark !default;
 $card-accordion-spacer:             .875rem !default; // Boosted mod
 $card-footer-color:                 $gray-700 !default; // Boosted mod
 
