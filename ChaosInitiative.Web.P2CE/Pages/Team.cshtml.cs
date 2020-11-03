@@ -74,7 +74,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.GitHub, "https://github.com/jjl772"
                         }
                     }
-                },
+                },/*
                 new TeamMember
                 {
                     UserName = "BenVlodgi",
@@ -88,7 +88,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.GitHub, "https://github.com/benvlodgi"
                         }
                     }
-                }
+                }*/
             };
 
             Contributors = new Dictionary<string, string>
