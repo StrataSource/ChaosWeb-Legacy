@@ -17,7 +17,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     Name = "revolution",
                     DisplayName = "Portal: Revolution",
                     Description = "Portal: Revolution is a mod developed alongside P2CE by Tewan." +
-                                  "The features that the mod could benefit from the most when jumping to Portal 2: Community Edition's engine are" +
+                                  "The features that the mod could benefit from the most when jumping to Portal 2: Community Edition's engine are " +
                                   "several graphical enhancements, panorama ui, fixed and improved tools and other small features needed for development.",
                     Developers = new List<ModDeveloper>
                     {
