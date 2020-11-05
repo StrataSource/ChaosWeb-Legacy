@@ -10,8 +10,9 @@ namespace ChaosInitiative.Web.ControlPanel.Model
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        [Required]
         public FeatureType Type { get; set; }
-        public List<Issue> RelatedIssues { get; set; }
+        public List<Issue> RelatedIssues { get; set; } = new List<Issue>();
         public bool Completed { get; set; }
     }
 
