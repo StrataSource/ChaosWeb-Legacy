@@ -1,0 +1,195 @@
+﻿@using ChaosInitiative.Web.ControlPanel.Model
+@inject ApplicationContext Context
+
+<section>
+    
+    <div class="row">
+        
+        <div class="col">
+            <h1>Features</h1>
+        </div>
+        <div class="col col-auto">
+            <div class="form-group">
+                <label>Filter Type:</label>
+                <select class="custom-select" ValueChanged="UpdateFilter">
+                    <option value="None">None</option>
+                    <optgroup label="Feature Types">
+                        @foreach (string type in Enum.GetNames(typeof(FeatureType)))
+                        {
+                            <option value="@type" @onclick="() => SetFilter(type)">@type</option>
+                        }
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="col col-auto">
+            <div class="input-group mt-auto">
+                <button class="btn btn-secondary" data-toggle="modal" data-target="#newFeatureModal">
+                    <i class="fas fa-plus"></i> New Feature
+                </button>
+            </div>
+        </div>
+
+    </div>
+    
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>ID</td> <td>Name</td> <td>Type</td> <td>Related Issues</td> <td>Completed</td>
+            </tr>
+            </thead>
+            <tbody>
+            @if (Features != null)
+            {
+                foreach (Feature feature in Features)
+                {
+                    <tr>
+                        <th scope="row" class="w-auto">@feature.Id</th>
+                        <td>@feature.Name</td>
+                        <td>@feature.Type.ToString()</td>
+                        <td>
+                            @foreach (Issue issue in feature.RelatedIssues)
+                            {
+                                <a href="@issue.GetFullPath()"><i class="fas fa-hashtag"></i> @issue.IssueId</a>
+                                <br>
+                            }
+                        </td>
+                        <td>
+                            @if (feature.Completed)
+                            {
+                                <i class="fas fa-check"></i>
+                            }
+                            else
+                            {
+                                <i class="fas fa-times"></i>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <p class="text-center w-100 mt-3 mb-3">No Feature Data</p>
+            } 
+            </tbody>
+            
+        </table>
+    </div>
+    
+    
+    
+    <!-- New Feature Modal -->
+    <div class="modal fade"
+         id="newFeatureModal"
+         tabindex="-1"
+         aria-labelledby="newFeatureModalTitle"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                    
+                <div class="modal-header">
+                    <h4>New Feature</h4>
+                </div>
+                <div class="modal-body">
+                    <EditForm Model="@NewFeature">
+                        <DataAnnotationsValidator/>
+                        <ValidationSummary/>
+                        
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <InputText @bind-Value="NewFeature.Name"
+                                        class="form-control"/>
+
+                            <label>Type</label>
+                            <InputSelect @bind-Value="NewFeature.Type"
+                                          class="custom-select">
+                                @foreach (string type in Enum.GetNames(typeof(FeatureType)))
+                                {
+                                    <option value="@type">@type</option>
+                                }
+                            </InputSelect>
+                            
+                            <hr/>
+
+                            <label>Related GitHub Issues</label>
+                            <ul class="list-group">
+                                @if (NewFeature.RelatedIssues != null)
+                                {
+                                    foreach (Issue issue in NewFeature.RelatedIssues)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            @issue.Game.Name
+                                            <span class="badge badge-pill" style="background-color: #@issue.Game.HexColor">@issue.IssueId</span>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                            <select class="custom-select">
+                                @foreach (Game game in Context.Games)
+                                {
+                                    <option value="@game.Name" @onclick="() => SetNewRelatedIssueOwner(game)">@game.Name</option>
+                                }
+                            </select>
+                            <input type="number" class="form-control" placeholder="Issue ID" @onchange="(args) => SetNewRelatedIssueId(args.Value.ToString())"/>
+                            <button class="btn btn-primary" @onclick="AddNewRelatedIssue">Add</button>
+                            
+                            <hr/>
+                            
+                        </div>
+                    </EditForm>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Save</button>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    
+    
+</section>
+
+@code {
+
+    public Feature NewFeature = new Feature();
+
+    public Issue NewRelatedIssue = new Issue();
+
+    public List<Feature> Features;
+
+    public string TypeFilter;
+
+    protected override void OnInitialized()
+    {
+        Features = Context.Features.ToList();
+    }
+    
+    void SetFilter(string filter)
+    {
+        TypeFilter = filter;
+        Features = Context.Features.Where(f => TypeFilter == "None" || f.Type.ToString() == TypeFilter).ToList(); // Logic in view: Cringe
+    }
+    
+    void SetNewRelatedIssueOwner(Game game)
+    {
+        NewRelatedIssue.Game = game;
+    }
+
+    void SetNewRelatedIssueId(string stringId)
+    {
+        if (uint.TryParse(stringId, out var uintId))
+        {
+            NewRelatedIssue.IssueId = uintId;
+        }
+        
+    }
+
+    void AddNewRelatedIssue()
+    {
+        NewFeature.RelatedIssues.Add(NewRelatedIssue);
+        NewRelatedIssue = new Issue();
+    }
+
+}
