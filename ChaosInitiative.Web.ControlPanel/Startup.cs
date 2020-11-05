@@ -78,6 +78,8 @@ namespace ChaosInitiative.Web.ControlPanel
                 options.Conventions.AllowAnonymousToPage("/Index");
                 options.Conventions.AllowAnonymousToFolder("/Auth");
             }).AddRazorRuntimeCompilation();
+
+            services.AddServerSideBlazor();
             
             services.AddControllersWithViews();
         }
@@ -109,6 +111,7 @@ namespace ChaosInitiative.Web.ControlPanel
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
                 endpoints.MapControllers();
             });
         }

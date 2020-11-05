@@ -18,15 +18,15 @@
         You are logged in as
         <partial name="Shared/Partials/IdentityCapsulePartial"/>
     </p>
-    <a asp-page="/Panel/Dashboard" class="btn btn-primary">
+    <a href="/Panel/Dashboard" class="btn btn-primary">
         Enter Dashboard
     </a>
     
-    <a asp-controller="Auth" asp-action="SignInAsync" class="btn btn-light">
+    <a href="/Auth/Login" class="btn btn-light">
         Log Out
     </a>
     
-    <a asp-page="/Debug" class="btn btn-link">Debug</a>
+    <a href="/Debug" class="btn btn-link">Debug</a>
 }
 else
 {
