@@ -23,6 +23,11 @@ namespace ChaosInitiative.Web.ControlPanel.Model
         [Required]
         [MinLength(1, ErrorMessage = "Repository Name is too short")]
         public string RepositoryName { get; set; }
+        
+        [Required]
+        [MinLength(6, ErrorMessage = "HEX value must be 6 characters long")]
+        [MaxLength(6, ErrorMessage = "HEX value must be 6 characters long")]
+        public string HexColor { get; set; }
 
         public string GetGitHubRepositoryUri()
         {

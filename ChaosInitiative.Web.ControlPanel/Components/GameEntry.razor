@@ -23,6 +23,22 @@ else
                                @bind-Value="@Game.Name"/>
                     <small class="form-text text-muted">This is only for display</small>
                 </div>
+                
+                <div class="form-group">
+                    <label>Brand Color</label>
+                    <div class="input-group">
+                        
+                        <div class="input-group-prepend" style="background-color: #@Game.HexColor">
+                            <label class="input-group-text">
+                                <i class="fas fa-hashtag"></i>
+                            </label>
+                        </div>
+                        <InputText class="form-control"
+                                   placeholder="Brand color HEX"
+                                   @bind-Value="@Game.HexColor"/>
+                        
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="row">
