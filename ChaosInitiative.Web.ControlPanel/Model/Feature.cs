@@ -15,13 +15,4 @@ namespace ChaosInitiative.Web.ControlPanel.Model
         public List<Issue> RelatedIssues { get; set; } = new List<Issue>();
         public bool Completed { get; set; }
     }
-
-    public enum FeatureType
-    {
-        Addition = 0,
-        Fix,
-        Change,
-        Refactor,
-        Other
-    }
 }
