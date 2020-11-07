@@ -14,6 +14,7 @@ namespace ChaosInitiative.Web.ControlPanel
         public DbSet<Game> Games { get; set; }
         public DbSet<Release> Releases { get; set; }
         public DbSet<Feature> Features { get; set; }
+        public DbSet<Issue> Issues { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
