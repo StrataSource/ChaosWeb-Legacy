@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 
 namespace ChaosInitiative.Web.Shared.Tests
@@ -34,6 +33,17 @@ namespace ChaosInitiative.Web.Shared.Tests
                                              And.Contains(6));
             
             Assert.That(resultInts, Is.EquivalentTo(resultIntsInverse));
+            
+        }
+
+        [Test]
+        public void TestIEnumerableIsEmpty()
+        {
+            IEnumerable<string> emptyCollection = new List<string>();
+            IEnumerable<string> filledCollection = new[] { "I am full" };
+            
+            Assert.That(emptyCollection.IsEmpty(), Is.True);
+            Assert.That(filledCollection.IsEmpty(), Is.False);
             
         }
     }
