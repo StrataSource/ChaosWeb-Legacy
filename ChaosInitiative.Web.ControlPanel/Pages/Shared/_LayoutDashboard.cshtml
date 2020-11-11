@@ -1,8 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@ViewData["Title"] - Chaos Initiative Control Panel</title>
+    <title>Chaos Initiative Control Panel</title>
     <partial name="_LayoutHeadPartial"/>
+    <link href="_content/GridBlazor/css/gridblazor.min.css" rel="stylesheet" />
+    <script src="_content/GridBlazor/js/gridblazor.js"></script>
 </head>
 <body>
 <div class="d-flex flex-column h-100">
@@ -56,6 +58,24 @@
         <div class="col col-8 justify-content-around p-0">
             @RenderBody()
         </div>
+    </div>
+</div>
+
+<div id="components-reconnect-modal" class="my-reconnect-modal components-reconnect-hide">
+    <div class="show">
+        <p>
+            Reconnecting
+        </p>
+    </div>
+    <div class="failed">
+        <p>
+            Failed to connect
+        </p>
+    </div>
+    <div class="rejected">
+        <p>
+            Connection refused
+        </p>
     </div>
 </div>
 

@@ -1,5 +1,11 @@
 ﻿@using ChaosInitiative.Web.ControlPanel.Model
+@using ChaosInitiative.Web.ControlPanel.Services
+@using GridBlazor
+@using GridShared
+@using GridShared.Utility
+@using Microsoft.Extensions.Primitives
 @inject ApplicationContext Context
+@inject GridModelService ModelService
 
 <section>
     
@@ -33,48 +39,16 @@
     </div>
     
     <div>
-        <table class="table">
-            <thead>
-            <tr>
-                <td>ID</td> <td>Name</td> <td>Type</td> <td>Related Issues</td> <td>Completed</td>
-            </tr>
-            </thead>
-            <tbody>
-            @if (Features != null)
-            {
-                foreach (Feature feature in Features)
-                {
-                    <tr>
-                        <th scope="row" class="w-auto">@feature.Id</th>
-                        <td>@feature.Name</td>
-                        <td>@feature.Type.ToString()</td>
-                        <td>
-                            @foreach (Issue issue in feature.RelatedIssues)
-                            {
-                                <a href="@issue.GetFullPath()"><i class="fas fa-hashtag"></i> @issue.IssueId</a>
-                                <br>
-                            }
-                        </td>
-                        <td>
-                            @if (feature.Completed)
-                            {
-                                <i class="fas fa-check"></i>
-                            }
-                            else
-                            {
-                                <i class="fas fa-times"></i>
-                            }
-                        </td>
-                    </tr>
-                }
-            }
-            else
-            {
-                <p class="text-center w-100 mt-3 mb-3">No Feature Data</p>
-            } 
-            </tbody>
-            
-        </table>
+        @if (_featureGridTask.IsCompleted)
+        {
+            <GridComponent T="Feature" Grid="@_featureGrid">
+                    
+            </GridComponent>
+        }
+        else
+        {
+            <p class="text-center w-100 mt-3 mb-3">Loading...</p>
+        } 
     </div>
     
     
@@ -153,13 +127,44 @@
 
 @code {
 
+    private CGrid<Feature> _featureGrid;
+    private Task _featureGridTask;
+    
     public Feature NewFeature = new Feature();
-
     public Issue NewRelatedIssue = new Issue();
-
     public List<Feature> Features;
-
     public string TypeFilter;
+
+    protected override async Task OnParametersSetAsync()
+    {
+    // Fucking hell wtf is this convoluted shit
+        Action<IGridColumnCollection<Feature>> columns = collection =>
+        {
+            collection.Add(f => f.Id);
+            collection.Add(f => f.Name);
+            collection.Add(f => f.Type);
+            collection.Add(f => f.RelatedIssues);
+            collection.Add(f => f.Completed);
+        };
+
+        var query = new QueryDictionary<StringValues>
+        {
+            {"grid-page", "2"}
+        };
+        
+        var client = new GridClient<Feature>(queryDictionary => ModelService.GetFeaturesGridRows(columns, queryDictionary, Context),
+            query, 
+            false, 
+            "featuresGrid", 
+            columns)
+            .Sortable()
+            .Filterable()
+            .WithMultipleFilters();
+
+        _featureGrid = client.Grid;
+        _featureGridTask = client.UpdateGrid();
+        await _featureGridTask;
+    }
 
     protected override void OnInitialized()
     {
