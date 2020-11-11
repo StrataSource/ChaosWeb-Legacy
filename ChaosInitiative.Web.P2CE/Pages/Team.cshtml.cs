@@ -12,6 +12,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
 
         public TeamModel()
         {
+            
+            // TODO: Integrate team member list into backend
             TeamMembers = new List<TeamMember>
             {
                 new TeamMember

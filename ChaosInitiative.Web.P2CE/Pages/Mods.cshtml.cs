@@ -12,6 +12,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
             // Filling the list manually for now. This can later be hooked up to control panel if needed
             Mods = new List<Mod>
             {
+                // TODO: Integrate mod list into backend
                 new Mod()
                 {
                     Name = "revolution",
