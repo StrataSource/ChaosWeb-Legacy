@@ -1,5 +1,6 @@
 using System;
 using System.Security.Claims;
+using ChaosInitiative.Web.ControlPanel.Services;
 using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -78,8 +79,11 @@ namespace ChaosInitiative.Web.ControlPanel
                 options.Conventions.AllowAnonymousToPage("/Index");
                 options.Conventions.AllowAnonymousToFolder("/Auth");
             }).AddRazorRuntimeCompilation();
+
+            services.AddServerSideBlazor();
             
             services.AddControllersWithViews();
+            services.AddSingleton<GridModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,6 +113,7 @@ namespace ChaosInitiative.Web.ControlPanel
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
                 endpoints.MapControllers();
             });
         }

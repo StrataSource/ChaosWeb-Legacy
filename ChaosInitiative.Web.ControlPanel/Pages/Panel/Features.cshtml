@@ -1,19 +1,8 @@
 @page
-@model ChaosInitiative.Web.ControlPanel.Pages.Panel.FeaturesModel
-
+@using ChaosInitiative.Web.ControlPanel.Components
 @{
-    ViewData["Title"] = "New Page";
-    Layout = "Shared/_LayoutDashboard";
+    Layout = "_LayoutDashboard";
 }
 
-<section>
-    
-    <h2>
-        This is a template page
-    </h2>
+@(await Html.RenderComponentAsync<FeaturesComponent>(RenderMode.ServerPrerendered))
 
-    <p>
-        Please replace me!
-    </p>
-    
-</section>
