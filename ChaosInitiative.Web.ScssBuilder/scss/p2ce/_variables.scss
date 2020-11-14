@@ -193,15 +193,15 @@ $sizes: map-merge(
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   $dark !default;
-$body-color:                $white !default;
+$body-bg:                   $white !default;
+$body-color:                $black !default;
 
 
 // Links
 //
 // Style anchor elements.
 
-$link-color:                              $white !default;
+$link-color:                              $orange-2 !default;
 $link-decoration:                         underline !default;
 $link-hover-color:                        $orange-2 !default;
 $link-hover-decoration:                   underline !default;
@@ -979,15 +979,15 @@ $card-spacer-y:                     .75rem !default;
 $card-spacer-x:                     $spacer !default; // Boosted mod
 $card-border-width:                 $border-width !default;
 $card-border-radius:                $border-radius !default;
-$card-border-color:                 $gray-900 !default; // Boosted mod
+$card-border-color:                 $gray-300 !default; // Boosted mod
 $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
 $card-cap-bg:                       $black !default; // Boosted mod
 $card-cap-color:                    $white !default; // Boosted mod
 $card-height:                       null !default;
 $card-color:                        null !default;
-$card-bg:                           $dark !default;
+$card-bg:                           $white !default;
 $card-accordion-spacer:             .875rem !default; // Boosted mod
-$card-footer-color:                 $gray-700 !default; // Boosted mod
+$card-footer-color:                 $white !default; // Boosted mod
 
 $card-img-overlay-padding:          $spacer !default; // Boosted mod
 

@@ -5,44 +5,49 @@
     ViewData["Title"] = "Features";
 }
 
-<div class="container">
-    
-    <section class="text-center">
-        <h1>Features</h1>
-        <p>Everything that's new. All available right now.</p>
+
+<section class="text-center bg-p2ce">
+    <div class="container">
         
+        <h1 class="d-lg-block d-none" style="font-size: 8rem">Features</h1>
+        <h1 class="d-lg-none">Features</h1>
+        <!--<p>Everything that's new. All available right now.</p>-->
+
         <div class="container-md">
             <div class="row features-closed-issue-display">
                 @{
                     foreach (IssuesCache closedIssues in Model.Caches)
                     {
-                        <div class="col">
-                            <h1>
+                        <div class="col col-md-6 col-12 p-2">
+                            <h2 class="align-middle d-inline mr-2 font-weight-normal">
                                 @closedIssues.DisplayName
-                            </h1>
-                            
-                            <h3>
+                            </h2>
+                            <h1 class="align-middle d-inline">
                                 @closedIssues.Count
-                            </h3>
+                            </h1>
                         </div>
                     }
                 }
             </div>
         </div>
-        
+
         @if (false) // TODO: Integrate features list with backend 
         {
             <a class="btn btn-primary" asp-page="FeaturesList">Full Feature List</a>
         }
+        <!--
         <div class="p-2">
             <a class="btn btn-link" href="@Constants.LINK_GITHUB_P2CE_ISSUES">Browse GitHub Issues</a>
-        </div>
-    </section>
-    
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialCsgo"/>
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialPlatforms"/>
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialWebm"/>
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialElements"/>
-    
+        </div>-->
         
+    </div>
+</section>
+
+<div class="bg-gray">
+    <div class="container">
+        <partial name="Shared/FeaturesPartials/_FeaturesPartialCsgo"/>
+        <partial name="Shared/FeaturesPartials/_FeaturesPartialPlatforms"/>
+        <partial name="Shared/FeaturesPartials/_FeaturesPartialWebm"/>
+        <partial name="Shared/FeaturesPartials/_FeaturesPartialElements"/>
+    </div>
 </div>
