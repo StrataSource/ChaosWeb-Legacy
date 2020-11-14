@@ -11,14 +11,14 @@
         <p>Your question might already be answered here. If not, feel free to ask!</p>
         
         <div>
-            <ul class="smooth-scroll list-unstyled">
+            <ol class="smooth-scroll">
                 @foreach (var faq in Model.faqs)
                 {
                     <li>
                         <a href="#@faq.ElementId">@faq.Question</a>
                     </li>
                 }
-            </ul>
+            </ol>
         </div>
         
     </div>
@@ -28,13 +28,13 @@
     <div class="container">
         
         @{
+            int index = 1;
             foreach (var faq in Model.faqs)
             {
                 <div id="@faq.ElementId">
-                    <h2>@faq.Question</h2>
+                    <h2>@(index++). @faq.Question</h2>
                     <p>@faq.Answer</p>
                 </div>
-
             }
         }
         
