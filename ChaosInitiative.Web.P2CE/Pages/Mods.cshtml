@@ -5,16 +5,20 @@
     ViewData["Title"] = "Mods using P2CE";
 }
 
-<div class="container">
-    @{
-        foreach (Mod mod in Model.Mods)
-        {
-            <partial name="Shared/ModsPartials/_ModPartialDefault" model="mod"/>
-        }
-    }
+<div class="bg-gray">
     
-    <section>
-        <p class="text-center"><small>All mods listed here have been submitted by their creators.</small></p>
-    </section>
+    <div class="container">
+        @{
+            foreach (Mod mod in Model.Mods)
+            {
+                <partial name="Shared/ModsPartials/_ModPartialDefault" model="mod"/>
+            }
+        }
+    
+        <div class="pt-4 pb-4">
+            <p class="text-center mb-0"><small>All mods listed here have been submitted by their creators.</small></p>
+        </div>
 
+    </div>
+    
 </div>

@@ -5,9 +5,9 @@
     ViewData["Title"] = "The Team";
 }
 
-<div class="container">
+<section class="bg-p2ce bg-p2ce-muted">
+    <div class="container">
 
-    <section>
         <div class="row d-flex mb-3">
             @foreach (TeamMember member in Model.TeamMembers)
             {
@@ -50,14 +50,16 @@
                 </div>
             }
         </div>
-
-    </section>
+    </div>
+</section>
     
-    <section>
+<section class="bg-gray pb-5">
+    <div class="container">
+        
         <h1>Contributors</h1>
         <p>Thanks to our contributors for helping us out with non-engine-coding tasks like asset creation, mapping and more!</p>
-        
-        <table class="table table-dark">
+
+        <table class="table table-p2ce-gray">
             <tbody>
             @foreach (KeyValuePair<string, string> contributor in @Model.Contributors)
             {
@@ -72,8 +74,10 @@
             }
             </tbody>
         </table>
-    </section>
+        
+    </div>
+</section>
     
-    <h3 class="text-center pt-5 pb-5 text-primary">P2CE uses the Chaos Source Engine. More about Chaos Source can be found <a href="https://www.chaosinitiative.com" class="text-primary">here</a></h3>
-
-</div>
+<section class="bg-gray">
+    <h4 class="text-center pt-2 pb-5 text-primary">P2CE uses the Chaos Source Engine. More about Chaos Source can be found <a href="https://www.chaosinitiative.com" class="text-primary">here</a></h4>
+</section>

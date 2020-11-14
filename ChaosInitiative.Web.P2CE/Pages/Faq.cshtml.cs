@@ -40,5 +40,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
             Question = question;
             Answer = answer;
         }
+
+        public string ElementId => Question.ToLower().Replace(" ", "-").Replace("?", "");
     }
 }

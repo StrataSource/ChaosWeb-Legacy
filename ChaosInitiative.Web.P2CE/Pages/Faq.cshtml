@@ -4,24 +4,55 @@
     ViewData["Title"] = "FAQ";
 }
 
-<div class="container">
     
-    <section>
+<section class="bg-p2ce bg-p2ce-muted">
+    <div class="container">
         <h1>Frequently asked Questions</h1>
         <p>Your question might already be answered here. If not, feel free to ask!</p>
-    </section>
         
-    <section class="faq-container">
+        <div>
+            <ul class="smooth-scroll list-unstyled">
+                @foreach (var faq in Model.faqs)
+                {
+                    <li>
+                        <a href="#@faq.ElementId">@faq.Question</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        
+    </div>
+</section>
+        
+<section class="faq-container bg-gray">
+    <div class="container">
+        
         @{
-            foreach(var faq in Model.faqs)
+            foreach (var faq in Model.faqs)
             {
-            
-                <h2>@faq.Question</h2>
-                <p>@faq.Answer</p>
-            
+                <div id="@faq.ElementId">
+                    <h2>@faq.Question</h2>
+                    <p>@faq.Answer</p>
+                </div>
+
             }
         }
-    </section>
-    
+        
+    </div>
+</section>
 
-</div>
+<script>
+    
+    // This code is to add a smooth scroll when clicking on the faq links
+    $(document).ready(function() {
+    
+        $("a[href*='#']").click(function(event){     
+            event.preventDefault();
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top - 130 // 130 offset upwards. This is because our sticky navbar overlays everything and it text that was clicked would be under it which is dumb
+            }, 500);
+        });
+               
+        // document ready  
+    });
+</script>
