@@ -1,3 +1,4 @@
+using ChaosInitiative.Web.P2CE.Pages;
 using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,7 @@ namespace ChaosInitiative.Web.P2CE
         {
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllers();
+            services.AddHostedService<IssueCacheRefreshService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

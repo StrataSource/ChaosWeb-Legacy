@@ -5,43 +5,83 @@
     ViewData["Title"] = "Features";
 }
 
-<!-- CONTENT STARTS HERE -->
-<div class="bg-dark">
-<div class="container">
-    
-    <section class="text-center">
-        <h1>Features</h1>
-        <p>Everything that's new. All available right now.</p>
+
+<section class="text-center bg-p2ce bg-p2ce-muted">
+    <div class="container">
         
+        <h1 class="d-lg-block d-none" style="font-size: 8rem">Features</h1>
+        <h1 class="d-lg-none">Features</h1>
+        <!--<p>Everything that's new. All available right now.</p>-->
+
         <div class="container-md">
             <div class="row features-closed-issue-display">
                 @{
-                    foreach (var closedIssues in Model.ClosedIssuesDisplays)
+                    foreach (IssuesCache closedIssues in Model.Caches)
                     {
-                        <div class="col">
-                            <h2>
+                        <div class="col col-md-6 col-12 p-2">
+                            <h2 class="align-middle d-inline mr-2 font-weight-normal">
                                 @closedIssues.DisplayName
                             </h2>
-                            
-                            <h4>
-                                @closedIssues.GetCount()
-                            </h4>
+                            <h1 class="align-middle d-inline">
+                                @closedIssues.Count
+                            </h1>
                         </div>
                     }
                 }
             </div>
         </div>
-        
-        <a class="btn btn-primary" asp-page="FeaturesList">Full Feature List</a>
-        
+
+        @if (false) // TODO: Integrate features list with backend 
+        {
+            <a class="btn btn-primary" asp-page="FeaturesList">Full Feature List</a>
+        }
+        <!--
         <div class="p-2">
             <a class="btn btn-link" href="@Constants.LINK_GITHUB_P2CE_ISSUES">Browse GitHub Issues</a>
-        </div>
-    </section>
-    
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialPaintgun"/>
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialSchrodinger"/>
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialReflection"/>
+        </div>-->
+        
+    </div>
+</section>
 
+<div class="bg-gray">
+    <div class="container">
+        <partial name="Shared/FeaturesPartials/_FeaturesPartialCsgo"/>
+        <partial name="Shared/FeaturesPartials/_FeaturesPartialElements"/>
+        <partial name="Shared/FeaturesPartials/_FeaturesPartialWebm"/>
+        <partial name="Shared/FeaturesPartials/_FeaturesPartialPlatforms"/>
+    </div>
 </div>
-</div>
+
+<section class="bg-gray">
+    <div class="container text-center">
+        <h1>Planned features</h1>
+    </div>
+    
+    <div class="container pb-5">
+        
+        <h3>Puzzlemaker rewrite</h3>
+        <p>
+            Since we do not have the sources for Portal 2's puzzlemaker, we will have to rewrite the entire thing from scratch.
+            When we get to that, P2CE's puzzlemaker will be designed to be way more powerful and expandable than the original.
+        </p>
+        
+        <h3>Scripting improvements</h3>
+        <ul>
+            <li>Additional languages like Python</li>
+            <li>Expanded API</li>
+            <li>C# hotloading</li>
+        </ul>
+        
+        <h3>Workshop</h3>
+        <p>
+            P2CE's workshop will work similar to games like Garry's Mod or Left 4 Dead 2. Instead of uploading .bsp files 
+            with all additional assets bundled in, Portal 2: Community Edition workshop items are complete source-mods
+            that can depend on each other and contain everything from maps, materials and models to scripting and particles.
+        </p>
+        <p>
+            A workshop item doesn't even have to be a map. You can upload your model and let mappers set a dependency to your item on their workshop page. 
+            All subscribed assets will be usable in the tools as well. 
+        </p>
+        
+    </div>
+</section>

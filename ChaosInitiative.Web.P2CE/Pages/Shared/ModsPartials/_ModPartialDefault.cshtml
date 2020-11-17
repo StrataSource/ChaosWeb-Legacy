@@ -9,27 +9,29 @@
         <div class="col">
             <h1>@Model.DisplayName</h1>
             <p>
-            @{
-                foreach (ModDeveloper dev in Model.Developers)
-                {
-                    if (String.IsNullOrWhiteSpace(dev.Link))
+                <i class="fas fa-users"></i>
+                @{
+                    foreach (ModDeveloper dev in Model.Developers)
                     {
-                        <span>@dev.Name</span>
-                    }
-                    else
-                    {
-                        <a href="@dev.Link">@dev.Name</a>
+                        if (String.IsNullOrWhiteSpace(dev.Link))
+                        {
+                            <span>@dev.Name</span>
+                        }
+                        else
+                        {
+                            <a href="@dev.Link">@dev.Name</a>
+                        }
                     }
                 }
-            }
             </p>
             <p>
-            @{
-                foreach (KeyValuePair<string, string> link in Model.Links)
-                {
-                    <a href="@link.Value">@link.Key</a>
+                <i class="fas fa-heart"></i>
+                @{
+                    foreach (KeyValuePair<string, string> link in Model.Links)
+                    {
+                        <a href="@link.Value">@link.Key</a>
+                    }
                 }
-            }
             </p>
             <p>
                 @Model.Description

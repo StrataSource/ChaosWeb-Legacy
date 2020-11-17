@@ -1,0 +1,80 @@
+﻿@using ChaosInitiative.Web.ControlPanel.Model
+@inject ApplicationContext Context
+
+<section>
+    
+    <div class="row">
+        
+        <div class="col">
+            <h1>Games</h1>
+        </div>
+        
+        <!-- Toolbar -->
+        <div class="col-auto">
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#newGameModal">
+                <i class="fas fa-plus"> </i> Add
+            </button>
+            <button class="btn btn-secondary" @onclick="Save">
+                <i class="fas fa-save"></i> Save
+            </button>
+        </div>
+
+    </div>
+
+    @{
+        foreach (Game game in Context.Games)
+        {
+            <GameEntry Game="@game"/>
+            <hr/>
+        }
+    }
+    
+    <!-- New game popup modal -->
+    <div class="modal fade"
+         id="newGameModal"
+         tabindex="-1"
+         aria-hidden="true">
+        
+        <div class="modal-dialog modal-dialog-scrollable"
+         
+             aria-labelledby="newGameModalTitle">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <h4 id="newGameModalTitle">Add New Game:</h4>
+                </div>
+                <div class="modal-body">
+                    <GameEntry Game="@_newGame"/>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="ClearGame">Clear</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" @onclick="AddGame" data-dismiss="modal">Add</button>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+@code {
+
+    Game _newGame = new Game();
+
+    void AddGame()
+    {
+        Context.Games.Add(_newGame);
+    }
+
+    void ClearGame()
+    {
+        _newGame = new Game();
+    }
+
+    void Save()
+    {
+        Context.SaveChanges();
+    }
+    
+}

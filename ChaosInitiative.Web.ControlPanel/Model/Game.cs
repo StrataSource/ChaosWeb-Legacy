@@ -1,21 +1,54 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading.Tasks;
+using Octokit;
+
 namespace ChaosInitiative.Web.ControlPanel.Model
 {
+    [Table("Games")]
     public class Game
     {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [MinLength(1, ErrorMessage = "Name is too short")]
         public string Name { get; set; }
-        private string _repository;
 
-        public string Repository
+        [Required]
+        [MinLength(1, ErrorMessage = "Repository Owner is too short")]
+        public string RepositoryOwner { get; set; }
+        
+        [Required]
+        [MinLength(1, ErrorMessage = "Repository Name is too short")]
+        public string RepositoryName { get; set; }
+        
+        [Required]
+        [MinLength(6, ErrorMessage = "HEX value must be 6 characters long")]
+        [MaxLength(6, ErrorMessage = "HEX value must be 6 characters long")]
+        public string HexColor { get; set; }
+
+        public string GetGitHubRepositoryUri()
         {
-            get => _repository;
-            set
-            {
-                // Strip trailing slashes
-                if (value.EndsWith("/"))
-                    value = value.Substring(0, value.Length - 1);
+            return $"https://github.com/{RepositoryOwner}/{RepositoryName}";
+        }
+        
+        // TODO: Move this to application layer
+        public async Task<List<string>> GetRepositoriesOfOwner()
+        {
 
-                _repository = value;
+            GitHubClient client = GitHubUtil.CreateClient();
+            IReadOnlyList<Repository> allRepos = await client.Repository.GetAllForOrg(RepositoryOwner);
+
+            List<string> repoStrings = new List<string>();
+
+            foreach (Repository repo in allRepos)
+            {
+                repoStrings.Add(repo.Name);
             }
+
+            return repoStrings;
         }
     }
 }

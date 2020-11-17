@@ -10,23 +10,17 @@ namespace ChaosInitiative.Web.ControlPanel
         {
             
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Game>().ToTable("Game");
-            modelBuilder.Entity<Game>().HasKey(k => k.Name);
-            
-            modelBuilder.Entity<Release>().ToTable("Release");
-            modelBuilder.Entity<Release>().HasKey(k => k.Game);
-            modelBuilder.Entity<Release>().HasKey(k => k.VersionId);
-            
-            modelBuilder.Entity<Feature>().ToTable("Feature");
-            modelBuilder.Entity<Feature>().HasKey(k => k.FeatureId);
-        }
-
+        
         public DbSet<Game> Games { get; set; }
         public DbSet<Release> Releases { get; set; }
         public DbSet<Feature> Features { get; set; }
+        public DbSet<Issue> Issues { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Game>().Property(g => g.Id).ValueGeneratedOnAdd();
+        }
+
     }
     
 }

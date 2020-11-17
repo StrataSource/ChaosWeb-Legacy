@@ -10,6 +10,9 @@ namespace ChaosInitiative.Web.Shared
         public static readonly string LINK_STEAM_STORE_P2CE = "https://steampowered.com/app/440000";
         public static readonly string LINK_DISCORD_P2CE = "https://discord.gg/NcHSmgb";
         public static readonly string LINK_DISCORD_CHAOS = "https://discord.gg/AhkqPBb";
+        public static readonly string LINK_DISCORD_MOMENTUM = "https://discord.gg/n4v52uv";
         public static readonly string LINK_TWITTER_P2CE = "https://twitter.com/portal2ce";
+        public static readonly string EMAIL_CHAOS_CONTACT = "contact@chaosinitiative.com";
+        public static readonly string LINK_EMAIL_CHAOS_CONTACT = "mailto://" + EMAIL_CHAOS_CONTACT;
     }
 }

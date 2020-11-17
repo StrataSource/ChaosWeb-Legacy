@@ -88,10 +88,10 @@ body {
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 1.125;
-  color: #000;
+  color: #fff;
   text-align: left;
   letter-spacing: -0.00625rem;
-  background-color: #fff;
+  background-color: #101010;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeSpeed;
 }
@@ -220,7 +220,7 @@ sup {
 }
 
 a {
-  color: #101010;
+  color: #fff;
   text-decoration: underline;
   background-color: transparent;
   outline-offset: 0.25rem;
@@ -657,7 +657,7 @@ mark,
 
 .img-thumbnail {
   padding: 0.625rem;
-  background-color: #fff;
+  background-color: #101010;
   border: 0.125rem solid #000;
   max-width: 100%;
   height: auto;
@@ -2116,11 +2116,11 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1.25rem;
-  color: #000;
+  color: #fff;
   background-color: #fff;
 }
 .table tr {
-  border-bottom: 0.0625rem solid #ccc;
+  border-bottom: 0.0625rem solid #595959;
 }
 .table th,
 .table td {
@@ -2160,7 +2160,7 @@ pre code {
   vertical-align: middle;
 }
 .table tbody + tbody {
-  border-top: 0.125rem solid #ccc;
+  border-top: 0.125rem solid #595959;
 }
 
 .table-sm th,
@@ -2169,17 +2169,17 @@ pre code {
 }
 
 .table-hover tbody tr:hover {
-  color: #000;
+  color: #fff;
   background-color: #eee;
 }
 
 .table-dark {
   color: #fff;
-  background-color: #000;
+  background-color: #101010;
 }
 .table-dark tr,
 .table-dark th {
-  border-color: #666;
+  border-color: #595959;
 }
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
@@ -2339,7 +2339,7 @@ select.form-control:focus::-ms-value {
   margin-bottom: 0;
   font-size: 1.3rem;
   line-height: 1.125;
-  color: #000;
+  color: #fff;
   background-color: transparent;
   border: solid transparent;
   border-width: 0.125rem 0;
@@ -2630,7 +2630,7 @@ textarea.form-control {
   align-items: center;
   font-family: Heebo, Arial, Liberation Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   font-weight: 700;
-  color: #000;
+  color: #fff;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -2650,7 +2650,7 @@ textarea.form-control {
   }
 }
 .btn:hover {
-  color: #000;
+  color: #fff;
   text-decoration: none;
 }
 .btn:focus, .btn.focus {
@@ -3022,7 +3022,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-link {
-  color: #101010;
+  color: #fff;
   text-decoration: underline;
   border-color: transparent !important;
 }
@@ -3363,14 +3363,14 @@ input[type=button].btn-block {
 
 .dropdown-toggle {
   padding: 0.5rem 1.25rem;
-  color: #000;
+  color: #fff;
   white-space: nowrap;
   background-color: #fff;
   border-color: #ccc;
 }
 .bg-dark .dropdown-toggle:not(.dropdown-toggle-split), .navbar-dark .dropdown-toggle:not(.dropdown-toggle-split) {
   color: #fff;
-  background-color: #000;
+  background-color: #fff;
   border-color: #666;
 }
 .bg-dark .dropdown-toggle:not(.dropdown-toggle-split):hover, .navbar-dark .dropdown-toggle:not(.dropdown-toggle-split):hover {
@@ -3383,7 +3383,7 @@ input[type=button].btn-block {
   padding: 0.3125rem 0.625rem;
 }
 .btn-group .dropdown-toggle:not(.btn-inverse) {
-  border-color: #000;
+  border-color: #fff;
 }
 .dropdown-toggle::after {
   display: inline-flex;
@@ -3411,7 +3411,7 @@ input[type=button].btn-block {
   padding: 0;
   margin: -2px 0 0;
   font-size: 1.3rem;
-  color: #000;
+  color: #fff;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -4415,7 +4415,7 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #000;
-  background-color: #fff;
+  background-color: #101010;
   border-color: #000;
 }
 .nav-tabs .dropdown-menu {
@@ -5475,9 +5475,9 @@ input[type=button].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #101010;
   background-clip: border-box;
-  border: 0.125rem solid #ccc;
+  border: 0.125rem solid #333;
 }
 .card > hr {
   margin-right: 0;
@@ -6269,7 +6269,7 @@ a.badge-purple:focus, a.badge-purple.focus {
   background-color: #f6f6f6;
 }
 .list-group-item-action:active {
-  color: #000;
+  color: #fff;
   background-color: #eee;
 }
 
@@ -7017,7 +7017,7 @@ a.close.disabled {
 
 .popover-body {
   padding: 0.625rem;
-  color: #000;
+  color: #fff;
 }
 
 .carousel {
@@ -11706,8 +11706,8 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-body {
-  color: #000 !important;
-  background-color: #fff;
+  color: #fff !important;
+  background-color: #101010;
 }
 
 .text-muted {
@@ -11731,8 +11731,8 @@ a.text-dark:hover, a.text-dark:focus {
 .bg-dark .text-body,
 .table-dark .text-body,
 .navbar-dark .text-body {
-  color: #fff !important;
-  background-color: #000;
+  color: #101010 !important;
+  background-color: #fff;
 }
 .bg-dark .text-muted,
 .table-dark .text-muted,
@@ -11856,12 +11856,12 @@ h3 {
 .table-dark td,
 .table-dark thead th,
 .table-dark tbody + tbody {
-    border-color: #ccc;
+    border-color: #595959;
   }
 
   .table .thead-dark th {
     color: inherit;
-    border-color: #ccc;
+    border-color: #595959;
   }
 
   .row,
@@ -12834,7 +12834,7 @@ select.form-control:not([size]):not([multiple]).form-control-sm {
   cursor: pointer;
 }
 .tablesorter th a {
-  color: #101010;
+  color: #fff;
   text-decoration: underline;
 }
 .tablesorter th a:hover, .tablesorter th a:focus {

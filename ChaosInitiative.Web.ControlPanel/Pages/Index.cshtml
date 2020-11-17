@@ -18,21 +18,21 @@
         You are logged in as
         <partial name="Shared/Partials/IdentityCapsulePartial"/>
     </p>
-    <a asp-page="/Panel/Dashboard" class="btn btn-primary">
-        Enter Dashboard
+    <a href="/Panel/Dashboard" class="btn btn-primary">
+        <i class="fas fa-"></i>Enter Dashboard
     </a>
     
-    <a href="/Auth/Logout" class="btn btn-light">
+    <a href="/Auth/Login" class="btn btn-light">
         Log Out
     </a>
     
-    <a asp-page="/Debug" class="btn btn-link">Debug</a>
+    <a href="/Debug" class="btn btn-link">Debug</a>
 }
 else
 {
     <p>You are not logged in.</p>
     <a href="/Auth/Login" class="btn btn-light mt-3 mb-3">
-        <i class="fab fa-github"></i>Log in with GitHub
+        <i class="fab fa-github pr-1"></i>Log in with GitHub
     </a>
     
     <p class="pt-3">After authenticating, your membership of the Chaos Initiative GitHub organisation will be checked to authorize.</p>

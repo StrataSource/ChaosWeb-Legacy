@@ -1,3 +1,8 @@
+﻿
+html,
+body {
+    height: 100%;
+}
 
 .bg-p2ce {
     background-color: #ff7b02;
@@ -24,6 +29,10 @@ h2 {
 
 .bg-primary hr {
     border-color: #dd260d;
+}
+
+.bg-primary a:hover {
+    color: black;
 }
 
 .bg-dark a {
@@ -79,4 +88,9 @@ table tr td:nth-child(3) {
 table tr th:nth-child(4),
 table tr td:nth-child(4) {
     color: #1894d2;
+}
+
+.bg-momentum .btn-link:hover,
+.bg-p2ce .btn-link:hover {
+    color: black;
 }

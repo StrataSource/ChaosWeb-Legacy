@@ -5,18 +5,15 @@ using System.Threading.Tasks;
 using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Octokit;
 
 namespace ChaosInitiative.Web.P2CE.Pages 
 { 
     public class FeaturesModel : PageModel
     {
-
-        public readonly List<ClosedIssuesDisplay> ClosedIssuesDisplays = new List<ClosedIssuesDisplay>()
-        {
-            new ClosedIssuesDisplay("type/bug", "Bugs fixed"),
-            new ClosedIssuesDisplay("type/enhancement", "Features added"),
-        };
+        
+        public List<IssuesCache> Caches => IssuesCache.ClosedIssuesCaches;
         
         public void OnGet()
         {
@@ -24,45 +21,67 @@ namespace ChaosInitiative.Web.P2CE.Pages
         }
     }
 
-    public class ClosedIssuesDisplay
+    public class IssuesCache
     {
+        
+        public static readonly List<IssuesCache> ClosedIssuesCaches = new List<IssuesCache>
+        {
+            new IssuesCache("type/bug", "Bugs"),
+            new IssuesCache("type/enhancement", "Features")
+        };
+        
         public string LabelName { get; set; }
         public string DisplayName { get; set; }
+        public int Count { get; set; }
 
-        public ClosedIssuesDisplay(string labelName, string displayName)
+        public IssuesCache(string labelName, string displayName)
         {
             LabelName = labelName;
             DisplayName = displayName;
         }
         
-        public int GetCount()
+        public async Task RefreshCount()
         {
             GitHubClient client = new GitHubClient(new ProductHeaderValue("Portal2CommunityEdition.com"));
-            var bugIssueProperties = new RepositoryIssueRequest()
+            var issueProperties = new RepositoryIssueRequest
             {
                 State = ItemStateFilter.Closed,
                 Labels = { LabelName }
             };
-            IReadOnlyList<Issue> issues = client.Issue.GetAllForRepository(Constants.REPO_OWNER, Constants.REPO_NAME_P2CE, bugIssueProperties).Result;
-            return issues.Count;
+            IReadOnlyList<Issue> issues = await client.Issue.GetAllForRepository(Constants.REPO_OWNER, Constants.REPO_NAME_P2CE, issueProperties);
+            Count = issues.Count;
         }
     }
 
-    public abstract class IssueDisplayCacheService : IHostedService, IDisposable
+    public class IssueCacheRefreshService : BackgroundService
     {
-        public Task StartAsync(CancellationToken cancellationToken)
+
+        private readonly ILogger<IssueCacheRefreshService> _logger;
+
+        public IssueCacheRefreshService(ILogger<IssueCacheRefreshService> logger)
         {
-            throw new NotImplementedException();
+            _logger = logger;
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            throw new NotImplementedException();
-        }
+            _logger.LogInformation("Refreshing issue cache");
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                IssuesCache.ClosedIssuesCaches.ForEach(async cache =>
+                {
+                    try
+                    {
+                        await cache.RefreshCount();
+                    }
+                    catch (RateLimitExceededException exception)
+                    {
+                        _logger.LogCritical($"GitHub API rate limit exceeded when trying to refresh issue cache. Limit: {exception.Limit}");
+                    }
+                });
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
+                await Task.Delay(TimeSpan.FromMinutes(10), stoppingToken);
+            }
         }
     }
 }

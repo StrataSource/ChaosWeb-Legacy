@@ -1,31 +1,33 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@ViewData["Title"] - Chaos Initiative Control Panel</title>
+    <title>Chaos Initiative Control Panel</title>
     <partial name="_LayoutHeadPartial"/>
+    <link href="_content/GridBlazor/css/gridblazor.min.css" rel="stylesheet" />
+    <script src="_content/GridBlazor/js/gridblazor.js"></script>
 </head>
 <body>
 <div class="d-flex flex-column h-100">
-<nav role="navigation" class="navbar navbar-expand-md navbar-dark">
-    <a class="navbar-brand pl-3 mr-auto" href="/">
-        <img src="~/img/chaos_logo_square.png" alt="Chaos Logo" class="d-inline-block align-bottom mr-3" loading="lazy" width="50" height="50"/>
-        <span class="h1 m-0">@ViewData["Title"]</span>
-    </a>
+    <nav role="navigation" class="navbar navbar-expand-md navbar-dark">
+        <a class="navbar-brand pl-3 mr-auto" href="/">
+            <img src="~/img/chaos_logo_square.png" alt="Chaos Logo" class="d-inline-block align-bottom mr-3" loading="lazy" width="50" height="50"/>
+            <span class="h1 m-0">@ViewData["Title"]</span>
+        </a>
 
-    <span class="navbar-text pr-3">
-        @{
-            if (User.Identity.IsAuthenticated)
-            {
-                <partial name="Partials/IdentityCapsulePartial"/>
+        <span class="navbar-text pr-3">
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    <partial name="Partials/IdentityCapsulePartial"/>
+                }
+                else
+                {
+                    <p>Not logged in</p>
+                }
             }
-            else
-            {
-                <p>Not logged in</p>
-            }
-        }
-    </span>
+        </span>
 
-</nav>
+    </nav>
 
     <div class="row flex-grow-1 w-100">
         <div class="col col-2 bg-light h-100 p-0">
@@ -58,6 +60,26 @@
         </div>
     </div>
 </div>
+
+<div id="components-reconnect-modal" class="my-reconnect-modal components-reconnect-hide">
+    <div class="show">
+        <p>
+            Reconnecting
+        </p>
+    </div>
+    <div class="failed">
+        <p>
+            Failed to connect
+        </p>
+    </div>
+    <div class="rejected">
+        <p>
+            Connection refused
+        </p>
+    </div>
+</div>
+
+<script src="_framework/blazor.server.js"></script>
 
 </body>
 </html>

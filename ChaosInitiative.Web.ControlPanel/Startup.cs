@@ -1,5 +1,6 @@
 using System;
 using System.Security.Claims;
+using ChaosInitiative.Web.ControlPanel.Services;
 using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -38,9 +39,9 @@ namespace ChaosInitiative.Web.ControlPanel
             services.AddDbContext<ApplicationContext>(options =>
             {
                 if (Environment.IsDevelopment())
-                    options.UseSqlite(Secrets.Get("db.connect", DeploymentType.Development));
+                    options.UseSqlite(Secrets.Get("dbConnect", DeploymentType.Development));
                 else
-                    options.UseMySql(Secrets.Get("db.connect", DeploymentType.Production));
+                    options.UseMySql(Secrets.Get("dbConnect", DeploymentType.Production));
             });
 
             services.AddDbContext<IdentityDbContext>(options =>
@@ -78,8 +79,11 @@ namespace ChaosInitiative.Web.ControlPanel
                 options.Conventions.AllowAnonymousToPage("/Index");
                 options.Conventions.AllowAnonymousToFolder("/Auth");
             }).AddRazorRuntimeCompilation();
+
+            services.AddServerSideBlazor();
             
             services.AddControllersWithViews();
+            services.AddSingleton<GridModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,6 +113,7 @@ namespace ChaosInitiative.Web.ControlPanel
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
                 endpoints.MapControllers();
             });
         }

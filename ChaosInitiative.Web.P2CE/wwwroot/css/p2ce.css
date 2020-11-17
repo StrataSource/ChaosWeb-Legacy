@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500;700&display=swap');
 /*
 @font-face {
     font-family: Jasmine;
@@ -8,6 +8,44 @@
 ::selection {
     color: white;
     background-color: #FF7B02;
+}
+
+.bg-gray {
+    background-color: #202020;
+    color: white;
+}
+
+.bg-p2ce {
+    background-color: #FF7B02;
+}
+
+.bg-p2ce-muted {
+    background-color: #FFAE64;
+}
+
+.bg-p2ce-muted .card {
+    background-color: #FAA455;
+    border:none;
+}
+
+.bg-p2ce h1,
+.bg-p2ce h2,
+.bg-p2ce h3,
+.bg-p2ce h4 {
+    color: black;
+}
+
+.bg-p2ce h1::selection,
+.bg-p2ce h2::selection,
+.bg-p2ce h3::selection,
+.bg-p2ce h4::selection {
+    color: #FF7B02;
+    background-color: white;
+}
+
+.bg-p2ce a,
+.bg-p2ce a:hover {
+    color: black;
 }
 
 table, tbody {
@@ -37,7 +75,7 @@ tbody tr:nth-child(2n) {
 }
 
 #logo {
-    height: 8rem;
+    max-height: 8rem;
 }
 
 .brand-colorbox {
@@ -56,22 +94,29 @@ select {
 }
 
 section {
-    border-bottom: 1px #3b3b3b solid;
+    border-bottom: 1px #f0f0f0 solid;
     padding-bottom: 1rem;
     padding-top: 5rem;
     font-size: 110%;
 }
 
-section:first-child {
-    padding-top: 2rem;
+section.bg-dark,
+section.bg-gray,
+.bg-dark section,
+.bg-gray section {
+    border-bottom: 1px #3b3b3b solid;
+}
+
+section.bg-p2ce {
+    border-bottom: none;
 }
 
 section h1,
 section h2,
 section h3,
 section h4 {
-    border-bottom: 1px #151515 solid;
     color: #FF7B02;
+    font-weight: bold;
 }
 
 .bg-dark a {
@@ -193,4 +238,54 @@ pre.display-inline {
 .features-closed-issue-display h4
 {
     border-bottom: none;
+}
+
+section.feature-partial {
+    border-bottom: none;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+section.feature-partial:first-child {
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+}
+
+section.feature-partial:last-child {
+    padding-top: 3rem;
+    padding-bottom: 7rem;
+}
+
+section.feature-partial .feature-partial-content {
+    padding: 1rem 1rem 0 2rem;
+}
+
+section .feature-partial .feature-partial-picture {
+    
+}
+
+.table-p2ce-gray {
+    color: white;
+    background-color: #222222;
+}
+
+.table-p2ce-gray tr {
+    border: none;
+}
+
+.table-p2ce-gray tr:nth-child(2n) {
+    background-color: #1D1D1D;
+}
+
+.table-p2ce-muted {
+    color: black;
+    background-color: #FFAE64;
+}
+
+.table-p2ce-muted tr {
+    border: none;
+}
+
+.table-p2ce-muted tr:nth-child(2n) {
+    background-color: #FAA455;
 }
