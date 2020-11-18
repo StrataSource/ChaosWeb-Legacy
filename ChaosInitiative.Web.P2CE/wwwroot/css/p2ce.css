@@ -5,6 +5,10 @@
     src: url("../font/jasmine.otf") format("opentype");
 }*/
 
+html, body {
+    height: 100%;
+}
+
 ::selection {
     color: white;
     background-color: #FF7B02;

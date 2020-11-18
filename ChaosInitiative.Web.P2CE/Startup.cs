@@ -2,6 +2,7 @@ using ChaosInitiative.Web.P2CE.Pages;
 using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,10 +35,12 @@ namespace ChaosInitiative.Web.P2CE
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/NotFound");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithRedirects("/NotFound");
             
             app.UsePhpRedirection();
             app.UseHttpsRedirection();
@@ -47,7 +50,10 @@ namespace ChaosInitiative.Web.P2CE
 
             app.UseAuthorization();
             
-            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
         }
     }
 }
