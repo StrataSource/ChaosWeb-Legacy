@@ -2,6 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/ChaosInitiative.Web.P2CE/wiki_markdown" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ChaosInitiative.Web.HomePage/wiki_markdown" vcs="Git" />
   </component>
 </project>
