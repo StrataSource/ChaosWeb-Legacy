@@ -12,7 +12,8 @@ namespace ChaosInitiative.Web.HomePage.Services
     public class WikiService
     {
         
-        private static string WikiLayout { get; set; }
+        public static string WikiLayout { get; set; }
+        public static List<WikiPage> WikiPages { get; set; }
 
         public WikiService(ILogger<WikiService> logger, IHostEnvironment webHostEnvironment)
         {
@@ -34,7 +35,7 @@ namespace ChaosInitiative.Web.HomePage.Services
             if (Repository.IsValid(GetWikiRepositoryPath())) // Is this really how we check if the repo already exists?
             {
                 _logger.LogInformation("Trying to init wiki repository, but it is already initialized. Refreshing.");
-                RefreshWikiGitRepository();
+                Refresh();
             }
             else
             {
@@ -45,7 +46,29 @@ namespace ChaosInitiative.Web.HomePage.Services
 
         }
         
-        public void RefreshWikiGitRepository()
+
+        public void FinishInitWikiRepository()
+        {
+            WikiLayout = File.ReadAllText(GetWikiLayoutFilePath());
+
+            string[] pagePaths = Directory.GetFiles(GetWikiRepositoryPath(), "*.md", SearchOption.AllDirectories);
+            WikiPages = new List<WikiPage>();
+            foreach (string pagePath in pagePaths)
+            {
+                WikiPage page = new WikiPage(pagePath, this);
+                page.ReadMarkdown();
+                
+                WikiPages.Add(page);
+            }
+            
+            // Sorting the pages alphabetically, just in case
+            WikiPages.Sort((left, right) => String.Compare(left.GetPageCategories().FirstOrDefault(), 
+                                                           right.GetPageCategories().FirstOrDefault(), StringComparison.Ordinal));
+            
+            BuildWiki();
+        }
+        
+        public void Refresh()
         {
             Repository repo = GetWikiRepository();
             var originRemote = repo.Network.Remotes["origin"];
@@ -66,89 +89,20 @@ namespace ChaosInitiative.Web.HomePage.Services
             FinishInitWikiRepository();
         }
 
-        public void FinishInitWikiRepository()
-        {
-            var path = GetWikiLayoutFilePath();
-            WikiLayout = File.ReadAllText(path);
-        }
-
         public void BuildWiki()
         {
-            BuildWikiFolder(GetWikiRepositoryPath());
+            foreach (WikiPage page in WikiPages)
+            {
+                page.Build();
+            }
         }
         
-        // This is a recursive function that crawls down the repository path and builds every .md file
-        private void BuildWikiFolder(string folderPath)
-        {
-            // First go down the path
-            foreach (string dir in Directory.GetDirectories(folderPath))
-            {
-                var splits = dir.Split(Path.DirectorySeparatorChar);
-                if (splits.Last().StartsWith(".") || splits.Last().StartsWith("_")) continue;
-                
-                BuildWikiFolder(dir);
-            }
-            
-            // Then, once we're at the end, start building!
-            foreach (string file in Directory.GetFiles(folderPath))
-            {
-                if(!file.EndsWith(".md")) continue;
-                    
-                BuildWikiFile(file);
-            }
-        }
-
-        private void BuildWikiFile(string inputFilePath)
-        {
-            string outputFilePath = inputFilePath.Replace(GetWikiRepositoryPath(), GetWikiOutputPath())
-                                                 .Replace(".md", ".html");
-            Directory.CreateDirectory(Path.GetDirectoryName(outputFilePath));
-            
-            string inputMarkdown = File.ReadAllText(inputFilePath);
-            string outputHtmlText = Markdown.ToHtml(inputMarkdown);
-            
-            outputHtmlText = PopulateWikiLayout(inputMarkdown, outputHtmlText);
-            
-            File.WriteAllText(outputFilePath, outputHtmlText);
-        }
-
-        private string PopulateWikiLayout(string inputMarkdown, string outputHtml)
-        {
-            Dictionary<string, string> kvTable = new Dictionary<string, string>();
-            
-            kvTable["#Content"] = outputHtml;
-            kvTable["#Title"] = GetMarkdownTitle(inputMarkdown);
-
-            string layout = WikiLayout;
-            foreach (string key in kvTable.Keys)
-            {
-                layout = layout.Replace(key, kvTable[key]);
-            }
-
-            return layout;
-        }
-
-        // This is a janky hack mate, but it works
-        private string GetMarkdownTitle(string markdownText)
-        {
-            if (markdownText == null || !markdownText.Contains("# ")) return "[No Title]";
-            
-            int h1Index = markdownText.IndexOf("# ", StringComparison.Ordinal);
-            int h1EndIndex = markdownText.IndexOf("\n", Math.Min(h1Index, markdownText.Length), StringComparison.Ordinal);
-            
-            //                                    Skip '# '                     
-            string output = markdownText.Substring(h1Index + 2, h1EndIndex - h1Index)
-                                        .Trim()
-                                        .Trim('\r', '\n'); // Does Trim() already do this? I didn't test it, docs just say it removes "whitespace" but doesn't specify if that includes line breaks
-            return output;
-        }
-
-        private Repository GetWikiRepository()
+        public Repository GetWikiRepository()
         {
             return new Repository(GetWikiRepositoryPath());
         }
 
-        private string GetWikiRepositoryPath()
+        public string GetWikiRepositoryPath()
         {
             return Path.Join(_host.ContentRootPath, _repoDirectoryName);
         }
@@ -164,13 +118,100 @@ namespace ChaosInitiative.Web.HomePage.Services
         }
     }
 
-    public abstract class WikiException : Exception
+    public class WikiPage
     {
+        private readonly WikiService _wikiService;
+        public readonly string RawPath;
+        public string MarkdownText { get; set; }
+        public string HtmlText { get; set; }
+
+        public WikiPage(string rawPath, WikiService wikiService)
+        {
+            _wikiService = wikiService;
+            RawPath = rawPath;
+        }
+
+        public void ReadMarkdown()
+        {
+            MarkdownText = File.ReadAllText(RawPath);
+        }
+
+        public void Build()
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(GetCompiledPath()));
+            PopulateHtml();
+            
+            File.WriteAllText(GetCompiledPath(), HtmlText);
+        }
+
+        public void PopulateHtml()
+        {
+            HtmlText = Markdown.ToHtml(MarkdownText);
+            Dictionary<string, string> kvTable = new Dictionary<string, string>();
+            
+            kvTable["#Content"] = HtmlText;
+            kvTable["#Title"] = GetTitle();
+            kvTable["#Navigation"] = GetSidebar();
+
+            string layout = WikiService.WikiLayout;
+            foreach (string key in kvTable.Keys)
+            {
+                layout = layout.Replace(key, kvTable[key]);
+            }
+
+            HtmlText = layout;
+
+        }
+
+        public string[] GetPageCategories()
+        {
+            var splits = GetPageName().Split(Path.DirectorySeparatorChar).ToList();
+            splits.RemoveAt(0);
+            splits.RemoveAt(splits.Count - 1);
+            return splits.ToArray();
+        }
+
+        public string GetPageName()
+        {
+            return RawPath.Replace(_wikiService.GetWikiRepositoryPath(), "").Replace(".md", "");
+        }
+
+        public string GetTitle()
+        {
+            if (MarkdownText == null || !MarkdownText.Contains("# ")) return "[No Title]";
+            
+            int h1Index = MarkdownText.IndexOf("# ", StringComparison.Ordinal);
+            int h1EndIndex = MarkdownText.IndexOf("\n", Math.Min(h1Index, MarkdownText.Length), StringComparison.Ordinal);
+            
+            //                                    Skip '# '                     
+            string output = MarkdownText.Substring(h1Index + 2, h1EndIndex - h1Index)
+                                        .Trim()
+                                        .Trim('\r', '\n'); // Does Trim() already do this? I didn't test it, docs just say it removes "whitespace" but doesn't specify if that includes line breaks
+            return output;
+        }
         
+        public string GetCompiledPath()
+        {
+            return RawPath.Replace(_wikiService.GetWikiRepositoryPath(), _wikiService.GetWikiOutputPath())
+                          .Replace(".md", ".html");
+        }
+        
+        public string GetSidebar()
+        {
+            // Yes it is really cursed to write it this way. So?
+
+            string output = "";
+            foreach (WikiPage page in WikiService.WikiPages)
+            {
+                // :) Have fun maintaining this
+                output += $"<li class=\"nav-item\"><a class=\"nav-link\" href=\"/wiki{page.GetPageName()}.html\"{(page.GetPageName() == GetPageName() ? "active" : "")}>{page.GetTitle()}</a></li>";
+            }
+            
+            // After writing this, I really appreciate how clean asp.net's workflow otherwise is 
+            
+            return output;
+
+        }
     }
 
-    public class WikiRefreshException : WikiException
-    {
-        
-    }
 }

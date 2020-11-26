@@ -21,16 +21,7 @@ namespace ChaosInitiative.Web.HomePage.Controllers.Api
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult OnRefresh()
         {
-            _wikiService.RefreshWikiGitRepository();
-            return NoContent();
-        }
-
-        [HttpPost]
-        [Route("build")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public IActionResult OnBuild()
-        {
-            _wikiService.BuildWiki();
+            _wikiService.Refresh();
             return NoContent();
         }
     }
