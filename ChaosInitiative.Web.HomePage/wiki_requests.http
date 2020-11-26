@@ -1,0 +1,4 @@
+﻿POST https://localhost:5001/api/wiki/refresh
+###
+POST https://localhost:5001/api/wiki/build
+###
