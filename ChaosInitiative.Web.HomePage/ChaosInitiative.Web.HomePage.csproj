@@ -45,6 +45,7 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+      <Content Include="wiki_markdown\.shared\layout.html" />
     </ItemGroup>
 
     <ItemGroup>

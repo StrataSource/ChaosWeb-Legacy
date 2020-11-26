@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace ChaosInitiative.Web.HomePage
@@ -40,6 +41,14 @@ namespace ChaosInitiative.Web.HomePage
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            
+            // Wiki pages
+            WikiService wikiService = app.ApplicationServices.GetService<WikiService>();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(wikiService.GetWikiOutputPath()),
+                RequestPath = "/wiki"
+            });
 
             app.UseRouting();
 

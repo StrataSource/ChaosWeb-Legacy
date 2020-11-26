@@ -7,4 +7,5 @@ riderModule.iml
 
 */**/*.db*
 
-ChaosInitiative.Web.HomePage/wiki_markdown/*
+ChaosInitiative.Web.HomePage/wiki_markdown/
+ChaosInitiative.Web.HomePage/wiki_pages/

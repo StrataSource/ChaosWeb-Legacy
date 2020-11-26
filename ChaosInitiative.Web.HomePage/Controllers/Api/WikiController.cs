@@ -34,4 +34,16 @@ namespace ChaosInitiative.Web.HomePage.Controllers.Api
             return NoContent();
         }
     }
+
+    [ApiController]
+    [Route("wiki")]
+    public class WikiIndexToReadmeRedirectController : ControllerBase
+    {
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status308PermanentRedirect)]
+        public IActionResult OnIndex()
+        {
+            return RedirectPermanent("/wiki/readme.html");
+        }
+    }
 }
