@@ -1,0 +1,13 @@
+section h1,
+section h2,
+section h3,
+section h4 {
+    color: #ee370e;
+}
+
+.table {
+    max-width: 100%;
+    word-wrap: break-word;
+    table-layout: fixed;
+}
+
