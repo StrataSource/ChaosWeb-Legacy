@@ -11,3 +11,6 @@ section h4 {
     table-layout: fixed;
 }
 
+.anchorjs-link:hover {
+    text-decoration: none;
+}
