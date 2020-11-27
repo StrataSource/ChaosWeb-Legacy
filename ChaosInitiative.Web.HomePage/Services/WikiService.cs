@@ -152,6 +152,7 @@ namespace ChaosInitiative.Web.HomePage.Services
             kvTable["#Content"] = HtmlText;
             kvTable["#Title"] = GetTitle();
             kvTable["#Navigation"] = GetSidebar();
+            kvTable["#Date"] = DateTime.Today.ToUniversalTime().ToShortDateString();
 
             string layout = WikiService.WikiLayout;
             foreach (string key in kvTable.Keys)
