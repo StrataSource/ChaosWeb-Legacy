@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using LibGit2Sharp;
 using Markdig;
+using Markdig.Extensions.Bootstrap;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -12,6 +13,7 @@ namespace ChaosInitiative.Web.HomePage.Services
     public class WikiService
     {
         
+        public static MarkdownPipeline WikiMarkdownPipeline { get; set; }
         public static string WikiLayout { get; set; }
         public static List<WikiPage> WikiPages { get; set; }
 
@@ -19,6 +21,15 @@ namespace ChaosInitiative.Web.HomePage.Services
         {
             _logger = logger;
             _host = webHostEnvironment;
+
+            MarkdownPipelineBuilder builder = new MarkdownPipelineBuilder();
+            builder.UseEmojiAndSmiley(false);
+            builder.UseCustomContainers().UseGenericAttributes();
+            builder.UsePipeTables();
+            builder.UseFootnotes();
+            builder.UseBootstrap();
+
+            WikiMarkdownPipeline = builder.Build();
         }
 
         private readonly ILogger<WikiService> _logger;
@@ -147,7 +158,7 @@ namespace ChaosInitiative.Web.HomePage.Services
 
         public void PopulateHtml()
         {
-            HtmlText = Markdown.ToHtml(MarkdownText);
+            HtmlText = Markdown.ToHtml(MarkdownText, WikiService.WikiMarkdownPipeline);
             Dictionary<string, string> kvTable = new Dictionary<string, string>();
             
             kvTable["#Content"] = HtmlText;
