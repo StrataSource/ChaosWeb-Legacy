@@ -1,8 +1,17 @@
+/* This fixes that weird thing where every element but the first of navbar pills would have a slight left offset. No idea why they did it like that in the first place */
+.nav-pills .nav-item + .nav-item {
+    margin-left: 0;
+}
+
 section h1,
 section h2,
 section h3,
 section h4 {
     color: #ee370e;
+}
+
+section.card {
+    padding-top: 0;
 }
 
 .table {
@@ -11,6 +20,63 @@ section h4 {
     table-layout: fixed;
 }
 
+p {
+    line-height: 1.6;
+}
+
+.card-header h1,
+.card-header h2,
+.card-header h3,
+.card-header h4,
+.card-header h5,
+.card-header h6 {
+    margin-bottom: 0;
+}
+
 .anchorjs-link:hover {
     text-decoration: none;
+}
+
+/* Some fine tuned styling */
+
+.bg-gray {
+    background-color: #202020 !important; /* i know, i know */
+}
+
+.card-header {
+    background-color: #202020;
+    border-bottom-color: #3b3b3b;
+}
+
+.card.bg-gray {
+    border-color: #3b3b3b;
+}
+
+.bg-gray hr {
+    border-top-color: #3b3b3b;
+    border-top-width: 2px;
+}
+
+.bg-gray code {
+    color: #b3b3b3;
+    border: 2px #3b3b3b solid;
+}
+
+code {
+    padding: 0.25rem;
+}
+
+pre > code,
+pre > code.hljs {
+    display: block;
+    padding: 1rem;
+}
+
+.bg-gray .hljs {
+    background-color: #202020;
+}
+
+.nav-category {
+    margin-top: 1rem;
+    border-bottom: 2px #3b3b3b solid;
 }

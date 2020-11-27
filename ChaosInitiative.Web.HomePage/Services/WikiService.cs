@@ -91,6 +91,7 @@ namespace ChaosInitiative.Web.HomePage.Services
 
         public void BuildWiki()
         {
+            Directory.Delete(GetWikiOutputPath(), true);
             foreach (WikiPage page in WikiPages)
             {
                 page.Build();
@@ -182,10 +183,14 @@ namespace ChaosInitiative.Web.HomePage.Services
             if (MarkdownText == null || !MarkdownText.Contains("# ")) return "[No Title]";
             
             int h1Index = MarkdownText.IndexOf("# ", StringComparison.Ordinal);
-            int h1EndIndex = MarkdownText.IndexOf("\n", Math.Min(h1Index, MarkdownText.Length), StringComparison.Ordinal);
-            
+            int h1EndIndex = MarkdownText.Contains("\n") ? 
+                                 MarkdownText.IndexOf("\n", Math.Min(h1Index, MarkdownText.Length), StringComparison.Ordinal)
+                                 : MarkdownText.Length;
+
+            int startIndex = h1Index + 2;
+            int length = Math.Clamp(h1EndIndex - h1Index, 0, MarkdownText.Length - startIndex);
             //                                    Skip '# '                     
-            string output = MarkdownText.Substring(h1Index + 2, h1EndIndex - h1Index)
+            string output = MarkdownText.Substring(startIndex, length)
                                         .Trim()
                                         .Trim('\r', '\n'); // Does Trim() already do this? I didn't test it, docs just say it removes "whitespace" but doesn't specify if that includes line breaks
             return output;
@@ -201,11 +206,26 @@ namespace ChaosInitiative.Web.HomePage.Services
         {
             // Yes it is really cursed to write it this way. So?
 
-            string output = "";
+            string output = "<ul class=\"nav flex-column nav-pills\">";
+            string[] currentCategory = { };
             foreach (WikiPage page in WikiService.WikiPages)
             {
-                // :) Have fun maintaining this
-                output += $"<li class=\"nav-item\"><a class=\"nav-link\" href=\"/wiki{page.GetPageName()}.html\"{(page.GetPageName() == GetPageName() ? "active" : "")}>{page.GetTitle()}</a></li>";
+                var pageCategories = page.GetPageCategories();
+
+                if (!currentCategory.SequenceEqual(pageCategories)) // When the category changes
+                {
+                    
+                    output += "<ul class=\"nav flex-column nav-pills\">";
+                    foreach (string category in pageCategories)
+                    {
+                        output += $"<p class=\"nav-category\">{category}</p>";
+                    }
+
+                    output += "</ul>";
+                }
+                output += $"<li class=\"nav-item\"><a class=\"nav-link {(page.GetPageName() == GetPageName() ? "active" : "")}\" href=\"/wiki{page.GetPageName()}.html\"><i class=\"fas fa-file-alt\"></i>{page.GetTitle()}</a></li>";
+
+                currentCategory = pageCategories;
             }
             
             // After writing this, I really appreciate how clean asp.net's workflow otherwise is 
