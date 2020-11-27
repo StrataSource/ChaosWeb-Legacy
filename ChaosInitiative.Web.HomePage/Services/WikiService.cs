@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml;
 using LibGit2Sharp;
 using Markdig;
-using Markdig.Extensions.Bootstrap;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -28,6 +29,7 @@ namespace ChaosInitiative.Web.HomePage.Services
             builder.UsePipeTables();
             builder.UseFootnotes();
             builder.UseBootstrap();
+            builder.UseAutoIdentifiers();
 
             WikiMarkdownPipeline = builder.Build();
         }
@@ -158,13 +160,14 @@ namespace ChaosInitiative.Web.HomePage.Services
 
         public void PopulateHtml()
         {
-            HtmlText = Markdown.ToHtml(MarkdownText, WikiService.WikiMarkdownPipeline);
+            HtmlText = $"<main>{Markdown.ToHtml(MarkdownText, WikiService.WikiMarkdownPipeline)}</main>";
             Dictionary<string, string> kvTable = new Dictionary<string, string>();
             
             kvTable["#Content"] = HtmlText;
             kvTable["#Title"] = GetTitle();
             kvTable["#Navigation"] = GetSidebar();
             kvTable["#Date"] = DateTime.Today.ToUniversalTime().ToShortDateString();
+            kvTable["#HeadingNavigation"] = GetHeadingNavigation();
 
             string layout = WikiService.WikiLayout;
             foreach (string key in kvTable.Keys)
@@ -244,6 +247,37 @@ namespace ChaosInitiative.Web.HomePage.Services
             return output;
 
         }
+        
+        public string GetHeadingNavigation()
+        {
+            string output = "<ul id=\"heading-navigation\" class=\"nav flex-column\">";
+
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.LoadXml(HtmlText);
+
+            XmlNode mainNode = xmlDocument.GetElementsByTagName("main")[0];
+
+            if (mainNode != null)
+            {
+                IEnumerable<XmlNode> headings = mainNode.ChildNodes.Cast<XmlNode>().Where(node => Regex.IsMatch(node.Name, @"h[1-6]"));
+                foreach (XmlNode heading in headings)
+                {
+                    string title = heading.InnerText;
+                    int level = int.Parse(heading.Name.ToCharArray()[1].ToString());
+                    XmlAttribute id = heading.Attributes?["id"];
+
+                    if (id == null || level == 0) continue;
+
+                    output += $"<li class=\"nav-item nav-heading-level-{level}\"><a href=\"#{id.Value}\">{title}</a></li>";
+
+                }
+            }
+            
+            
+            output += "</ul>";
+            return output;
+        }
+        
     }
 
 }
