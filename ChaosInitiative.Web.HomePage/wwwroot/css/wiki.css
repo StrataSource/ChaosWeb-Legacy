@@ -67,6 +67,12 @@ p {
 
 /* Some fine tuned styling */
 
+.bg-gray .btn-secondary.btn {
+    background-color: transparent;
+    color: white;
+    border-color: #3b3b3b;
+}
+
 .bg-gray {
     background-color: #202020 !important; /* i know, i know */
 }
