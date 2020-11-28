@@ -21,7 +21,12 @@ namespace ChaosInitiative.Web.P2CE
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddRazorPages()
+#if DEBUG
+                    .AddRazorRuntimeCompilation()
+#endif
+                ;
+            
             services.AddControllers();
             services.AddHostedService<IssueCacheRefreshService>();
         }
