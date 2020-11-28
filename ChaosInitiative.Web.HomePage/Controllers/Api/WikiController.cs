@@ -34,7 +34,7 @@ namespace ChaosInitiative.Web.HomePage.Controllers.Api
         [ProducesResponseType(StatusCodes.Status308PermanentRedirect)]
         public IActionResult OnIndex()
         {
-            return RedirectPermanent("/wiki/readme.html");
+            return Redirect("/wiki/readme.html");
         }
     }
 }
