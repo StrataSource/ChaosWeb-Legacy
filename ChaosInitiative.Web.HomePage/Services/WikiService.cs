@@ -17,6 +17,22 @@ namespace ChaosInitiative.Web.HomePage.Services
         public static MarkdownPipeline WikiMarkdownPipeline { get; set; }
         public static string WikiLayout { get; set; }
         public static List<WikiPage> WikiPages { get; set; }
+        public static string Navbar
+        {
+            get
+            {
+                string output = "";
+                Dictionary<string, string> navbar = NavbarHomePage.GetNavbar();
+                string requestPath = "/wiki";
+                foreach (KeyValuePair<string, string> pair in navbar)
+                {
+                    output +=
+                        $"<li class=\"nav-item\"><a class=\"nav-link {(requestPath == pair.Key ? "active" : "")}\" href=\"{pair.Key}\">{pair.Value}</a></li>";
+                }
+
+                return output;
+            }
+        }
 
         public WikiService(ILogger<WikiService> logger, IHostEnvironment webHostEnvironment)
         {
@@ -168,6 +184,7 @@ namespace ChaosInitiative.Web.HomePage.Services
             kvTable["#Navigation"] = GetSidebar();
             kvTable["#Date"] = DateTime.Today.ToUniversalTime().ToShortDateString();
             kvTable["#HeadingNavigation"] = GetHeadingNavigation();
+            kvTable["#Navbar"] = WikiService.Navbar;
 
             string layout = WikiService.WikiLayout;
             foreach (string key in kvTable.Keys)
