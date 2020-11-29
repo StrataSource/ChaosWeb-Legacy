@@ -94,3 +94,7 @@ table tr td:nth-child(4) {
 .bg-p2ce .btn-link:hover {
     color: black;
 }
+
+a:focus {
+    outline: none;
+}

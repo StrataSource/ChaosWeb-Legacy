@@ -300,3 +300,7 @@ section .feature-partial .feature-partial-picture {
 .table-p2ce-muted tr:nth-child(2n) {
     background-color: #FAA455;
 }
+
+a:focus {
+    outline: none;
+}
