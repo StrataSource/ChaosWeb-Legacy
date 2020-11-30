@@ -46,6 +46,7 @@ namespace ChaosInitiative.Web.HomePage.Services
             builder.UseFootnotes();
             builder.UseBootstrap();
             builder.UseAutoIdentifiers();
+            builder.UseEmphasisExtras();
 
             WikiMarkdownPipeline = builder.Build();
         }
