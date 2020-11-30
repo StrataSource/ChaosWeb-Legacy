@@ -12,8 +12,27 @@
 section h1,
 section h2,
 section h3,
-section h4 {
+section h4,
+section h5,
+section h6 {
     color: #ee370e;
+}
+
+*,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.nav-link {
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 900;
 }
 
 section.card {
