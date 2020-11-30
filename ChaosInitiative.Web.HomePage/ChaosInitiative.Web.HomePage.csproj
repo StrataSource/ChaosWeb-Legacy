@@ -45,6 +45,7 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+      <Content Include="wiki_markdown\.shared\layout.html" />
     </ItemGroup>
 
     <ItemGroup>
@@ -53,6 +54,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
+      <PackageReference Include="Markdig" Version="0.22.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
     </ItemGroup>
 

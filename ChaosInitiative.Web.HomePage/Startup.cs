@@ -1,7 +1,9 @@
+using ChaosInitiative.Web.HomePage.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace ChaosInitiative.Web.HomePage
@@ -18,7 +20,9 @@ namespace ChaosInitiative.Web.HomePage
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<WikiService>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,12 +41,24 @@ namespace ChaosInitiative.Web.HomePage
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            
+            // Wiki pages
+            WikiService wikiService = app.ApplicationServices.GetService<WikiService>();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(wikiService.GetWikiOutputPath()),
+                RequestPath = "/wiki"
+            });
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+            });
         }
     }
 }

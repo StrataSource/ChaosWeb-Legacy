@@ -52,7 +52,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     UserName = "EchoesForeAndAft",
                     Roles = new []
                     {
-                        "Several Programming",
+                        "Graphics Programming and advice",
                         "<a href=\"https://www.moddb.com/mods/vance\">VANCE Developer</a>"
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>

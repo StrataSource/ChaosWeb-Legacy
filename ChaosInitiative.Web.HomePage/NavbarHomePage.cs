@@ -11,7 +11,8 @@ namespace ChaosInitiative.Web.HomePage
                 {"/", "Home"}, 
                 {"/engine", "Chaos Source"}, 
                 {"/games", "Games"},
-                {"/contact", "Contact"}
+                {"/contact", "Contact"},
+                {"/wiki", "Wiki"}
             };
 
             return dictionary;
