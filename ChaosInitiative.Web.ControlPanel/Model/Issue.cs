@@ -13,7 +13,7 @@ namespace ChaosInitiative.Web.ControlPanel.Model
 
         public string GetFullPath()
         {
-            return $"{Game.GetGitHubRepositoryUri()}/issues/{IssueId}";
+            return $"{Game.GitHubRepositoryUri}/issues/{IssueId}";
         }
     }
 }

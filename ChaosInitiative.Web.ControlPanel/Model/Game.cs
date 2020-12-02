@@ -29,10 +29,9 @@ namespace ChaosInitiative.Web.ControlPanel.Model
         [MaxLength(6, ErrorMessage = "HEX value must be 6 characters long")]
         public string HexColor { get; set; }
 
-        public string GetGitHubRepositoryUri()
-        {
-            return $"https://github.com/{RepositoryOwner}/{RepositoryName}";
-        }
+        public string GitHubRepositoryUri => 
+            $"https://github.com/{RepositoryOwner}/{RepositoryName}";
+        
         
         // TODO: Move this to application layer
         public async Task<List<string>> GetRepositoriesOfOwner()
