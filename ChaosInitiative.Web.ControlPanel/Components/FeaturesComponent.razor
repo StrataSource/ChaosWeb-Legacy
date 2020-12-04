@@ -1,10 +1,13 @@
 ﻿@using ChaosInitiative.Web.ControlPanel.Model
 @using ChaosInitiative.Web.ControlPanel.Services
+@using ChaosInitiative.Web.ControlPanel.Services.Repositories
+@using DocumentFormat.OpenXml.InkML
 @using GridBlazor
+@using GridBlazor.Pages
 @using GridShared
 @using GridShared.Utility
-@using Microsoft.Extensions.Primitives
-@inject ApplicationContext Context
+@inject GameRepository GameRepository
+@inject FeatureRepository FeatureRepository
 @inject GridModelService ModelService
 
 <section>
@@ -41,6 +44,7 @@
     <div>
         @if (_featureGridTask.IsCompleted)
         {
+            <p>Grid</p>
             <GridComponent T="Feature" Grid="@_featureGrid">
                     
             </GridComponent>
@@ -100,7 +104,7 @@
                                 }
                             </ul>
                             <select class="custom-select">
-                                @foreach (Game game in Context.Games)
+                                @foreach (Game game in GameRepository.GetAll())
                                 {
                                     <option value="@game.Name" @onclick="() => SetNewRelatedIssueOwner(game)">@game.Name</option>
                                 }
@@ -133,48 +137,20 @@
     public Feature NewFeature = new Feature();
     public Issue NewRelatedIssue = new Issue();
     public List<Feature> Features;
-    public string TypeFilter;
 
     protected override async Task OnParametersSetAsync()
     {
-    // Fucking hell wtf is this convoluted shit
-        Action<IGridColumnCollection<Feature>> columns = collection =>
-        {
-            collection.Add(f => f.Id);
-            collection.Add(f => f.Name);
-            collection.Add(f => f.Type);
-            collection.Add(f => f.RelatedIssues);
-            collection.Add(f => f.Completed);
-        };
-
-        var query = new QueryDictionary<StringValues>
-        {
-            {"grid-page", "2"}
-        };
-        
-        var client = new GridClient<Feature>(queryDictionary => ModelService.GetFeaturesGridRows(columns, queryDictionary, Context),
-            query, 
-            false, 
-            "featuresGrid", 
-            columns)
-            .Sortable()
-            .Filterable()
-            .WithMultipleFilters();
+        IGridClient<Feature> client = ModelService.CreateFeatureGridClient();
 
         _featureGrid = client.Grid;
         _featureGridTask = client.UpdateGrid();
+        
         await _featureGridTask;
     }
 
     protected override void OnInitialized()
     {
-        Features = Context.Features.ToList();
-    }
-    
-    void SetFilter(string filter)
-    {
-        TypeFilter = filter;
-        Features = Context.Features.Where(f => TypeFilter == "None" || f.Type.ToString() == TypeFilter).ToList(); // Logic in view: Cringe
+        Features = FeatureRepository.GetAll().ToList();
     }
     
     void SetNewRelatedIssueOwner(Game game)
