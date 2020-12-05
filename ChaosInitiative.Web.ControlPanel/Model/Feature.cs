@@ -9,7 +9,6 @@ namespace ChaosInitiative.Web.ControlPanel.Model
     [Table("Features")]
     public class Feature
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         [Required]

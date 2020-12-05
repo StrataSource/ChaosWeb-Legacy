@@ -8,9 +8,8 @@ namespace ChaosInitiative.Web.ControlPanel.Model
     [Table("Releases")]
     public class Release
     {
-        [Key]
+        public int GameId { get; set; }
         public Game Game { get; set; }
-        [Key]
         public int VersionId { get; set; }
         public List<Feature> Features { get; set; }
         public string Label { get; set; }
