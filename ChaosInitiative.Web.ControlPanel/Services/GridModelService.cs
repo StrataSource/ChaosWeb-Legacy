@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ChaosInitiative.Web.ControlPanel.Model;
 using ChaosInitiative.Web.ControlPanel.Services.Repositories;
 using GridBlazor;
@@ -13,59 +14,70 @@ namespace ChaosInitiative.Web.ControlPanel.Services
     public class GridModelService
     {
 
-        public readonly int ITEMS_PER_PAGE = 15;
-        public readonly string FEATURE_GRID_NAME = "featuresGrid";
-            
+        private readonly int ITEMS_PER_PAGE = 15;
+        private readonly string FEATURES_GRID_NAME = "featuresGrid";
         private readonly FeatureRepository _featureRepository;
-        
-        public GridModelService(FeatureRepository context)
-        {
-            _featureRepository = context;
-        }
 
+        public GridModelService(FeatureRepository repository)
+        {
+            _featureRepository = repository;
+        }
         
-        public ItemsDTO<Feature> GetFeaturesGridRows(Action<IGridColumnCollection<Feature>> columns,
+        private ItemsDTO<Feature> GetFeaturesGridRows(Action<IGridColumnCollection<Feature>> columns,
                                                      QueryDictionary<StringValues> query)
         {
-            var server = new GridServer<Feature>(_featureRepository.GetAll(), 
+            var server = new GridServer<Feature>(_featureRepository.GetAllInclusive(), 
                                                  new QueryCollection(query), 
                                                  false, 
-                                                 FEATURE_GRID_NAME, 
+                                                 FEATURES_GRID_NAME, 
                                                  columns, 
                                                  ITEMS_PER_PAGE)
                          .Sortable()
                          .Filterable()
-                         .WithMultipleFilters();
+                         .WithMultipleFilters()
+                         .Selectable(false)
+                         .WithGridItemsCount();
 
             return server.ItemsToDisplay;
         }
 
-        public IGridClient<Feature> CreateFeatureGridClient()
+        public IGridClient<Feature> GetFeaturesGridClient()
         {
             Action<IGridColumnCollection<Feature>> columns = collection =>
             {
                 collection.Add(f => f.Id);
                 collection.Add(f => f.Name);
                 collection.Add(f => f.Type);
-                collection.Add(f => f.RelatedIssues);
+                collection.Add(f => f.RelatedIssues)
+                          .Sanitized(false).Encoded(false)
+                          .RenderValueAs(RenderFeatureRelatedIssues);
                 collection.Add(f => f.Completed);
             };
 
-            var query = new QueryDictionary<StringValues>
+            QueryDictionary<StringValues> query = new QueryDictionary<StringValues>
             {
                 {"grid-page", "2"}
             };
-            IGridClient<Feature> client = new GridClient<Feature>(
-                                              queryDictionary => GetFeaturesGridRows(columns, queryDictionary),
-                                              query,
-                                              false,
-                                              FEATURE_GRID_NAME,
-                                              columns)
+        
+            IGridClient<Feature> client = new GridClient<Feature>(queryDictionary => GetFeaturesGridRows(columns, queryDictionary),
+                                                                  query,
+                                                                  false,
+                                                                  FEATURES_GRID_NAME,
+                                                                  columns)
                                           .Sortable()
                                           .Filterable()
-                                          .WithMultipleFilters();
+                                          .WithMultipleFilters()
+                                          .Selectable(false)
+                                          .WithGridItemsCount();
 
             return client;
+        }
+
+        private string RenderFeatureRelatedIssues(Feature feature)
+        {
+            return String.Join(' ', 
+                               feature.RelatedIssues.Select(
+                                   i => $"<a class='badge' href='{i.GetFullPath()}' style='{i.Game.HexColor}'>{i.IssueId}</a>"));
         }
     }
 }

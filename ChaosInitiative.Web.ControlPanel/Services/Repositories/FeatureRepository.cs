@@ -2,6 +2,7 @@
 using System.Linq;
 using ChaosInitiative.Web.ControlPanel.Model;
 using ChaosInitiative.Web.Shared;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChaosInitiative.Web.ControlPanel.Services.Repositories
 {
@@ -14,6 +15,13 @@ namespace ChaosInitiative.Web.ControlPanel.Services.Repositories
         public IEnumerable<Feature> GetAll()
         {
             return Context.Features.ToList();
+        }
+
+        public IEnumerable<Feature> GetAllInclusive()
+        {
+            return Context.Features
+                          .Include(f => f.RelatedIssues)
+                          .ThenInclude(i => i.Game);
         }
 
         public Feature GetById(int id)
