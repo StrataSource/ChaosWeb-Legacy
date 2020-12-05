@@ -36,3 +36,9 @@ section h4 {
     word-wrap: break-word;
     table-layout: fixed;
 }
+
+.btn > i.fas,
+.btn > i.fab
+{
+    padding-right: 0.5rem;
+}
