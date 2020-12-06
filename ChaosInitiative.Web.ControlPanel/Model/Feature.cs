@@ -18,7 +18,7 @@ namespace ChaosInitiative.Web.ControlPanel.Model
 
         public IEnumerable<Issue> GetSharedRelatedIssues(Feature feature)
         {
-            return RelatedIssues.GetOverlapping(feature.RelatedIssues);
+            return RelatedIssues.Intersect(feature.RelatedIssues);
         }
         
         public bool IsSharingRelatedIssues(Feature feature)
