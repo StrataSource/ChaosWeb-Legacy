@@ -9,6 +9,12 @@ namespace ChaosInitiative.Web.ControlPanel.Model
     [Table("Games")]
     public class Game
     {
+
+        public static readonly IReadOnlyCollection<string> LegalRepositoryOwners = new[]
+        {
+            "ChaosInitiative"
+        };
+        
         public int Id { get; set; }
 
         [Required]
