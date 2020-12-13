@@ -42,6 +42,24 @@ namespace ChaosInitiative.Web.ControlPanel
             return await IsUserOrganizationMember(gitHubUserName, GITHUB_ORG_NAME, token);
         }
 
+        public static async Task<bool> IsValidGitHubRepository(string owner, string name)
+        {
+            GitHubClient gitHubClient = CreateClient();
+            try
+            {
+                Repository repo = await gitHubClient.Repository.Get(owner, name);
+                return repo != null;
+            }
+            catch (ApiException)
+            {
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+        }
+
         private static string _applicationClientId;
         public static string ApplicationClientId
         {
