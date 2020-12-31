@@ -1,7 +1,7 @@
 using ChaosInitiative.Web.ControlPanel.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChaosInitiative.Web.ControlPanel
+namespace ChaosInitiative.Web.ControlPanel.Services
 {
     public class ApplicationContext : DbContext
     {
@@ -18,7 +18,11 @@ namespace ChaosInitiative.Web.ControlPanel
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Issue>().HasKey(i => new { i.GameId, i.IssueId });
+            
             modelBuilder.Entity<Game>().Property(g => g.Id).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Release>().HasKey(r => new {r.GameId, r.VersionId});
         }
 
     }

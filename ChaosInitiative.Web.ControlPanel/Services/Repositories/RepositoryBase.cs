@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChaosInitiative.Web.ControlPanel.Model.Repositories
+namespace ChaosInitiative.Web.ControlPanel.Services.Repositories
 {
     public abstract class RepositoryBase : IDisposable
     {

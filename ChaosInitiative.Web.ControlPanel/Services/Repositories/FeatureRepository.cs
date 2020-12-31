@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ChaosInitiative.Web.ControlPanel.Model;
 using ChaosInitiative.Web.Shared;
+using Microsoft.EntityFrameworkCore;
 
-namespace ChaosInitiative.Web.ControlPanel.Model.Repositories
+namespace ChaosInitiative.Web.ControlPanel.Services.Repositories
 {
     public class FeatureRepository : RepositoryBase
     {
@@ -13,6 +15,23 @@ namespace ChaosInitiative.Web.ControlPanel.Model.Repositories
         public IEnumerable<Feature> GetAll()
         {
             return Context.Features.ToList();
+        }
+
+        public IEnumerable<Feature> GetAllInclusive()
+        {
+            return Context.Features
+                          .Include(f => f.RelatedIssues)
+                          .ThenInclude(i => i.Game);
+        }
+
+        public Feature GetById(int id)
+        {
+            return Context.Features.FirstOrDefault(f => f.Id == id);
+        }
+
+        public IEnumerable<Feature> GetByType(FeatureType type)
+        {
+            return Context.Features.Where(f => f.Type == type).ToList();
         }
 
         public void Insert(Feature feature)
