@@ -55,7 +55,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
+      <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0096" />
       <PackageReference Include="Markdig" Version="0.22.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
     </ItemGroup>
