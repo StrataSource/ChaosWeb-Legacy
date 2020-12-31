@@ -1,4 +1,5 @@
 using System;
+using ChaosInitiative.Web.ControlPanel.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

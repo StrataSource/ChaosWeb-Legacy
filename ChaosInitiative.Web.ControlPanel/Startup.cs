@@ -1,6 +1,7 @@
 using System;
 using System.Security.Claims;
 using ChaosInitiative.Web.ControlPanel.Services;
+using ChaosInitiative.Web.ControlPanel.Services.Repositories;
 using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -83,7 +84,10 @@ namespace ChaosInitiative.Web.ControlPanel
             services.AddServerSideBlazor();
             
             services.AddControllersWithViews();
-            services.AddSingleton<GridModelService>();
+
+            services.AddTransient<FeatureRepository>();
+            services.AddTransient<GameRepository>();
+            services.AddTransient<GridModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

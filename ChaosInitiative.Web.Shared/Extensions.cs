@@ -17,11 +17,6 @@ namespace ChaosInitiative.Web.Shared
             return app.UseMiddleware<PhpRedirectionMiddleware>();
         }
 
-        public static IEnumerable<T> GetOverlapping<T>(this IEnumerable<T> enumerable, IEnumerable<T> other)
-        {
-            return enumerable.Where(e1 => other.Any(e2 => e1.Equals(e2)));
-        }
-
         public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
         {
             return enumerable.Count() == 0;

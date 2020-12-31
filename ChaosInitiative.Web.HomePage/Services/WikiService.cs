@@ -121,6 +121,7 @@ namespace ChaosInitiative.Web.HomePage.Services
 
         public void BuildWiki()
         {
+            Directory.CreateDirectory(GetWikiOutputPath());
             Directory.Delete(GetWikiOutputPath(), true);
             foreach (WikiPage page in WikiPages)
             {

@@ -6,7 +6,7 @@
     <link href="_content/GridBlazor/css/gridblazor.min.css" rel="stylesheet" />
     <script src="_content/GridBlazor/js/gridblazor.js"></script>
 </head>
-<body>
+<body class="bg-dark bg-gray">
 <div class="d-flex flex-column h-100">
     <nav role="navigation" class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand pl-3 mr-auto" href="/">
@@ -30,7 +30,7 @@
     </nav>
 
     <div class="row flex-grow-1 w-100">
-        <div class="col col-2 bg-light h-100 p-0">
+        <div class="col col-2 h-100 p-0" id="sidebar">
             <ul class="nav flex-column nav-pills">
                 @{
 
@@ -58,24 +58,6 @@
         <div class="col col-8 justify-content-around p-0">
             @RenderBody()
         </div>
-    </div>
-</div>
-
-<div id="components-reconnect-modal" class="my-reconnect-modal components-reconnect-hide">
-    <div class="show">
-        <p>
-            Reconnecting
-        </p>
-    </div>
-    <div class="failed">
-        <p>
-            Failed to connect
-        </p>
-    </div>
-    <div class="rejected">
-        <p>
-            Connection refused
-        </p>
     </div>
 </div>
 

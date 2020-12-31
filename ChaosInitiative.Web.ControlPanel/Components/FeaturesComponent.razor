@@ -1,33 +1,18 @@
-﻿@using ChaosInitiative.Web.ControlPanel.Model
-@using ChaosInitiative.Web.ControlPanel.Services
+﻿@using ChaosInitiative.Web.ControlPanel.Services.Repositories
 @using GridBlazor
 @using GridShared
 @using GridShared.Utility
-@using Microsoft.Extensions.Primitives
-@inject ApplicationContext Context
+@using GridBlazor.Pages
+@using ChaosInitiative.Web.ControlPanel.Services
+@using ChaosInitiative.Web.ControlPanel.Model
+@inject FeatureRepository FeatureRepository
+@inject GameRepository GameRepository
 @inject GridModelService ModelService
 
 <section>
     
     <div class="row">
         
-        <div class="col">
-            <h1>Features</h1>
-        </div>
-        <div class="col col-auto">
-            <div class="form-group">
-                <label>Filter Type:</label>
-                <select class="custom-select" ValueChanged="UpdateFilter">
-                    <option value="None">None</option>
-                    <optgroup label="Feature Types">
-                        @foreach (string type in Enum.GetNames(typeof(FeatureType)))
-                        {
-                            <option value="@type" @onclick="() => SetFilter(type)">@type</option>
-                        }
-                    </optgroup>
-                </select>
-            </div>
-        </div>
         <div class="col col-auto">
             <div class="input-group mt-auto">
                 <button class="btn btn-secondary" data-toggle="modal" data-target="#newFeatureModal">
@@ -39,7 +24,7 @@
     </div>
     
     <div>
-        @if (_featureGridTask.IsCompleted)
+        @if (_featureGridTask != null && _featureGridTask.IsCompleted)
         {
             <GridComponent T="Feature" Grid="@_featureGrid">
                     
@@ -100,7 +85,7 @@
                                 }
                             </ul>
                             <select class="custom-select">
-                                @foreach (Game game in Context.Games)
+                                @foreach (Game game in GameRepository.GetAll())
                                 {
                                     <option value="@game.Name" @onclick="() => SetNewRelatedIssueOwner(game)">@game.Name</option>
                                 }
@@ -132,50 +117,17 @@
     
     public Feature NewFeature = new Feature();
     public Issue NewRelatedIssue = new Issue();
-    public List<Feature> Features;
-    public string TypeFilter;
 
     protected override async Task OnParametersSetAsync()
     {
-    // Fucking hell wtf is this convoluted shit
-        Action<IGridColumnCollection<Feature>> columns = collection =>
-        {
-            collection.Add(f => f.Id);
-            collection.Add(f => f.Name);
-            collection.Add(f => f.Type);
-            collection.Add(f => f.RelatedIssues);
-            collection.Add(f => f.Completed);
-        };
-
-        var query = new QueryDictionary<StringValues>
-        {
-            {"grid-page", "2"}
-        };
-        
-        var client = new GridClient<Feature>(queryDictionary => ModelService.GetFeaturesGridRows(columns, queryDictionary, Context),
-            query, 
-            false, 
-            "featuresGrid", 
-            columns)
-            .Sortable()
-            .Filterable()
-            .WithMultipleFilters();
+        IGridClient<Feature> client = ModelService.GetFeaturesGridClient();
 
         _featureGrid = client.Grid;
         _featureGridTask = client.UpdateGrid();
         await _featureGridTask;
     }
-
-    protected override void OnInitialized()
-    {
-        Features = Context.Features.ToList();
-    }
     
-    void SetFilter(string filter)
-    {
-        TypeFilter = filter;
-        Features = Context.Features.Where(f => TypeFilter == "None" || f.Type.ToString() == TypeFilter).ToList(); // Logic in view: Cringe
-    }
+    // See what the fuck this is
     
     void SetNewRelatedIssueOwner(Game game)
     {
