@@ -1,10 +1,14 @@
+* {
+    --color-chaos: #B92F2F;
+}
+
 html, body {
     height: 100%;
 }
 
 ::selection {
     color: black;
-    background-color: #ee370e;
+    background-color: var(--color-chaos);
 }
 
 section {
@@ -22,14 +26,14 @@ section h1,
 section h2,
 section h3,
 section h4 {
-    color: #ee370e;
+    color: var(--color-chaos);
 }
 
 .page-title {
     margin: 0;
     padding-top: 2rem;
     padding-bottom: 0.5rem;
-    color: #ee370e;
+    color: var(--color-chaos);
 }
 
 .page-title > span {
@@ -48,7 +52,15 @@ section h4 {
     padding-right: 0.5rem;
 }
 
+.card-no-border {
+    border: none;
+}
+
 /* Fine tuning */
+
+.bg-dark .text-muted {
+    background: transparent;
+}
 
 .bg-gray section {
     border-color: #3b3b3b;
@@ -56,6 +68,14 @@ section h4 {
 
 .bg-gray {
     background-color: #202020 !important; /* i know, i know */
+}
+
+.bg-gray.card, .bg-gray .card {
+    border-color: #3b3b3b;
+}
+
+.bg-dark hr {
+    border-color: #3b3b3b;
 }
 
 .bg-dark a {
@@ -71,11 +91,17 @@ section h4 {
 .bg-gray .btn-primary.btn {
     background-color: transparent;
     color: white;
-    border-color: #ee370e;
+    border-color: var(--color-chaos);
 }
 
 .bg-gray .text-primary {
     background-color: transparent;
+}
+
+.bg-gray .form-control {
+    background-color: transparent;
+    color: white;
+    border-color: #3b3b3b;
 }
 
 #sidebar {

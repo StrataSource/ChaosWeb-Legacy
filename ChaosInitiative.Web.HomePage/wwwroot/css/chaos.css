@@ -1,15 +1,21 @@
 ﻿
+* {
+    --color-chaos: #B92F2F;
+    --color-p2ce: #ff7b02;
+    --color-momentum: #1894d2;
+}
+
 html,
 body {
     height: 100%;
 }
 
 .bg-p2ce {
-    background-color: #ff7b02;
+    background-color: var(--color-p2ce);
 }
 
 .bg-momentum {
-    background-color: #1894d2;
+    background-color: var(--color-momentum);
 }
 
 h2 {
@@ -19,7 +25,7 @@ h2 {
 /* Selection color */
 ::selection {
     color: black;
-    background-color: #ee370e;
+    background-color: var(--color-chaos);
 }
 
 .bg-primary ::selection {
@@ -28,7 +34,7 @@ h2 {
 }
 
 .bg-primary hr {
-    border-color: #dd260d;
+    border-color: var(--color-chaos);
 }
 
 .bg-primary a:hover {
@@ -40,7 +46,7 @@ h2 {
 }
 
 a:hover {
-    color: #ee370e;
+    color: var(--color-chaos);
 }
 
 a > i.fab,
@@ -77,17 +83,17 @@ table tr td:first-child {
 
 table tr th:nth-child(2),
 table tr td:nth-child(2) {
-    color: #ee370e;
+    color: var(--color-chaos);
 }
 
 table tr th:nth-child(3),
 table tr td:nth-child(3) {
-    color: #ff7b02;
+    color: var(--color-p2ce);
 }
 
 table tr th:nth-child(4),
 table tr td:nth-child(4) {
-    color: #1894d2;
+    color: var(--color-momentum);
 }
 
 .bg-momentum .btn-link:hover,
