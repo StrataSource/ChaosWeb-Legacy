@@ -10,3 +10,5 @@ riderModule.iml
 
 ChaosInitiative.Web.HomePage/wiki_markdown/
 ChaosInitiative.Web.HomePage/wiki_pages/
+
+*/**/wwwroot/css/boosted*
