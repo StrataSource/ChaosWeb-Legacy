@@ -104,3 +104,7 @@ table tr td:nth-child(4) {
 a:focus {
     outline: none;
 }
+
+.nav-item > * {
+    font-weight: 900;
+}
