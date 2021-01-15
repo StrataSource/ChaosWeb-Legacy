@@ -79,36 +79,23 @@ fieldset:disabled a.btn {
 // Boosted mod : custom buttons
 .btn-primary,
 .btn-warning {
-  @include button-variant(theme-color("primary"), theme-color("primary"), $active-background: $white, $active-border: $black);
-  &.btn-inverse {
-    @include button-variant(theme-color("primary"), theme-color("primary"), $white, $white, $black, $white, $gray-700, $gray-700, $black);
-  }
+  @include button-variant(theme-color("primary"), theme-color("primary"), theme-color("primary"), theme-color("primary"));
 }
-.btn-secondary,
-.btn-light {
-  @include button-variant($white, $black, $disabled-background: $white, $disabled-color: $gray-500);
-  &.btn-inverse {
-    @include button-variant($black, $white, $white, $white, theme-color("primary"), theme-color("primary"), transparent, $gray-700, $gray-700);
-  }
+.btn-secondary {
+  @include button-variant($gray-900, theme-color("primary"), $gray-900, theme-color("primary"), theme-color("primary"), theme-color("primary"));
 }
 .btn-success {
-  @include button-variant(theme-color("success"), theme-color("success"));
-  &.btn-inverse {
-    @include button-variant(theme-color("success"), theme-color("success"), $white, $white, theme-color("primary"), theme-color("primary"), $gray-700, $gray-700, $black);
-  }
+  @include button-variant(theme-color("success"), theme-color("success"), theme-color("success"), theme-color("success"), theme-color("success"), theme-color("success"));
 }
 .btn-info,
 .btn-dark {
-  @include button-variant(theme-color("dark"), theme-color("dark"), $white, $black);
-  &.btn-inverse {
-    @include button-variant($white, $white, $black, $white, theme-color("primary"), theme-color("primary"), $gray-700, $gray-700, $black);
-  }
+  @include button-variant($gray-900, $gray-800, $gray-900, $gray-800, $gray-800, $gray-800);
 }
 .btn-danger {
-  @include button-variant(theme-color("danger"), theme-color("danger"));
-  &.btn-inverse {
-    @include button-variant(theme-color("danger"), theme-color("danger"), $white, $white, theme-color("primary"), theme-color("primary"), $gray-700, $gray-700, $black);
-  }
+  @include button-variant(theme-color("danger"), theme-color("danger"), theme-color("danger"), theme-color("danger"));
+}
+.btn-light {
+  @include button-variant($gray-700, $gray-700, $gray-700, $gray-700, $gray-800, $gray-800);
 }
 
 // Boosted mod: no .btn-outline-*
