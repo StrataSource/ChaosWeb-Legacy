@@ -1,5 +1,17 @@
 * {
     --color-chaos: #B92F2F;
+    --color-bg: #202020;
+    --color-border: #3b3b3b;
+    --color-text: #ffffff;
+    --color-text-muted: #6f6f6f;
+    
+    --color-chart-1: #2d95bf;
+    --color-chart-2: #b132ab;
+    --color-chart-3: #84bc40;
+    --color-chart-4: #cd3f54;
+    --color-chart-5: #b5a73e;
+    --color-chart-6: #8b28d4;
+    --color-chart-7: #40bf89;
 }
 
 html, body {
@@ -63,35 +75,23 @@ section h4 {
 }
 
 .bg-gray section {
-    border-color: #3b3b3b;
+    border-color: var(--color-border);
 }
 
 .bg-gray {
-    background-color: #202020 !important; /* i know, i know */
+    background-color: var(--color-bg) !important; /* i know, i know */
 }
 
 .bg-gray.card, .bg-gray .card {
-    border-color: #3b3b3b;
+    border-color: var(--color-border);
 }
 
 .bg-dark hr {
-    border-color: #3b3b3b;
+    border-color: var(--color-border);
 }
 
 .bg-dark a {
     color: white;
-}
-
-.bg-gray .btn-secondary.btn {
-    background-color: transparent;
-    color: white;
-    border-color: #3b3b3b;
-}
-
-.bg-gray .btn-primary.btn {
-    background-color: transparent;
-    color: white;
-    border-color: var(--color-chaos);
 }
 
 .bg-gray .text-primary {
@@ -99,11 +99,11 @@ section h4 {
 }
 
 .bg-gray .form-control {
-    background-color: transparent;
+    background-color: var(--color-bg);
     color: white;
-    border-color: #3b3b3b;
+    border-color: var(--color-border);
 }
 
 #sidebar {
-    border-right: 2px solid #3b3b3b;
+    border-right: 2px solid var(--color-border);
 }

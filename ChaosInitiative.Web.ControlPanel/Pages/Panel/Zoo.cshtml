@@ -1,0 +1,8 @@
+﻿@page
+@using ChaosInitiative.Web.ControlPanel.Components
+@{
+    Layout = "Shared/_LayoutPaper";
+}
+
+@(await Html.RenderComponentAsync<ZooPageComponent>(RenderMode.ServerPrerendered))
+

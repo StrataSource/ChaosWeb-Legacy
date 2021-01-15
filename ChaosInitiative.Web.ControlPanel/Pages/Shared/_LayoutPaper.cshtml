@@ -19,12 +19,12 @@
             <div class="d-flex h-100 align-items-end justify-content-end">
             
                 <div>
-                @{
-                    if (User.Identity.IsAuthenticated)
-                    {
-                        <partial name="Partials/IdentityCapsulePartial"/>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <partial name="Partials/IdentityCapsulePartial"/>
+                        }
                     }
-                }
                 </div>
             
             </div>
@@ -36,29 +36,31 @@
     </section>
     
     <div class="p-1">
-    <div class="row">
-        <div class="col col-lg">
-            <p>Chaos Initiative Control Panel</p>
-        </div>
+        <div class="row">
+            <div class="col col-lg">
+                <p>Chaos Initiative Control Panel</p>
+            </div>
         
-        <div class="col col-lg">
-            <p class="text-center">Authorized access only</p>
-        </div>
+            <div class="col col-lg">
+                <p class="text-center">Authorized access only</p>
+            </div>
         
-        <div class="col col-lg">
-            <p class="text-center">
-                <a asp-page="/Debug">Debug</a>
-            </p>
-        </div>
+            <div class="col col-lg">
+                <p class="text-center">
+                    <a asp-page="/Debug">Debug</a>
+                </p>
+            </div>
         
-        <div class="col col-lg">
-            <p class="text-right">
-                <a href="https://www.chaosinitiative.com">Home Page</a>
-            </p>
+            <div class="col col-lg">
+                <p class="text-right">
+                    <a href="https://www.chaosinitiative.com">Home Page</a>
+                </p>
+            </div>
         </div>
-    </div>
     </div>
     
 </div>
+
+<script src="_framework/blazor.server.js"></script>
 </body>
 </html>

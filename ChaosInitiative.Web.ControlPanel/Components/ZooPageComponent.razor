@@ -1,0 +1,291 @@
+﻿@using Radzen.Blazor
+@using ChaosInitiative.Web.ControlPanel.Model
+@using Radzen
+
+<h3>Component & Style Zoo</h3>
+    
+<div class="row">
+    <div class="col">
+        <RadzenDropDown TValue="FeatureType"
+                        AllowFiltering="true"
+                        AllowClear="true"
+                        Data="@_featureTypes"
+                        Placeholder="Select Feature Type">
+            <Template>
+                @{
+                    if(context is FeatureType type)
+                    {
+                        <p class="mb-0">Type @((int) type)</p>
+                        <span class="text-muted">@type.ToString()</span>
+                    }
+                }
+            </Template>
+        </RadzenDropDown>
+        
+        <hr>
+        
+        <RadzenCheckBox @bind-Value="@_checkBoxValue1" TValue="bool"/>
+        <RadzenLabel Text="Checkbox" Component="CheckBox1"/>
+        <hr>
+        <RadzenCheckBox @bind-Value="@_checkBoxValue2" TValue="bool?" TriState="true"/>
+        <RadzenLabel Text="Checkbox Tri-State" Component="CheckBox2"/>
+        <hr>
+        <RadzenCheckBox @bind-Value="@_checkBoxValue3" TValue="bool" Disabled="true"/>
+        <RadzenLabel Text="Disabled Checkbox" Component="CheckBox3"/>
+        <hr>
+        <RadzenCheckBox @bind-Value="@_checkBoxValue4" TValue="bool" Disabled="true"/>
+        <RadzenLabel Text="Disabled Checkbox 2" Component="CheckBox4"/>
+        
+        <hr>
+        
+        <RadzenRadioButtonList TValue="int" Orientation="Orientation.Vertical">
+            <Items>
+                <RadzenRadioButtonListItem Text="Option 1" Value="1"/>
+                <RadzenRadioButtonListItem Text="Option 2" Value="2"/>
+                <RadzenRadioButtonListItem Text="Option 3" Value="3"/>
+                <RadzenRadioButtonListItem Text="Option 4" Value="4"/>
+            </Items>
+        </RadzenRadioButtonList>
+        
+        <hr>
+        
+        <RadzenRadioButtonList TValue="int" Disabled="true">
+            <Items>
+                <RadzenRadioButtonListItem Text="Option 1" Value="1"/>
+                <RadzenRadioButtonListItem Text="Option 2" Value="2"/>
+            </Items>
+        </RadzenRadioButtonList>
+    </div>
+    <div class="col">
+        <RadzenDropDownDataGrid TValue="Issue"
+                                Data="@_issues"
+                                AllowFiltering="true"
+                                AllowClear="true"
+                                TextProperty="IssueId">
+            <Columns>
+                <RadzenDropDownDataGridColumn Property="GameId" Title="Game ID" Width="4rem"/>
+                <RadzenDropDownDataGridColumn Property="IssueId" Title="Issue ID" Width="14rem"/>
+            </Columns>
+        </RadzenDropDownDataGrid>
+        
+        <hr>
+        
+        <RadzenButton Text="Primary" ButtonStyle="ButtonStyle.Primary"/>
+        <RadzenButton Text="Secondary" ButtonStyle="ButtonStyle.Secondary"/>
+        <RadzenButton Text="Light" ButtonStyle="ButtonStyle.Light"/>
+        <RadzenButton Text="Danger" ButtonStyle="ButtonStyle.Danger"/>
+        <RadzenButton Text="Info" ButtonStyle="ButtonStyle.Info"/>
+        <RadzenButton Text="Warning" ButtonStyle="ButtonStyle.Warning"/>
+        <RadzenButton Text="Success" ButtonStyle="ButtonStyle.Success"/>
+        
+        <hr>
+        
+        <RadzenSelectBar TValue="int" @bind-Value="_starsCount">
+            <Items>
+                <RadzenSelectBarItem Text="Item 1" Value="1"/>
+                <RadzenSelectBarItem Text="Item 2" Value="2"/>
+                <RadzenSelectBarItem Text="Item 3" Value="3"/>
+            </Items>
+        </RadzenSelectBar>
+        
+        <hr>
+        
+        <RadzenRating Disabled="true" Stars="3" @bind-Value="@_starsCount"/>
+        <RadzenRating Stars="5"/>
+        
+        <hr>
+        
+        <RadzenListBox TValue="Issue" 
+                       Data="_issues" 
+                       Multiple="true" 
+                       AllowClear="true"
+                       AllowFiltering="true"
+                       TextProperty="IssueId"
+                       class="w-100">
+            <Template>
+                @{
+                    if(context is Issue issue)
+                    {
+                        <p class="mb-0">@issue.Game.Name <i class="fas fa-hashtag"></i> @issue.IssueId</p>
+                        <span class="text-muted">@issue.GetFullPath()</span>
+                    }
+                }
+            </Template>
+        </RadzenListBox>
+    </div>
+    <div class="col">
+        <RadzenSwitch @bind-Value="@_switchValue1"/>
+        <RadzenSwitch @bind-Value="@_switchValue2" Disabled="true"/>
+        
+        <hr>
+        
+        <RadzenColorPicker ShowHSV="true" ShowRGBA="true" ShowColors="true" ShowButton="true"/>
+        
+        <hr>
+        
+        <RadzenProgressBar @bind-Value="@_progressBarValue"/>
+        <RadzenProgressBar Value="100" Mode="ProgressBarMode.Indeterminate" ShowValue="false"/>
+        
+        <RadzenSlider @bind-Value="@_progressBarValue" TValue="double" Min="0" Max="100"/>
+        
+        <hr>
+        
+        <RadzenTextBox Placeholder="Text Box" class="d-block w-100 mb-2"/>
+        <RadzenTextBox Placeholder="Disabled Text Box" Disabled="true" class="d-block w-100 mb-2"/>
+        
+        <RadzenTextArea Placeholder="Text area (200 letters max)" MaxLength="200" class="d-block w-100 mb-2"/>
+        <RadzenTextArea Placeholder="Disabled Text area..." Disabled="true" class="d-block w-100 mb-2"/>
+        
+        <hr>
+        
+        <RadzenNumeric TValue="int" Min="0" Max="23" Placeholder="Select hour (0-23)" Step="1"/>
+        <RadzenNumeric Disabled="true" TValue="int" Min="0" Max="23" Placeholder="Select hour (0-23)" Step="1"/>
+    </div>
+</div>
+
+<div class="row">
+    
+    <h4>Charts</h4>
+    <div class="col">
+
+        <RadzenChart>
+            <RadzenLineSeries Title="Commit history" 
+                              Data="@_commitData"
+                              CategoryProperty="Date"
+                              ValueProperty="Amount">
+                <RadzenMarkers MarkerType="MarkerType.Circle"/>
+            </RadzenLineSeries>
+            <RadzenCategoryAxis Padding="20" FormatString="{0:dd}"/>
+            <RadzenValueAxis>
+                <RadzenGridLines Visible="true"/>
+                <RadzenAxisTitle Text="Commits per day"/>
+            </RadzenValueAxis>
+        </RadzenChart>
+        
+        <RadzenChart>
+            <RadzenPieSeries Data="@_languageData" Title="Languages" CategoryProperty="LanguageName" ValueProperty="Lines"/>
+        </RadzenChart>
+        
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+
+@code {
+
+    bool _checkBoxValue1 = false;
+    bool? _checkBoxValue2 = null;
+    bool _checkBoxValue3 = false;
+    bool _checkBoxValue4 = true;
+    
+    bool _switchValue1 = false;
+    bool _switchValue2 = false;
+
+    double _progressBarValue = 30;
+
+    int _starsCount = 0;
+
+    Game _gameP2Ce = new Game
+    {
+        Id = 0,
+        Name = "Portal 2: Community Edition",
+        HexColor = "FF7B02",
+        RepositoryName = "Portal-2-Community-Edition",
+        RepositoryOwner = "ChaosInitiative"
+    };
+
+    List<Issue> _issues;
+    List<FeatureType> _featureTypes;
+
+    public ZooPageComponent()
+    {
+        _issues = new List<Issue>
+        {
+            new Issue
+            {
+                Game = _gameP2Ce,
+                IssueId = 1
+            },
+            new Issue
+            {
+                Game = _gameP2Ce,
+                IssueId = 2
+            },
+            new Issue
+            {
+                Game = _gameP2Ce,
+                IssueId = 14
+            },
+            new Issue
+            {
+                Game = _gameP2Ce,
+                IssueId = 107
+            }
+        };
+
+        _featureTypes = Enum.GetValues<FeatureType>().ToList();
+    }
+
+
+    class CommitData
+    {
+        public DateTime Date { get; set; }
+        public int Amount { get; set; }
+    }
+
+    List<CommitData> _commitData = new()
+    {
+        new()
+        {
+            Date = new DateTime(2020, 8, 1),
+            Amount = 6
+        },
+        new()
+        {
+            Date = new DateTime(2020, 8, 2),
+            Amount = 2
+        },
+        new()
+        {
+            Date = new DateTime(2020, 8, 3),
+            Amount = 1
+        },
+        new()
+        {
+            Date = new DateTime(2020, 8, 4),
+            Amount = 5
+        },
+        new()
+        {
+            Date = new DateTime(2020, 8, 5),
+            Amount = 15
+        },
+        new()
+        {
+            Date = new DateTime(2020, 8, 6),
+            Amount = 29
+        }
+    };
+
+    class LanguageData
+    {
+        public string LanguageName { get; set; }
+        public int Lines { get; set; }
+    }
+
+    List<LanguageData> _languageData = new()
+    {
+        new()
+        {
+            LanguageName = "C++",
+            Lines = 17000000
+        },
+        new()
+        {
+            LanguageName = "C#",
+            Lines = 100000
+        }
+    };
+
+}
