@@ -1,6 +1,6 @@
-﻿@using ChaosInitiative.Web.ControlPanel.Model
-@using ChaosInitiative.Web.ControlPanel.Services
-@inject ApplicationContext Context
+﻿@using ChaosInitiative.Web.ControlPanel.Services.Repositories
+@using ChaosInitiative.Web.ControlPanel.Model
+@inject GameRepository GameRepository
 
 <section>
     
@@ -13,17 +13,14 @@
         <!-- Toolbar -->
         <div class="col-auto">
             <button class="btn btn-secondary" data-toggle="modal" data-target="#newGameModal">
-                <i class="fas fa-plus"> </i> Add
-            </button>
-            <button class="btn btn-secondary" @onclick="Save">
-                <i class="fas fa-save"></i> Save
+                <i class="fas fa-plus"></i>Add
             </button>
         </div>
 
     </div>
 
     @{
-        foreach (Game game in Context.Games)
+        foreach (Game game in GameRepository.GetAll())
         {
             <GameEntry Game="@game"/>
             <hr/>
@@ -43,6 +40,10 @@
             
                 <div class="modal-header">
                     <h4 id="newGameModalTitle">Add New Game:</h4>
+                    
+                    <div class="alert alert-danger alert-sm d-none">
+                        <span class="alert-icon"><span class="sr-only"></span></span>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <GameEntry Game="@_newGame"/>
@@ -63,19 +64,16 @@
 
     Game _newGame = new Game();
 
-    void AddGame()
+    async Task AddGame()
     {
-        Context.Games.Add(_newGame);
+        bool success = await GameRepository.Add(_newGame);
+        
+        
     }
 
     void ClearGame()
     {
         _newGame = new Game();
-    }
-
-    void Save()
-    {
-        Context.SaveChanges();
     }
     
 }

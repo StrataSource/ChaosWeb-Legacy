@@ -1,4 +1,5 @@
 ﻿@using ChaosInitiative.Web.ControlPanel.Model
+@using Radzen.Blazor
 
 @if (Game == null)
 {
@@ -7,7 +8,7 @@
 else
 {
 
-    <div class="card bg-gray">
+    <div class="card bg-gray card-no-border">
         <div class="card-body">
             
             <h3 class="card-title">@Game.Name</h3>
@@ -44,9 +45,11 @@ else
                     <div class="row">
                         <div class="col">
                             <label>GitHub Repository Owner</label>
-                            <InputText @bind-Value="Game.RepositoryOwner"
-                                        placeholder="Repository Owner"
-                                        class="form-control"/>
+                            <RadzenDropDown TValue="string" 
+                                            ValueChanged="value => Game.RepositoryOwner = value" 
+                                            Data="Game.LegalRepositoryOwners"
+                                            Placeholder="Repository Owner" 
+                                            class="form-control"/>
                         </div>
                         <div class="col">
                             <label>GitHub Repository Name</label>

@@ -87,7 +87,6 @@ namespace ChaosInitiative.Web.ControlPanel
 
             services.AddTransient<FeatureRepository>();
             services.AddTransient<GameRepository>();
-            services.AddTransient<GridModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

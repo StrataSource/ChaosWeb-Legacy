@@ -23,6 +23,8 @@ namespace ChaosInitiative.Web.ControlPanel.Services
             modelBuilder.Entity<Game>().Property(g => g.Id).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Release>().HasKey(r => new {r.GameId, r.VersionId});
+
+            modelBuilder.Entity<ReleaseFeatures>().HasKey(rf => new {rf.ReleaseId, rf.FeatureId});
         }
 
     }
