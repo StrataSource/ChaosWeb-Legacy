@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ChaosInitiative.Web.Shared;
 using Octokit;
@@ -58,6 +59,13 @@ namespace ChaosInitiative.Web.ControlPanel
             {
                 return false;
             }
+        }
+
+        public static IEnumerable<string> GetOrgRepositories(string owner)
+        {
+            GitHubClient gitHubClient = CreateClient();
+            var repos = gitHubClient.Repository.GetAllForOrg(owner).Result;
+            return repos.Select(r => r.Name);
         }
 
         private static string _applicationClientId;

@@ -34,5 +34,12 @@ namespace ChaosInitiative.Web.ControlPanel.Tests
             Assert.That(await GitHubUtil.IsValidGitHubRepository("SpyceTewan", "portal2-workshop-vmf"), Is.True);
             Assert.That(await GitHubUtil.IsValidGitHubRepository("SpyceTewan", "Portal-Revolution"), Is.False); // This repo is private and archived, so it should return false
         }
+
+        [Test]
+        public void TestGetOrgRepositories()
+        {
+            var repos = GitHubUtil.GetOrgRepositories("ChaosInitiative");
+            Assert.That(repos, Is.Not.Empty);
+        }
     }
 }
