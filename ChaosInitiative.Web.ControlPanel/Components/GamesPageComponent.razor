@@ -1,5 +1,9 @@
 ﻿@using ChaosInitiative.Web.ControlPanel.Services.Repositories
 @using ChaosInitiative.Web.ControlPanel.Model
+@using Radzen
+@using Radzen.Blazor
+
+@inject DialogService DialogService
 @inject GameRepository GameRepository
 
 <section>
@@ -12,9 +16,16 @@
         
         <!-- Toolbar -->
         <div class="col-auto">
-            <button class="btn btn-secondary" data-toggle="modal" data-target="#newGameModal">
+            <RadzenButton Click=@(args => DialogService.Open<NewGameDialog>("New Game", null, new ConfirmOptions(){
+                                    Width = "1000px", 
+                                    Height = "900px", 
+                                    ShowClose = true,
+                                    ShowTitle = true,
+                                    OkButtonText = "Create",
+                                    CancelButtonText = "Discard"
+                                }))>
                 <i class="fas fa-plus"></i>Add
-            </button>
+            </RadzenButton>
         </div>
 
     </div>
@@ -22,41 +33,44 @@
     @{
         foreach (Game game in GameRepository.GetAll())
         {
-            <GameEntry Game="@game"/>
-            <hr/>
+            <RadzenFieldset AllowCollapse="true">
+                <HeaderTemplate>
+                    <span>
+                        @game.Name
+                    </span>
+                </HeaderTemplate>
+                <ChildContent>
+                    <RadzenTemplateForm Data="@game" Submit="@((Game g) => SaveGame(g))">
+                        <div class="row">
+                            <div class="col-4">
+                                <p class="label">Game Display Name</p>
+                                <RadzenTextBox TValue="string" @bind-Value="@game.Name" Placeholder="Game's Display Name"/>
+                            </div>
+                            <div class="col col-auto">
+                                <p class="label">Game Color</p>
+                                <RadzenColorPicker @bind-Value="@game.HexColor" HexText="true" Placeholder="Game Color" ShowColors="true"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <p class="label">Repository Owner</p>
+                                <RadzenDropDown TValue="string" Data="@Game.LegalRepositoryOwners" @bind-Value="@game.RepositoryOwner"/>
+                            </div>
+                            <div class="col-4">
+                                <p class="label">Repository Name</p>
+                                <RadzenDropDown TValue="string" Data="@GitHubUtil.GetOrgRepositories(game.RepositoryOwner)" @bind-Value="@game.RepositoryName"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <a style="font-size: 1rem" target="_blank" href="@game.GitHubRepositoryUri">@game.GitHubRepositoryUri</a>
+                            </div>
+                        </div>
+                    </RadzenTemplateForm>
+                </ChildContent>
+            </RadzenFieldset>
         }
     }
-    
-    <!-- New game popup modal -->
-    <div class="modal fade"
-         id="newGameModal"
-         tabindex="-1"
-         aria-hidden="true">
-        
-        <div class="modal-dialog modal-dialog-scrollable"
-         
-             aria-labelledby="newGameModalTitle">
-            <div class="modal-content bg-dark bg-gray">
-            
-                <div class="modal-header">
-                    <h4 id="newGameModalTitle">Add New Game:</h4>
-                    
-                    <div class="alert alert-danger alert-sm d-none">
-                        <span class="alert-icon"><span class="sr-only"></span></span>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <GameEntry Game="@_newGame"/>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="ClearGame">Clear</button>
-                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" @onclick="AddGame" data-dismiss="modal">Add</button>
-                </div>
-            
-            </div>
-        </div>
-    </div>
     
 </section>
 
@@ -68,6 +82,11 @@
     {
         bool success = await GameRepository.Add(_newGame);
         
+        
+    }
+
+    void SaveGame(Game game)
+    {
         
     }
 

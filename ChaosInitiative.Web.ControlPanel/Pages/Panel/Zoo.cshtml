@@ -2,6 +2,8 @@
 @using ChaosInitiative.Web.ControlPanel.Components
 @{
     Layout = "Shared/_LayoutPaper";
+    ViewData["Title"] = "Zoo";
+    ViewData["UseBlazor"] = true;
 }
 
 @(await Html.RenderComponentAsync<ZooPageComponent>(RenderMode.ServerPrerendered))

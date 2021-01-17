@@ -5,6 +5,45 @@
     src: local("Material Icons"), local("MaterialIcons-Regular"), url("../_content/Radzen.Blazor/fonts/MaterialIcons-Regular.woff") format("woff");
 }
 
+* {
+    
+    --color-chart-pastel-0: #C1771D;
+    --color-chart-pastel-1: #2d95bf;
+    --color-chart-pastel-2: #b132ab;
+    --color-chart-pastel-3: #84bc40;
+    --color-chart-pastel-4: #cd3f54;
+    --color-chart-pastel-5: #b5a73e;
+    --color-chart-pastel-6: #8b28d4;
+    --color-chart-pastel-7: #40bf89;
+
+    --color-chart-monochrome-0: #7A0E0E;
+    --color-chart-monochrome-1: #A02727;
+    --color-chart-monochrome-2: #B92F2F;
+    --color-chart-monochrome-3: #CD4343;
+    --color-chart-monochrome-4: #DC4F4F;
+    --color-chart-monochrome-5: #FF7777;
+    --color-chart-monochrome-6: #FF8989;
+    --color-chart-monochrome-7: #FFAFAF;
+
+    --color-chart-divergent-0: #ff7b02;
+    --color-chart-divergent-1: #FF9330;
+    --color-chart-divergent-2: #FFA451;
+    --color-chart-divergent-3: #FFC58F;
+    --color-chart-divergent-4: #C1DBE7;
+    --color-chart-divergent-5: #7EBFDE;
+    --color-chart-divergent-6: #32B0ED;
+    --color-chart-divergent-7: #1894d2;
+
+    --color-chart-palette-0: #003f5c;;
+    --color-chart-palette-1: #2f4b7c;
+    --color-chart-palette-2: #665191;
+    --color-chart-palette-3: #a05195;
+    --color-chart-palette-4: #d45087;
+    --color-chart-palette-5: #f95d6a;
+    --color-chart-palette-6: #d45087;
+    --color-chart-palette-7: #ff7c43;
+}
+
 .material-icons, 
 .ui-fileupload-row .ui-button .fa-close, 
 .ui-fileupload-row .ui-paginator-element .fa-close,
@@ -87,7 +126,6 @@ p-button[type] {
     align-items: center;
     font-family: Roboto, Arial, Liberation Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     font-weight: 700;
-    color: var(--color-text);
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
@@ -103,7 +141,6 @@ p-button[type] {
 .ui-button, 
 .ui-paginator-element {
     -webkit-appearance: none;
-    color: var(--color-text);
     outline: none;
     line-height: initial;
     font-size: 1.0625rem;
@@ -371,6 +408,11 @@ input::placeholder {
 .ui-lookup-search input,
 .rz-colorpicker {
     padding: 0.1875rem 0.625rem;
+}
+
+.textbox {
+    display: block;
+    width: 100%;
 }
 
 .textbox, 
@@ -1329,11 +1371,11 @@ p-radiobutton,
 
 .ui-fieldset-toggler {
     vertical-align: middle;
-    width: 1.125rem;
-    height: 1.125rem;
-    background-color: #e6ecef;
-    color: #88989b;
-    border: none;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
 }
 
 .ui-fieldset-toggler.pi, .ui-menuitem .ui-fieldset-toggler.ui-menuitem-icon {
@@ -1505,8 +1547,14 @@ p-radiobutton,
     border-radius: 0;
 }
 
-.ui-dropdown-item:hover, .ui-dropdown-items li:hover, .ui-multiselect-items li:hover, .ui-autocomplete-items li:hover, .ui-multiselect-item:hover, .ui-autocomplete-list-item:hover, .ui-menuitem:hover {
-    background-color: var(--color-chaos);
+.ui-dropdown-item:hover, 
+.ui-dropdown-items li:hover,
+.ui-multiselect-items li:hover,
+.ui-autocomplete-items li:hover,
+.ui-multiselect-item:hover,
+.ui-autocomplete-list-item:hover,
+.ui-menuitem:hover {
+    background-color: var(--color-border);
     color: var(--color-text);
     border-radius: 0;
 }
@@ -2249,7 +2297,7 @@ p-radiobutton,
     padding: 0;
     width: 1rem;
     height: 0.875rem;
-    background-color: var(--color-chaos);
+    background-color: var(--color-border);
     color: var(--color-text);
 }
 
@@ -3862,7 +3910,8 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
     padding: 1rem;
 }
 
-.login .register .ui-button, .login .register .ui-paginator-element {
+.login .register .ui-button,
+.login .register .ui-paginator-element {
     margin: 0 1rem;
 }
 
@@ -4259,201 +4308,201 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-pastel .rz-series-0 {
-    fill: var(--color-chaos);
-    stroke: var(--color-chaos);
+    fill: var(--color-chart-pastel-0);
+    stroke: var(--color-chart-pastel-0);
 }
 
 .rz-scheme-pastel .rz-series-0-tooltip .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chaos);
+    border: 2px solid var(--color-chart-pastel-0);
 }
 
 .rz-scheme-pastel .rz-series-item-0 {
-    fill: var(--color-chaos);
-    stroke: var(--color-chaos);
+    fill: var(--color-chart-pastel-0);
+    stroke: var(--color-chart-pastel-0);
 }
 
 .rz-scheme-pastel .rz-series-item-0 .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chaos);
+    border: 2px solid var(--color-chart-pastel-0);
 }
 
 .rz-scheme-pastel .rz-series-1 {
-    fill: var(--color-chart-1);
-    stroke: var(--color-chart-1);
+    fill: var(--color-chart-pastel-1);
+    stroke: var(--color-chart-pastel-1);
 }
 
 .rz-scheme-pastel .rz-series-1-tooltip .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-1);
+    border: 2px solid var(--color-chart-pastel-1);
 }
 
 .rz-scheme-pastel .rz-series-item-1 {
-    fill: var(--color-chart-1);
-    stroke: var(--color-chart-1);
+    fill: var(--color-chart-pastel-1);
+    stroke: var(--color-chart-pastel-1);
 }
 
 .rz-scheme-pastel .rz-series-item-1 .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-1);
+    border: 2px solid var(--color-chart-pastel-1);
 }
 
 .rz-scheme-pastel .rz-series-2 {
-    fill: var(--color-chart-2);
-    stroke: var(--color-chart-2);
+    fill: var(--color-chart-pastel-2);
+    stroke: var(--color-chart-pastel-2);
 }
 
 .rz-scheme-pastel .rz-series-2-tooltip .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-2);
+    border: 2px solid var(--color-chart-pastel-2);
 }
 
 .rz-scheme-pastel .rz-series-item-2 {
-    fill: var(--color-chart-2);
-    stroke: var(--color-chart-2);
+    fill: var(--color-chart-pastel-2);
+    stroke: var(--color-chart-pastel-2);
 }
 
 .rz-scheme-pastel .rz-series-item-2 .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-2);
+    border: 2px solid var(--color-chart-pastel-2);
 }
 
 .rz-scheme-pastel .rz-series-3 {
-    fill: var(--color-chart-3);
-    stroke: var(--color-chart-3);
+    fill: var(--color-chart-pastel-3);
+    stroke: var(--color-chart-pastel-3);
 }
 
 .rz-scheme-pastel .rz-series-3-tooltip .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-3);
+    border: 2px solid var(--color-chart-pastel-3);
 }
 
 .rz-scheme-pastel .rz-series-item-3 {
-    fill: var(--color-chart-3);
-    stroke: var(--color-chart-3);
+    fill: var(--color-chart-pastel-3);
+    stroke: var(--color-chart-pastel-3);
 }
 
 .rz-scheme-pastel .rz-series-item-3 .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-3);
+    border: 2px solid var(--color-chart-pastel-3);
 }
 
 .rz-scheme-pastel .rz-series-4 {
-    fill: var(--color-chart-4);
-    stroke: var(--color-chart-4);
+    fill: var(--color-chart-pastel-4);
+    stroke: var(--color-chart-pastel-4);
 }
 
 .rz-scheme-pastel .rz-series-4-tooltip .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-4);
+    border: 2px solid var(--color-chart-pastel-4);
 }
 
 .rz-scheme-pastel .rz-series-item-4 {
-    fill: var(--color-chart-4);
-    stroke: var(--color-chart-4);
+    fill: var(--color-chart-pastel-4);
+    stroke: var(--color-chart-pastel-4);
 }
 
 .rz-scheme-pastel .rz-series-item-4 .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-4);
+    border: 2px solid var(--color-chart-pastel-4);
 }
 
 .rz-scheme-pastel .rz-series-5 {
-    fill: var(--color-chart-5);
-    stroke: var(--color-chart-5);
+    fill: var(--color-chart-pastel-5);
+    stroke: var(--color-chart-pastel-5);
 }
 
 .rz-scheme-pastel .rz-series-5-tooltip .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-5);
+    border: 2px solid var(--color-chart-pastel-5);
 }
 
 .rz-scheme-pastel .rz-series-item-5 {
-    fill: var(--color-chart-5);
-    stroke: var(--color-chart-5);
+    fill: var(--color-chart-pastel-5);
+    stroke: var(--color-chart-pastel-5);
 }
 
 .rz-scheme-pastel .rz-series-item-5 .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-5);
+    border: 2px solid var(--color-chart-pastel-5);
 }
 
 .rz-scheme-pastel .rz-series-6 {
-    fill: var(--color-chart-6);
-    stroke: var(--color-chart-6);
+    fill: var(--color-chart-pastel-6);
+    stroke: var(--color-chart-pastel-6);
 }
 
 .rz-scheme-pastel .rz-series-6-tooltip .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-6);
+    border: 2px solid var(--color-chart-pastel-6);
 }
 
 .rz-scheme-pastel .rz-series-item-6 {
-    fill: var(--color-chart-6);
-    stroke: var(--color-chart-6);
+    fill: var(--color-chart-pastel-6);
+    stroke: var(--color-chart-pastel-6);
 }
 
 .rz-scheme-pastel .rz-series-item-6 .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-6);
+    border: 2px solid var(--color-chart-pastel-6);
 }
 
 .rz-scheme-pastel .rz-series-7 {
-    fill: var(--color-chart-7);
-    stroke: var(--color-chart-7);
+    fill: var(--color-chart-pastel-7);
+    stroke: var(--color-chart-pastel-7);
 }
 
 .rz-scheme-pastel .rz-series-7-tooltip .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-7);
+    border: 2px solid var(--color-chart-pastel-7);
 }
 
 .rz-scheme-pastel .rz-series-item-7 {
-    fill: var(--color-chart-7);
-    stroke: var(--color-chart-7);
+    fill: var(--color-chart-pastel-7);
+    stroke: var(--color-chart-pastel-7);
 }
 
 .rz-scheme-pastel .rz-series-item-7 .rz-chart-tooltip-content {
-    border: 2px solid var(--color-chart-7);
+    border: 2px solid var(--color-chart-pastel-7);
 }
 
 .rz-scheme-monochrome .rz-series-0 {
-    fill: #004c6d;
-    stroke: #004c6d;
+    fill: var(--color-chart-monochrome-0);
+    stroke: var(--color-chart-monochrome-0);
 }
 
 .rz-scheme-monochrome .rz-series-0-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #004c6d;
+    border: 2px solid var(--color-chart-monochrome-0);
 }
 
 .rz-scheme-monochrome .rz-series-item-0 {
-    fill: #004c6d;
-    stroke: #004c6d;
+    fill: var(--color-chart-monochrome-0);
+    stroke: var(--color-chart-monochrome-0);
 }
 
 .rz-scheme-monochrome .rz-series-item-0 .rz-chart-tooltip-content {
-    border: 1px solid #004c6d;
+    border: 2px solid var(--color-chart-monochrome-0);
 }
 
 .rz-scheme-monochrome .rz-series-1 {
-    fill: #296080;
-    stroke: #296080;
+    fill: var(--color-chart-monochrome-1);
+    stroke: var(--color-chart-monochrome-1);
 }
 
 .rz-scheme-monochrome .rz-series-1-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #296080;
+    border: 2px solid var(--color-chart-monochrome-1);
 }
 
 .rz-scheme-monochrome .rz-series-item-1 {
-    fill: #296080;
-    stroke: #296080;
+    fill: var(--color-chart-monochrome-1);
+    stroke: var(--color-chart-monochrome-1);
 }
 
 .rz-scheme-monochrome .rz-series-item-1 .rz-chart-tooltip-content {
-    border: 1px solid #296080;
+    border: 1px solid var(--color-chart-monochrome-1);
 }
 
 .rz-scheme-monochrome .rz-series-2 {
-    fill: #437594;
-    stroke: #437594;
+    fill: var(--color-chart-monochrome-2);
+    stroke: var(--color-chart-monochrome-2);
 }
 
 .rz-scheme-monochrome .rz-series-2-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #437594;
+    border: 2px solid var(--color-chart-monochrome-2);
 }
 
 .rz-scheme-monochrome .rz-series-item-2 {
-    fill: #437594;
-    stroke: #437594;
+    fill: var(--color-chart-monochrome-2);
+    stroke: var(--color-chart-monochrome-2);
 }
 
 .rz-scheme-monochrome .rz-series-item-2 .rz-chart-tooltip-content {
-    border: 1px solid #437594;
+    border: 2px solid var(--color-chart-monochrome-2);
 }
 
 .rz-scheme-monochrome .rz-series-3 {
@@ -4471,7 +4520,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-item-3 .rz-chart-tooltip-content {
-    border: 1px solid #5d8ba9;
+    border: 2px solid #5d8ba9;
 }
 
 .rz-scheme-monochrome .rz-series-4 {
@@ -4480,7 +4529,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-4-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #75a1be;
+    border: 2px solid #75a1be;
 }
 
 .rz-scheme-monochrome .rz-series-item-4 {
@@ -4489,7 +4538,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-item-4 .rz-chart-tooltip-content {
-    border: 1px solid #75a1be;
+    border: 2px solid #75a1be;
 }
 
 .rz-scheme-monochrome .rz-series-5 {
@@ -4498,7 +4547,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-5-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #8eb8d3;
+    border: 2px solid #8eb8d3;
 }
 
 .rz-scheme-monochrome .rz-series-item-5 {
@@ -4507,7 +4556,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-item-5 .rz-chart-tooltip-content {
-    border: 1px solid #8eb8d3;
+    border: 2px solid #8eb8d3;
 }
 
 .rz-scheme-monochrome .rz-series-6 {
@@ -4516,7 +4565,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-6-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #a7cfe9;
+    border: 2px solid #a7cfe9;
 }
 
 .rz-scheme-monochrome .rz-series-item-6 {
@@ -4525,7 +4574,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-item-6 .rz-chart-tooltip-content {
-    border: 1px solid #a7cfe9;
+    border: 2px solid #a7cfe9;
 }
 
 .rz-scheme-monochrome .rz-series-7 {
@@ -4534,7 +4583,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-7-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #c1e7ff;
+    border: 2px solid #c1e7ff;
 }
 
 .rz-scheme-monochrome .rz-series-item-7 {
@@ -4543,7 +4592,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-monochrome .rz-series-item-7 .rz-chart-tooltip-content {
-    border: 1px solid #c1e7ff;
+    border: 2px solid #c1e7ff;
 }
 
 .rz-scheme-divergent .rz-series-0 {
@@ -4552,7 +4601,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-divergent .rz-series-0-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #00876c;
+    border: 2px solid #00876c;
 }
 
 .rz-scheme-divergent .rz-series-item-0 {
@@ -4561,151 +4610,151 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar-corner {
 }
 
 .rz-scheme-divergent .rz-series-item-0 .rz-chart-tooltip-content {
-    border: 1px solid #00876c;
+    border: 1px solid var(--color-chart-divergent-0);
 }
 
 .rz-scheme-divergent .rz-series-1 {
-    fill: #57a18b;
-    stroke: #57a18b;
+    fill: var(--color-chart-divergent-0);
+    stroke: var(--color-chart-divergent-0);
 }
 
 .rz-scheme-divergent .rz-series-1-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #57a18b;
+    border: 2px solid var(--color-chart-divergent-0);
 }
 
 .rz-scheme-divergent .rz-series-item-1 {
-    fill: #57a18b;
-    stroke: #57a18b;
+    fill: var(--color-chart-divergent-0);
+    stroke: var(--color-chart-divergent-0);
 }
 
 .rz-scheme-divergent .rz-series-item-1 .rz-chart-tooltip-content {
-    border: 1px solid #57a18b;
+    border: 2px solid var(--color-chart-divergent-0);
 }
 
 .rz-scheme-divergent .rz-series-2 {
-    fill: #8cbcac;
-    stroke: #8cbcac;
+    fill: var(--color-chart-divergent-1);
+    stroke: var(--color-chart-divergent-1);
 }
 
 .rz-scheme-divergent .rz-series-2-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #8cbcac;
+    border: 1px solid var(--color-chart-divergent-1);
 }
 
 .rz-scheme-divergent .rz-series-item-2 {
-    fill: #8cbcac;
-    stroke: #8cbcac;
+    fill: var(--color-chart-divergent-1);
+    stroke: var(--color-chart-divergent-1);
 }
 
 .rz-scheme-divergent .rz-series-item-2 .rz-chart-tooltip-content {
-    border: 1px solid #8cbcac;
+    border: 2px solid var(--color-chart-divergent-1);
 }
 
 .rz-scheme-divergent .rz-series-3 {
-    fill: #bed6ce;
-    stroke: #bed6ce;
+    fill: var(--color-chart-divergent-2);
+    stroke: var(--color-chart-divergent-2);
 }
 
 .rz-scheme-divergent .rz-series-3-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #bed6ce;
+    border: 2px solid var(--color-chart-divergent-2);
 }
 
 .rz-scheme-divergent .rz-series-item-3 {
-    fill: #bed6ce;
-    stroke: #bed6ce;
+    fill: var(--color-chart-divergent-2);
+    stroke: var(--color-chart-divergent-2);
 }
 
 .rz-scheme-divergent .rz-series-item-3 .rz-chart-tooltip-content {
-    border: 1px solid #bed6ce;
+    border: 2px solid var(--color-chart-divergent-2);
 }
 
 .rz-scheme-divergent .rz-series-4 {
-    fill: #f1f1f1;
-    stroke: #f1f1f1;
+    fill: var(--color-chart-divergent-3);
+    stroke: var(--color-chart-divergent-3);
 }
 
 .rz-scheme-divergent .rz-series-4-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #f1f1f1;
+    border: 2px solid var(--color-chart-divergent-3);
 }
 
 .rz-scheme-divergent .rz-series-item-4 {
-    fill: #f1f1f1;
-    stroke: #f1f1f1;
+    fill: var(--color-chart-divergent-3);
+    stroke: var(--color-chart-divergent-3);
 }
 
 .rz-scheme-divergent .rz-series-item-4 .rz-chart-tooltip-content {
-    border: 1px solid #f1f1f1;
+    border: 2px solid var(--color-chart-divergent-3);
 }
 
 .rz-scheme-divergent .rz-series-5 {
-    fill: #f1c6c6;
-    stroke: #f1c6c6;
+    fill: var(--color-chart-divergent-4);
+    stroke: var(--color-chart-divergent-4);
 }
 
 .rz-scheme-divergent .rz-series-5-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #f1c6c6;
+    border: 2px solid var(--color-chart-divergent-4);
 }
 
 .rz-scheme-divergent .rz-series-item-5 {
-    fill: #f1c6c6;
-    stroke: #f1c6c6;
+    fill: var(--color-chart-divergent-4);
+    stroke: var(--color-chart-divergent-4);
 }
 
 .rz-scheme-divergent .rz-series-item-5 .rz-chart-tooltip-content {
-    border: 1px solid #f1c6c6;
+    border: 2px solid var(--color-chart-divergent-4);
 }
 
 .rz-scheme-divergent .rz-series-6 {
-    fill: #ec9c9d;
-    stroke: #ec9c9d;
+    fill: var(--color-chart-divergent-5);
+    stroke: var(--color-chart-divergent-5);
 }
 
 .rz-scheme-divergent .rz-series-6-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #ec9c9d;
+    border: 2px solid var(--color-chart-divergent-5);
 }
 
 .rz-scheme-divergent .rz-series-item-6 {
-    fill: #ec9c9d;
-    stroke: #ec9c9d;
+    fill: var(--color-chart-divergent-5);
+    stroke: var(--color-chart-divergent-5);
 }
 
 .rz-scheme-divergent .rz-series-item-6 .rz-chart-tooltip-content {
-    border: 1px solid #ec9c9d;
+    border: 2px solid var(--color-chart-divergent-5);
 }
 
 .rz-scheme-divergent .rz-series-7 {
-    fill: #e27076;
-    stroke: #e27076;
+    fill: var(--color-chart-divergent-6);
+    stroke: var(--color-chart-divergent-6);
 }
 
 .rz-scheme-divergent .rz-series-7-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #e27076;
+    border: 2px solid var(--color-chart-divergent-6);
 }
 
 .rz-scheme-divergent .rz-series-item-7 {
-    fill: #e27076;
-    stroke: #e27076;
+    fill: var(--color-chart-divergent-6);
+    stroke: var(--color-chart-divergent-6);
 }
 
 .rz-scheme-divergent .rz-series-item-7 .rz-chart-tooltip-content {
-    border: 1px solid #e27076;
+    border: 2px solid var(--color-chart-divergent-6);
 }
 
 .rz-scheme-divergent .rz-series-8 {
-    fill: #d43d51;
-    stroke: #d43d51;
+    fill: var(--color-chart-divergent-7);
+    stroke: var(--color-chart-divergent-7);
 }
 
 .rz-scheme-divergent .rz-series-8-tooltip .rz-chart-tooltip-content {
-    border: 1px solid #d43d51;
+    border: 2px solid var(--color-chart-divergent-7);
 }
 
 .rz-scheme-divergent .rz-series-item-8 {
-    fill: #d43d51;
-    stroke: #d43d51;
+    fill: var(--color-chart-divergent-7);
+    stroke: var(--color-chart-divergent-7);
 }
 
 .rz-scheme-divergent .rz-series-item-8 .rz-chart-tooltip-content {
-    border: 1px solid #d43d51;
+    border: 2px solid var(--color-chart-divergent-7);
 }
 
 .rz-area-series .rz-marker {

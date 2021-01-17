@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Radzen;
 
 namespace ChaosInitiative.Web.ControlPanel
 {
@@ -87,6 +88,8 @@ namespace ChaosInitiative.Web.ControlPanel
 
             services.AddTransient<FeatureRepository>();
             services.AddTransient<GameRepository>();
+
+            services.AddScoped<DialogService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

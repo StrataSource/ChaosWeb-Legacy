@@ -123,11 +123,18 @@
         
         <hr>
         
-        <RadzenProgressBar @bind-Value="@_progressBarValue"/>
-        <RadzenProgressBar Value="100" Mode="ProgressBarMode.Indeterminate" ShowValue="false"/>
-        
-        <RadzenSlider @bind-Value="@_progressBarValue" TValue="double" Min="0" Max="100"/>
-        
+        <RadzenFieldset>
+            <HeaderTemplate>
+                <h4>Progress bars</h4>
+            </HeaderTemplate>
+            <ChildContent>
+                <RadzenProgressBar @bind-Value="@_progressBarValue"/>
+                <RadzenProgressBar Value="100" Mode="ProgressBarMode.Indeterminate" ShowValue="false"/>
+                
+                <RadzenSlider @bind-Value="@_progressBarValue" TValue="double" Min="0" Max="100"/>
+            </ChildContent>
+        </RadzenFieldset>
+
         <hr>
         
         <RadzenTextBox Placeholder="Text Box" class="d-block w-100 mb-2"/>
