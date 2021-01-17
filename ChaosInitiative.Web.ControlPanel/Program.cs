@@ -41,8 +41,14 @@ namespace ChaosInitiative.Web.ControlPanel
                 .ConfigureLogging(builder =>
                 {
                     builder.ClearProviders();
-                    //builder.AddDebug();
-                    builder.AddConsole();
+                    builder.AddSimpleConsole(options =>
+                    {
+                        options.SingleLine = true;
+                        options.TimestampFormat = "hh:mm:ss ";
+                    });
+#if DEBUG
+                    builder.AddDebug();
+#endif
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
