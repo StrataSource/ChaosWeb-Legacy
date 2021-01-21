@@ -1,8 +1,8 @@
 using System;
 using System.Security.Claims;
+using ChaosInitiative.Web.ControlPanel.Extensions;
 using ChaosInitiative.Web.ControlPanel.Services;
 using ChaosInitiative.Web.ControlPanel.Services.Repositories;
-using ChaosInitiative.Web.Shared;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,8 +22,6 @@ namespace ChaosInitiative.Web.ControlPanel
         {
             Configuration = configuration;
             Environment = environment;
-            
-            GitHubUtil.Init(Environment.IsDevelopment() ? DeploymentType.Development : DeploymentType.Production);
         }
 
         public IConfiguration Configuration { get; }
@@ -41,9 +39,9 @@ namespace ChaosInitiative.Web.ControlPanel
             services.AddDbContext<ApplicationContext>(options =>
             {
                 if (Environment.IsDevelopment())
-                    options.UseSqlite(Secrets.Get("dbConnect", DeploymentType.Development));
+                    options.UseSqlite(Configuration["Database:Connect"]);
                 else
-                    options.UseMySql(Secrets.Get("dbConnect", DeploymentType.Production));
+                    options.UseMySql(Configuration["Database:Connect"]);
             });
 
             services.AddDbContext<IdentityDbContext>(options =>
@@ -85,10 +83,16 @@ namespace ChaosInitiative.Web.ControlPanel
             services.AddServerSideBlazor();
             
             services.AddControllersWithViews();
+            
+            services.AddGitHub(options =>
+            {
+                options.ClientId = Configuration["GitHub:ClientId"];
+                options.ClientSecret = Configuration["GitHub:ClientSecret"];
+            });
 
             services.AddTransient<FeatureRepository>();
             services.AddTransient<GameRepository>();
-
+            
             services.AddScoped<DialogService>();
         }
 

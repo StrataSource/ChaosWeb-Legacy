@@ -9,8 +9,12 @@ namespace ChaosInitiative.Web.ControlPanel.Services.Repositories
 {
     public class IssueRepository : RepositoryBase
     {
-        public IssueRepository(ApplicationContext context) : base(context)
+        
+        private readonly IGitHubService _gitHubService;
+        
+        public IssueRepository(ApplicationContext context, IGitHubService gitHubService) : base(context)
         {
+            _gitHubService = gitHubService;
         }
 
         public IEnumerable<Issue> GetAll()
@@ -27,7 +31,7 @@ namespace ChaosInitiative.Web.ControlPanel.Services.Repositories
 
         public async Task<IEnumerable<Issue>> GetAllAvailable(Game game)
         {
-            GitHubClient gitHubClient = GitHubUtil.CreateClient();
+            GitHubClient gitHubClient = _gitHubService.GetClient();
             var availableIssues = await gitHubClient.Issue.GetAllForRepository(game.RepositoryOwner, game.RepositoryName);
 
             IList<Issue> issues = availableIssues.Select(i => new Issue

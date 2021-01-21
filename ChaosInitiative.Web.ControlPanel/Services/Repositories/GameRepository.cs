@@ -5,15 +5,17 @@ using System.Threading.Tasks;
 using ChaosInitiative.Web.ControlPanel.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Octokit;
 
 namespace ChaosInitiative.Web.ControlPanel.Services.Repositories
 {
     public class GameRepository : RepositoryBase
     {
 
-        public GameRepository(ApplicationContext context) : base(context)
+        private readonly IGitHubService _gitHubService;
+
+        public GameRepository(ApplicationContext context, IGitHubService gitHubService) : base(context)
         {
+            _gitHubService = gitHubService;
         }
 
         public IEnumerable<Game> GetAll()
@@ -35,7 +37,7 @@ namespace ChaosInitiative.Web.ControlPanel.Services.Repositories
             if (!Game.LegalRepositoryOwners.Contains(game.RepositoryOwner))
                 throw new RepositoryInsertException($"Chaos Initiative cannot access repository owner '{game.RepositoryOwner}'");
 
-            if (!await GitHubUtil.IsValidGitHubRepository(game.RepositoryOwner, game.RepositoryName))
+            if (!await _gitHubService.IsValidGitHubRepository(game.RepositoryOwner, game.RepositoryName))
                 throw new RepositoryInsertException("Repository is invalid");
 
             EntityEntry<Game> result = await Context.Games.AddAsync(game);

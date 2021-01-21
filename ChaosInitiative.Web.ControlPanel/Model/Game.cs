@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Threading.Tasks;
-using Octokit;
 
 namespace ChaosInitiative.Web.ControlPanel.Model
 {
@@ -37,22 +35,5 @@ namespace ChaosInitiative.Web.ControlPanel.Model
         public string GitHubRepositoryUri => 
             $"https://github.com/{RepositoryOwner}/{RepositoryName}";
         
-        
-        // TODO: Move this to application layer
-        public async Task<List<string>> GetRepositoriesOfOwner()
-        {
-
-            GitHubClient client = GitHubUtil.CreateClient();
-            IReadOnlyList<Repository> allRepos = await client.Repository.GetAllForOrg(RepositoryOwner);
-
-            List<string> repoStrings = new List<string>();
-
-            foreach (Repository repo in allRepos)
-            {
-                repoStrings.Add(repo.Name);
-            }
-
-            return repoStrings;
-        }
     }
 }

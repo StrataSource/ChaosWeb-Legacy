@@ -1,8 +1,10 @@
 ﻿@using ChaosInitiative.Web.ControlPanel.Model
+@using ChaosInitiative.Web.ControlPanel.Services
 @using Radzen
 @using Radzen.Blazor
 
 @inject DialogService DialogService
+@inject IGitHubService GitHubService
 
 <div class="row">
     <div class="col-4">
@@ -29,7 +31,7 @@
 
 <div>
     <RadzenDropDown TValue="string" 
-                    Data="@GitHubUtil.GetOrgRepositories(_game.RepositoryOwner)"
+                    Data="@GitHubService.GetOrgRepositories(_game.RepositoryOwner)"
                     @bind-Value="@_game.RepositoryName"
                     Placeholder="Repository Name"/>
 </div>
