@@ -1,0 +1,11 @@
+﻿
+section {
+    display: block;
+    padding: $spacer;
+    margin: $spacer;
+    border: $border-width solid $border-color;
+}
+
+section:not(:first-child) {
+    margin-top: 0;
+}

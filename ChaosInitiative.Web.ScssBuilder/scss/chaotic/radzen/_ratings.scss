@@ -1,0 +1,47 @@
+﻿.ui-rating {
+    display: inline-block;
+
+    a {
+        color: transparent !important;
+        text-decoration: none;
+        outline: none;
+    }
+
+    .pi-star-o {
+        opacity: 0.2;
+
+        &:before {
+            content: "star_border";
+        }
+    }
+
+    .pi-star:before {
+        content: "star";
+        color: theme-color("primary");
+    }
+
+    &:not(.ui-state-disabled) .pi-star-o:hover {
+        color: theme-color("primary");
+
+        &:before {
+            content: "star";
+        }
+    }
+}
+
+.ui-rating.ui-state-disabled .pi,
+.ui-rating.ui-state-disabled .ui-menuitem .ui-menuitem-icon,
+.ui-menuitem .ui-rating.ui-state-disabled .ui-menuitem-icon {
+    opacity: 0.3;
+    color: theme-color("text-muted");
+}
+
+.ui-rating .pi,
+.ui-rating .ui-menuitem .ui-menuitem-icon,
+.ui-menuitem .ui-rating .ui-menuitem-icon {
+    color: theme-color("primary");
+}
+
+.ui-rating .pi-ban:before {
+    content: "not_interested";
+}

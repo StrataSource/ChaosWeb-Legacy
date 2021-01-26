@@ -1,0 +1,76 @@
+﻿$white:    #fff !default;
+$gray-100: #fafafa !default; // gray-lightest-o
+$gray-200: #f6f6f6 !default; // gray-lightest
+$gray-300: #eee !default; // gray-lighter
+$gray-400: #ddd !default; // gray-lighter-o
+$gray-500: #ccc !default; // gray-light-o
+$gray-600: #999 !default; // gray-light
+$gray-700: #666 !default;     // gray
+$gray-800: #404040 !default; // gray-obs
+$gray-900: #202020 !default; // gray-dark
+$black:    #000 !default;
+
+$grays: () !default;
+$grays: map-merge(
+  (
+          "100": $gray-100,
+          "200": $gray-200,
+          "300": $gray-300,
+          "400": $gray-400,
+          "500": $gray-500,
+          "600": $gray-600,
+          "700": $gray-700,
+          "800": $gray-800,
+          "900": $gray-900
+  ),
+  $grays
+);
+
+
+$blue:            #527edb !default;
+$blue-2:          #3264CD !default;
+$red:             #B92F2F !default; // Chaos Initiative Color
+$red-2:           #961515 !default;
+$orange:          #E26A03 !default;
+$orange-2:        #C85C00 !default;
+$yellow:          #F3D24A !default;
+$yellow-2:        #E7BF1D !default;
+$green:           #3CA100 !default;
+$green-2:         #318300 !default;
+
+$colors: () !default;
+$colors: map-merge(
+  (
+          "blue":       $blue,
+          "blue-2":     $blue-2,
+          "red":        $red,
+          "red-2":      $red-2,
+          "orange":     $orange,
+          "orange-2":   $orange-2,
+          "yellow":     $yellow,
+          "yellow-2":   $yellow-2,
+          "green":      $green,
+          "green-2":    $green-2,
+          "white":      $white,
+          "gray":       $gray-800,
+          "gray-dark":  $gray-900
+  ),
+  $colors
+);
+
+$primary:       $red !default;
+$primary-alt:   $red-2 !default;
+$secondary:     $black !default;
+$success:       $green !default;
+$success-alt:   $green-2 !default;
+$info:          $blue !default;
+$info-alt:      $blue-2 !default;
+$warning:       $yellow !default;
+$warning-alt:   $yellow-2 !default;
+$danger:        $orange !default;
+$danger-alt:    $orange-2 !default;
+$light:         $gray-700 !default;
+$dark:          $gray-900 !default;
+
+
+@import "../chaotic/boosted";   // Load boosted

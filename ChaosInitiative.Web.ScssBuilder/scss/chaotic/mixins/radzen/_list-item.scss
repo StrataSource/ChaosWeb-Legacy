@@ -1,0 +1,34 @@
+﻿@mixin list-item {
+    display: flex !important;
+    flex-direction: row;
+    cursor: default;
+    padding: 0.25rem 0;
+    font-size: 0.875rem;
+    
+    &:not(:last-child) {
+        border-bottom: 1px solid theme-color("border");
+    }
+    
+    &.ui-state-highlight {
+        background-color: theme-color("primary");
+        color: theme-color("text");
+    }
+    
+    > span {
+        display: table; // Don't ask why, but this fixes checkbox squishing
+        padding-left: 1rem;
+        flex-grow: 1;
+    }
+}
+
+@mixin list-wrapper {
+    flex: auto;
+    overflow: auto;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+}
+
+@mixin list-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

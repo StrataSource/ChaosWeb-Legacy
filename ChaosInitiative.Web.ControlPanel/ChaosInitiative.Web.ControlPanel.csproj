@@ -64,6 +64,8 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+      <Content Remove="wwwroot\css\chaotic_chaos.min.css.map" />
+      <Content Remove="wwwroot\css\chaotic_chaos.min.css" />
     </ItemGroup>
 
 </Project>

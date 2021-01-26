@@ -1,0 +1,101 @@
+﻿/* ===================================== */
+
+$chart-theme-pastel: () !default;
+$chart-theme-pastel: map-merge(
+                (
+                        "0": #C1771D,
+                        "1": #2d95bf,
+                        "2": #b132ab,
+                        "3": #84bc40,
+                        "4": #cd3f54,
+                        "5": #b5a73e,
+                        "6": #8b28d4,
+                        "7": #40bf89
+                ),
+                $chart-theme-pastel
+);
+
+/* ===================================== */
+
+$chart-theme-monochrome: () !default;
+$chart-theme-monochrome: map-merge(
+                (
+                        "0": #7A0E0E,
+                        "1": #A02727,
+                        "2": #B92F2F,
+                        "3": #CD4343,
+                        "4": #DC4F4F,
+                        "5": #FF7777,
+                        "6": #FF8989,
+                        "7": #FFAFAF
+                ),
+                $chart-theme-monochrome
+);
+
+/* ===================================== */
+
+$chart-theme-palette: () !default;
+$chart-theme-palette: map-merge(
+                (
+                        "0": #003f5c,
+                        "1": #2f4b7c,
+                        "2": #665191,
+                        "3": #a05195,
+                        "4": #d45087,
+                        "5": #f95d6a,
+                        "6": #d45087,
+                        "7": #ff7c43
+                ),
+                $chart-theme-palette
+);
+
+/* ===================================== */
+
+$chart-theme-divergent: () !default;
+$chart-theme-divergent: map-merge(
+                (
+                        "0": #ff7b02,
+                        "1": #FF9330,
+                        "2": #FFA451,
+                        "3": #FFC58F,
+                        "4": #C1DBE7,
+                        "5": #7EBFDE,
+                        "6": #32B0ED,
+                        "7": #1894d2
+                ),
+                $chart-theme-divergent
+);
+
+/* THEME TABLE */
+
+$chart-themes: () !default;
+$chart-themes: map-merge(
+                (
+                        "pastel": $chart-theme-pastel,
+                        "monochrome": $chart-theme-monochrome,
+                        "palette": $chart-theme-palette,
+                        "divergent": $chart-theme-divergent
+                ),
+                $chart-themes
+);
+
+    
+@each $theme-name, $theme in $chart-themes {
+    .rz-scheme-#{$theme-name} {
+        @each $i, $color in $theme {
+            .rz-series-#{$i} {
+                fill: $color;
+                stroke: $color;
+            }
+            
+            .rz-series-#{$i}-tooltip {
+                border: 2px solid $color;
+            }
+            
+            .rz-series-item-#{$i} {
+                fill: $color;
+                stroke: $color;
+            }
+        }
+    }
+}
