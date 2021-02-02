@@ -5,6 +5,8 @@ code {
     font-style: normal; // Boosted mod: <var> is italic in all browsers
     color: $code-color;
     word-wrap: break-word;
+    border: $border-width solid $border-color;
+    padding: 0.25rem;
 
     // Streamline the style when inside anchors to avoid broken underline and more
     a > & {

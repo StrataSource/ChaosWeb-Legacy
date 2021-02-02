@@ -133,6 +133,15 @@ fieldset:disabled a.btn {
             theme-color("dark"));
 }
 
+.btn-dark-frame {
+    @include button-variant(transparent,
+            theme-color("border"),
+            theme-color("border"),
+            theme-color("border"),
+            theme-color("border"),
+            theme-color("dark"));
+}
+
 .btn-danger {
     @include button-variant(theme-color("danger"),
             theme-color("danger"),

@@ -86,6 +86,16 @@
     // Boosted mod: disallow functionnal colors for text
     @if ($value != $primary) and ($value != $success) and ($value != $danger) and ($value != $info) and ($value != $warning) {
         @include text-emphasis-variant(".text-#{$color}", $value, true);
+        
+        .selection-bg-#{$color}::selection,
+        .selection-bg-#{$color} *::selection {
+            background-color: $value;
+        }
+        
+        .selection-color-#{$color}::selection,
+        .selection-color-#{$color} *::selection {
+            color: $value;
+        }
     }
     // end mod
 }

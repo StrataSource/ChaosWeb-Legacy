@@ -58,6 +58,14 @@
     min-height: 1px;
     padding: $card-spacer-x;
     color: $card-color;
+    text-overflow: ellipsis;
+    
+    .nav > .nav-item {
+        width: 100%;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .card-title {
@@ -100,7 +108,7 @@
     font-weight: $font-weight-bold; // Boosted mod
     color: $card-cap-color;
     background-color: $card-cap-bg;
-    border-bottom: $card-border-width solid $card-cap-bg; // Boosted mod
+    border-bottom: $card-border-width solid $card-border-color; // Boosted mod
 
     &:first-child {
         @include border-radius($card-inner-border-radius $card-inner-border-radius 0 0);

@@ -1,4 +1,6 @@
-﻿$white:    #fff !default;
+﻿$font-family-sans-serif: Heebo, Arial, Liberation Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !default;
+
+$white:    #fff !default;
 $gray-100: #fafafa !default; // gray-lightest-o
 $gray-200: #f6f6f6 !default; // gray-lightest
 $gray-300: #eee !default; // gray-lighter
@@ -58,8 +60,8 @@ $colors: map-merge(
   $colors
 );
 
-$primary:       $red !default;
-$primary-alt:   $red-2 !default;
+$primary:       $orange !default;
+$primary-alt:   $orange-2 !default;
 $secondary:     $black !default;
 $success:       $green !default;
 $success-alt:   $green-2 !default;
@@ -67,8 +69,8 @@ $info:          $blue !default;
 $info-alt:      $blue-2 !default;
 $warning:       $yellow !default;
 $warning-alt:   $yellow-2 !default;
-$danger:        $orange !default;
-$danger-alt:    $orange-2 !default;
+$danger:        $red !default;
+$danger-alt:    $red-2 !default;
 $light:         $gray-700 !default;
 $dark:          $gray-900 !default;
 

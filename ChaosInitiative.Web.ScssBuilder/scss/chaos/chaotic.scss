@@ -1,4 +1,6 @@
-﻿$white:    #fff !default;
+﻿$font-family-sans-serif: Roboto, Arial, Liberation Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !default;
+
+$white:    #fff !default;
 $gray-100: #fafafa !default; // gray-lightest-o
 $gray-200: #f6f6f6 !default; // gray-lightest
 $gray-300: #eee !default; // gray-lighter
@@ -27,11 +29,11 @@ $grays: map-merge(
 );
 
 
-$blue:            #527edb !default;
+$blue:            #1894d2 !default; // Momentum Color
 $blue-2:          #3264CD !default;
 $red:             #B92F2F !default; // Chaos Initiative Color
 $red-2:           #961515 !default;
-$orange:          #E26A03 !default;
+$orange:          #ff7b02 !default; // P2CE Color
 $orange-2:        #C85C00 !default;
 $yellow:          #F3D24A !default;
 $yellow-2:        #E7BF1D !default;

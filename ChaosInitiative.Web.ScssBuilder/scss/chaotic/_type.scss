@@ -18,6 +18,14 @@ h1, h2, h3, h4, h5, h6,
     text-rendering: optimizeLegibility; // Boosted mod
 }
 
+.bg-primary,
+.bg-primary-alt {
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+        color: theme-color("dark");
+    }
+}
+
 // Boosted mod: headings and displays together
 // Add letter-spacing and line-height
 // Reduce heading font-sizes for mobile

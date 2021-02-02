@@ -10,6 +10,7 @@
 $theme-colors: () !default;
 $theme-colors: map-merge(
                 (
+                        // Colors
                         "primary": $primary,
                         "primary-alt": $primary-alt,
                         "secondary": $secondary,
@@ -21,18 +22,29 @@ $theme-colors: map-merge(
                         "warning-alt": $warning-alt,
                         "danger": $danger,
                         "danger-alt": $danger-alt,
+                        
+                        // Shades
                         "light": $light,
                         "dark": $dark,
+                        
+                        // Layout colors
                         "border": $gray-800,
                         "bg": $dark,
                         "text": $gray-200,
-                        "text-muted": $gray-800
+                        "text-muted": $gray-800,
+                        
+                        // Brand colors
+                        "chaos": $primary,
+                        "p2ce": $orange,
+                        "momentum": $blue
                 ),
                 $theme-colors
 );
 
 * {
-    --color-chaos: theme-color("primary");
+    --color-chaos: theme-color("chaos");
+    --color-p2ce: theme-color("p2ce");
+    --color-momentum: theme-color("momentum");
     --color-bg: theme-color("bg");
     --color-border: theme-color("border");
     --color-text: theme-color("text");
@@ -94,7 +106,10 @@ $spacers: map-merge(
                         2: ($spacer * .5),
                         3: $spacer,
                         4: ($spacer * 1.5),
-                        5: ($spacer * 3)
+                        5: ($spacer * 3),
+                        6: ($spacer * 3.25),
+                        7: ($spacer * 3.5),
+                        8: ($spacer * 4),
                 ),
                 $spacers
 );
@@ -241,7 +256,7 @@ $embed-responsive-aspect-ratios: join(
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: Roboto, Arial, Liberation Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !default;
+
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
@@ -899,15 +914,15 @@ $card-spacer-y: .75rem !default;
 $card-spacer-x: $spacer !default; // Boosted mod
 $card-border-width: $border-width !default;
 $card-border-radius: $border-radius !default;
-$card-border-color: $gray-500 !default; // Boosted mod
+$card-border-color: $border-color !default; // Boosted mod
 $card-inner-border-radius: subtract($card-border-radius, $card-border-width) !default;
-$card-cap-bg: $black !default; // Boosted mod
-$card-cap-color: $white !default; // Boosted mod
+$card-cap-bg: theme-color("bg") !default; // Boosted mod
+$card-cap-color: theme-color("text") !default; // Boosted mod
 $card-height: null !default;
 $card-color: null !default;
-$card-bg: $white !default;
+$card-bg: theme-color("bg") !default;
 $card-accordion-spacer: .875rem !default; // Boosted mod
-$card-footer-color: $gray-700 !default; // Boosted mod
+$card-footer-color: theme-color("text") !default; // Boosted mod
 
 $card-img-overlay-padding: $spacer !default; // Boosted mod
 
@@ -1220,7 +1235,7 @@ $close-icon-stroke-hover: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/
 // Code
 
 $code-font-size: 87.5% !default;
-$code-color: $gray-900 !default;
+$code-color: $gray-400 !default;
 
 $kbd-padding-y: map-get($spacers, 2) / 10 !default; // Boosted mod
 $kbd-padding-x: map-get($spacers, 2) / 10 !default; // Boosted mod

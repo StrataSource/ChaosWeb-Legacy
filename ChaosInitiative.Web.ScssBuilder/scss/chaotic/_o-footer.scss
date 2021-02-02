@@ -6,8 +6,8 @@
     margin-top: map-get($spacers, 4);
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
-    color: $white;
-    background-color: $black;
+    color: theme-color("text");
+    background-color: theme-color("bg");
 
     .nav-link {
         padding: $nav-link-padding-y;
@@ -16,12 +16,12 @@
         &:not(:hover),
         &:not([href]),
         &:not([href]):hover {
-            color: $white;
+            color: theme-color("text");
         }
 
         &:hover,
         &:focus {
-            color: $orange-2;
+            color: theme-color("primary");
         }
     }
 
@@ -48,7 +48,7 @@
 
         p,
         p a {
-            color: $white;
+            color: theme-color("text");
         }
 
         .flex-column .nav-link {
@@ -58,6 +58,6 @@
     }
 
     .o-footer-bottom {
-        border-top: $border-width / 2 solid $gray-900;
+        border-top: $border-width solid theme-color("border");
     }
 }
