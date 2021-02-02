@@ -1,7 +1,4 @@
-/* This fixes that weird thing where every element but the first of navbar pills would have a slight left offset. No idea why they did it like that in the first place */
-.nav-pills .nav-item + .nav-item {
-    margin-left: 0;
-}
+/* Wiki specific styles that are not defined in chaotic */
 
 .card-header h1,
 .card-header h2,
@@ -15,7 +12,7 @@ section h3,
 section h4,
 section h5,
 section h6 {
-    color: #ee370e;
+    color: var(--primary);
 }
 
 *,
@@ -33,32 +30,11 @@ h6,
 
 .navbar-nav .nav-link {
     font-weight: 900;
+    color: var(--color-text);
 }
 
 section.card {
     padding-top: 0;
-}
-
-/* Table */
-.table {
-    max-width: 100%;
-    word-wrap: break-word;
-    table-layout: fixed;
-    color: white;
-    background-color: #222222;
-    border: 2px #3b3b3b solid;
-}
-
-.table > thead > tr > th {
-    border-bottom: 2px #3b3b3b solid;
-}
-
-.table tr {
-    border: none;
-}
-
-.table tr:nth-child(2n) {
-    background-color: #1D1D1D;
 }
 
 p {
@@ -86,52 +62,9 @@ p {
 
 /* Some fine tuned styling */
 
-.bg-gray .btn-secondary.btn {
-    background-color: transparent;
-    color: white;
-    border-color: #3b3b3b;
-}
-
-.bg-gray {
-    background-color: #202020 !important; /* i know, i know */
-}
-
-.card-header {
-    background-color: #202020;
-    border-bottom-color: #3b3b3b;
-}
-
-.card.bg-gray {
-    border-color: #3b3b3b;
-}
-
-.bg-gray hr {
-    border-top-color: #3b3b3b;
-    border-top-width: 2px;
-}
-
-.bg-gray code {
-    color: #b3b3b3;
-    border: 2px #3b3b3b solid;
-}
-
-code {
-    padding: 0.25rem;
-}
-
-pre > code,
-pre > code.hljs {
-    display: block;
-    padding: 1rem;
-}
-
-.bg-gray .hljs {
-    background-color: #202020;
-}
-
 .nav-category {
     margin-top: 1rem;
-    border-bottom: 2px #3b3b3b solid;
+    border-bottom: 2px var(--color-border) solid;
 }
 
 /* Other markdown styling */ 
@@ -160,7 +93,7 @@ blockquote {
     padding-bottom: 0.2rem;
 }
 
-#heading-navigation > li.nav-item a {
+li.nav-item a {
     text-decoration: none;
 }
 

@@ -5,33 +5,33 @@
 }
 
     
-<section class="bg-p2ce bg-p2ce-muted">
+<div class="bg-primary-alt pt-6 pb-3">
     <div class="container">
         <h1>Frequently asked Questions</h1>
-        <p>Your question might already be answered here. If not, feel free to ask!</p>
+        <p class="text-dark">Your question might already be answered here. If not, feel free to ask!</p>
         
         <div>
             <ol class="smooth-scroll">
                 @foreach (var faq in Model.faqs)
                 {
                     <li>
-                        <a href="#@faq.ElementId">@faq.Question</a>
+                        <a class="text-dark" href="#@faq.ElementId">@faq.Question</a>
                     </li>
                 }
             </ol>
         </div>
         
     </div>
-</section>
+</div>
         
-<section class="faq-container bg-gray">
+<div class="pt-3 pb-2">
     <div class="container">
         
         @{
             int index = 1;
             foreach (var faq in Model.faqs)
             {
-                <div id="@faq.ElementId">
+                <div id="@faq.ElementId" class="pt-3">
                     <h2>@(index++). @faq.Question</h2>
                     <p>@faq.Answer</p>
                 </div>
@@ -39,7 +39,7 @@
         }
         
     </div>
-</section>
+</div>
 
 <script>
     

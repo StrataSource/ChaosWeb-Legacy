@@ -21,6 +21,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 new FaqElement("Which operating systems does it run on?", "P2CE currently runs on Windows, but a Linux build is on its way. In the future, we'd also like to support MacOS. All 64bit of course."),
                 new FaqElement("Is there a workshop?", "Yes. That's definitely planned for release."),
                 new FaqElement("Is multiplayer supported?", "Yes."),
+                new FaqElement("Is VR planned?", "No. VR is out of the scope for the time being. We don't rule it out entirely and might look into it in the future, but there's nothing to get excited about at this time."),
             };
         }
         

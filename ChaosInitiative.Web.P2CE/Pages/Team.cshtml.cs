@@ -35,7 +35,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                         "Web & Tool Development", 
                         "Community Manager", 
                         "Campaign Lead", 
-                        "<a href=\"https://store.steampowered.com/app/601360/Portal_Revolution\">Portal: Revolution Developer</a>" 
+                        "<a href=\"https://store.steampowered.com/app/601360/Portal_Revolution\" class=\"text-dark\">Portal: Revolution Developer</a>" 
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
@@ -46,7 +46,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.Twitter, "https://twitter.com/spyce_tewan"
                         }
                     }
-                },
+                },/*
                 new TeamMember
                 {
                     UserName = "EchoesForeAndAft",
@@ -61,7 +61,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.GitHub, "https://github.com/blightedlight"
                         }
                     }
-                },
+                },*/
                 new TeamMember
                 {
                     UserName = "JJI77",
