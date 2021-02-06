@@ -1,103 +1,88 @@
 ﻿@page
 @using ChaosInitiative.Web.Shared
-@model IndexModel
 @{
     ViewData["Title"] = "Landing Page";
 }
 
-<section class="text-center bg-p2ce pb-5">
+<div class="text-center bg-primary-alt pt-7 pb-5">
     <h1 class="d-lg-block d-none" style="font-size: 5.5rem">Portal 2: Community Edition</h1>
     <h1 class="d-lg-none">Portal 2: Community Edition</h1>
         
     <div class="container">
-        <p>Portal 2 improved by the community, for the community.</p>
+        <p class="text-dark">Portal 2 improved by the community, for the community.</p>
     </div>
-</section>
+</div>
 
-<section class="bg-gray">
-    <div class="container">
-        <h1>The new standard.</h1>
-        <p>
-            Portal 2: Community Edition is a mod for Portal 2 that improves its engine to empower modders to create content that was previously impossible.
-        </p>
-        <p>
-            The engine is based off the CS:GO version of the Source Engine with the entirety of Portal 2 ported to it. 
-            Our goal is to provide a platform for the entire Portal community to create and share content on.
-        </p>
-    </div>
-</section>
+<div class="container pt-5 pb-3">
+    <h1>The new standard.</h1>
+    <p>
+        Portal 2: Community Edition is a mod for Portal 2 that improves its engine to empower modders to create content that was previously impossible.
+    </p>
+    <p>
+        The engine is based off the CS:GO version of the Source Engine with the entirety of Portal 2 ported to it. 
+        Our goal is to provide a platform for the entire Portal community to create and share content on.
+    </p>
+</div>
 
-<section class="bg-gray">
-    <div class="container">
-        <h1>Community driven.</h1>
-        <p>
-            We are community modders that received Valve's direct permission to create this mod.
-        </p>
-        <p>
-            Since P2CE uses licensed engine code, the source code cannot be made open, but we're trying to be as transparent as possible about any internal ongoings.
-        </p>
-        <p>
-            If you found a bug or want to suggest a feature, check out our <a href="@Constants.LINK_GITHUB_P2CE_ISSUES">GitHub Issues Page</a>!
-        </p>
-    </div>
-</section>
+<div class="container pt-5 pb-3">
+    <h1>Community driven.</h1>
+    <p>
+        We are community modders that received Valve's direct permission to create this mod.
+    </p>
+    <p>
+        Since P2CE uses licensed engine code, the source code cannot be made open, but we're trying to be as transparent as possible about any internal ongoings.
+    </p>
+    <p>
+        If you found a bug or want to suggest a feature, check out our <a href="@Constants.LINK_GITHUB_P2CE_ISSUES">GitHub Issues Page</a>!
+    </p>
+</div>
 
-<section class="bg-gray">
-    <div class="container">
-        <h1>Custom campaign.</h1>
-        <p>
-            P2CE doesn't only change the engine.
-            The 1.0 release will feature a completely new campaign to showcase all the new stuff with its own subtle, coop-inspired story, new characters and new puzzle elements.
-        </p>
-    </div>
-</section>
+<div class="container pt-5 pb-3">
+    <h1>Custom campaign.</h1>
+    <p>
+        P2CE doesn't only change the engine.
+        The 1.0 release will feature a completely new campaign to showcase all the new stuff with its own subtle, coop-inspired story, new characters and new puzzle elements.
+    </p>
+</div>
 
-<section class="bg-gray">
-    <div class="container">
-        <h1>Highly configurable.</h1>
-        <p>
-            Portal 2: Community Edition unlocks hard coded values to be manipulated by maps and mods.
-        </p>
-        <p>
-            Want to change your Portal colors? Gel colors? Crouch view height? You can do that now.
-        </p>
-    </div>
-</section>
+<div class="container pt-5 pb-3">
+    <h1>Highly configurable.</h1>
+    <p>
+        Portal 2: Community Edition unlocks hard coded values to be manipulated by maps and mods.
+    </p>
+    <p>
+        Want to change your Portal colors? Gel colors? Crouch view height? You can do that now.
+    </p>
+</div>
 
-<section class="bg-gray">
-    <div class="container">
-        <h1>Portal 1 Compatible.</h1>
-        <p>
-            Through configuration, Portal 2: Community Edition can be made to look and feel just like Portal 1.
-        </p>
-        <p>
-            Console-Variables are available for
-        </p>
-        <ul>
-            <li>Movement type (Portal 2 movement, Portal 1 movement)</li>
-            <li>Portal-Gun Model, Sounds Particles</li>
-            <li>Held object throwing</li>
-        </ul>
-    </div>
-</section>
+<div class="container pt-5 pb-3">
+    <h1>Portal 1 Compatible.</h1>
+    <p>
+        Through configuration, Portal 2: Community Edition can be made to look and feel just like Portal 1.
+    </p>
+    <p>
+        Console-Variables are available for
+    </p>
+    <ul>
+        <li>Movement type (Portal 2 movement, Portal 1 movement)</li>
+        <li>Portal-Gun Model, Sounds Particles</li>
+        <li>Held object throwing</li>
+    </ul>
+</div>
 
-<section class="bg-gray">
-    <div class="container">
-        <h1>Speedrunner-friendly.</h1>
-        <p>
-            For this project, everyone is at the table, not just modders. 
-            We're very careful to try not to upset speedrunners by mindlessly fixing glitches that enhance the game more than it hurts.
-        </p>
-        <p>
-            None of the glitches and bugs that speedrunners love will be fixed. 
-            If a bug, like crouch flying glitch, is deemed fix-worthy, a console variable will be put in place that enables this bug to be brought back!
-        </p>
-    </div>
-</section>
+<div class="container pt-5 pb-3">
+    <h1>Speedrunner-friendly.</h1>
+    <p>
+        For this project, everyone is at the table, not just modders. 
+        We're very careful to try not to upset speedrunners by mindlessly fixing glitches that enhance the game more than it hurts.
+    </p>
+    <p>
+        None of the glitches and bugs that speedrunners love will be fixed. 
+        If a bug, like crouch flying glitch, is deemed fix-worthy, a console variable will be put in place that enables this bug to be brought back!
+    </p>
+</div>
 
-<section class="bg-gray">
-    <div class="container">
-        <h1>Workshop Supported.</h1>
-        <p>Portal 2: Community Edition supports the Steam Workshop for custom maps.</p>
-    </div>
-</section>
+<div class="container pt-5 pb-3">
+    <h1>Workshop Supported.</h1>
+    <p>Portal 2: Community Edition supports the Steam Workshop for custom maps.</p>
+</div>

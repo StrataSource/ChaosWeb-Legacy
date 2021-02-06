@@ -1,0 +1,92 @@
+﻿// This represents the jetbrains rider color scheme
+
+.hljs {
+    display: block;
+    overflow-x: auto;
+    background-color: theme-color("bg");
+    border: $border-width solid theme-color("border");
+    color: #A1AFB6;
+    padding: 1em 1rem 1rem 1.25rem;
+    
+    .hljs-comment, 
+    .hljs-quote {
+        color: #83C16A;
+    }
+
+    .hljs-deletion,
+    .hljs-name,
+    .hljs-regexp,
+    .hljs-selector-class,
+    .hljs-selector-id,
+    .hljs-tag,
+    .hljs-template-variable, .hljs-variable {
+        color: #ffa07a
+    }
+
+    .hljs-link,
+    .hljs-meta,
+    .hljs-params,
+    .hljs-type {
+        color: #f5ab35
+    }
+    
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-literal,
+    .hljs-number {
+        color: #ED94C0;
+    }
+
+    .hljs-addition, 
+    .hljs-bullet, 
+    .hljs-symbol {
+        color: #abe338
+    }
+    
+    .hljs-string {
+        color: #C69F6B;
+    }
+
+    .hljs-section, 
+    .hljs-title {
+        color: #38CB70
+    }
+
+    .hljs-keyword, 
+    .hljs-selector-tag {
+        color: #6C95EB;
+    }
+    
+    .hljs-emphasis {
+        font-style: italic
+    }
+
+    .hljs-strong {
+        font-weight: 700
+    }
+
+    @media screen and (-ms-high-contrast: active) {
+        .hljs-addition,
+        .hljs-attribute,
+        .hljs-built_in,
+        .hljs-builtin-name,
+        .hljs-bullet,
+        .hljs-comment,
+        .hljs-link,
+        .hljs-literal,
+        .hljs-meta,
+        .hljs-number,
+        .hljs-params,
+        .hljs-quote,
+        .hljs-string,
+        .hljs-symbol,
+        .hljs-type {
+            color: highlight
+        }
+        .hljs-keyword, .hljs-selector-tag {
+            font-weight: 700
+        }
+    }
+
+
+}

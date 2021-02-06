@@ -1,0 +1,35 @@
+﻿
+.ui-listbox {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: theme-color("bg");
+    border: 2px solid theme-color("border");
+
+    .ui-chkbox {
+        margin: 0 0.5rem 0 0;
+    }
+
+    .ui-listbox-header {
+        display: flex;
+        align-items: center;
+        @include filter-wrapper;
+
+        .ui-listbox-filter-container {
+            @include filter-container;
+        }
+    }
+
+    .ui-listbox-list-wrapper {
+        @include list-wrapper;
+        
+        .ui-listbox-list {
+            @include list-items;
+
+            .ui-listbox-item,
+            .ui-multiselect-item {
+                @include list-item;
+            }
+        }
+    }
+}
+

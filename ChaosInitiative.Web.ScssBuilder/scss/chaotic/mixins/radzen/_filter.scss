@@ -1,0 +1,36 @@
+﻿@mixin filter-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    .pi-search {
+        width: 1.25rem;
+        height: 1.25rem;
+        line-height: 1.25rem;
+        font-size: 1.25rem;
+        margin-right: 0.72rem;
+        color: theme-color("text-muted");
+
+        &:before {
+            content: "search";
+        }
+    }
+
+    .ui-inputtext {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid theme-color("text-muted");
+        background: transparent;
+        color: theme-color("text");
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+@mixin filter-wrapper {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-bottom: 2px solid theme-color("border");
+}

@@ -1,8 +1,8 @@
 @page
 @using ChaosInitiative.Web.ControlPanel.Components
 @{
-    Layout = "_LayoutDashboard";
+    Layout = "Shared/_LayoutDashboard";
 }
 
-@(await Html.RenderComponentAsync<FeaturesComponent>(RenderMode.ServerPrerendered))
+@(await Html.RenderComponentAsync<FeaturesPageComponent>(RenderMode.ServerPrerendered))
 

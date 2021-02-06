@@ -31,8 +31,8 @@ namespace ChaosInitiative.Web.ScssBuilder
                     {
                         "ChaosInitiative.Web.P2CE/wwwroot/css/"
                     },
-                    InputFile = "boosted.scss",
-                    OutputFileName = "boosted_p2ce"
+                    InputFile = "chaotic.scss",
+                    OutputFileName = "chaotic_p2ce"
                 },
                 new BuildConfig
                 {
@@ -42,8 +42,8 @@ namespace ChaosInitiative.Web.ScssBuilder
                         "ChaosInitiative.Web.HomePage/wwwroot/css/",
                         "ChaosInitiative.Web.ControlPanel/wwwroot/css/"
                     },
-                    InputFile = "boosted.scss",
-                    OutputFileName = "boosted_chaos"
+                    InputFile = "chaotic.scss",
+                    OutputFileName = "chaotic_chaos"
                 }
             };
         }

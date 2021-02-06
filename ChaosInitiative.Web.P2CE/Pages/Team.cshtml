@@ -5,16 +5,16 @@
     ViewData["Title"] = "The Team";
 }
 
-<section class="bg-p2ce bg-p2ce-muted">
+<div class="bg-primary-alt">
     <div class="container">
 
-        <div class="row d-flex mb-3">
+        <div class="row d-flex pt-3 pb-3">
             @foreach (TeamMember member in Model.TeamMembers)
             {
                 string picturePath = $"{member.UserName.ToLower()}.png";
                 <div class="col col-12 col-sm-12 col-md-6 flex-grow-1 mb-3" style="min-height: 15rem">
-                    <div class="card h-100">
-                        <div class="card-body">
+                    <div class="card h-100 border-0">
+                        <div class="card-body" style="background-color: rgb(250, 164, 85)">
                             <div class="row h-100">
                                 <div class="col col-sm-12 col-md-3">
                                     
@@ -40,7 +40,7 @@
                                     <ul>
                                         @foreach (string role in member.Roles)
                                         {
-                                            <li>@Html.Raw(role)</li>
+                                            <li class="text-dark">@Html.Raw(role)</li>
                                         }
                                     </ul>
                                 </div>
@@ -51,9 +51,9 @@
             }
         </div>
     </div>
-</section>
+</div>
     
-<section class="bg-gray pb-5">
+<div class="pt-5 pb-5">
     <div class="container">
         
         <h1>Contributors</h1>
@@ -76,8 +76,7 @@
         </table>
         
     </div>
-</section>
+</div>
     
-<section class="bg-gray">
-    <h4 class="text-center pt-2 pb-5 text-primary">P2CE uses the Chaos Source Engine. More about Chaos Source can be found <a href="https://www.chaosinitiative.com" class="text-primary">here</a></h4>
-</section>
+<h4 class="text-center pt-2 pb-5 text-primary">P2CE uses the Chaos Source Engine. More about Chaos Source can be found <a href="https://www.chaosinitiative.com" class="text-primary">here</a></h4>
+

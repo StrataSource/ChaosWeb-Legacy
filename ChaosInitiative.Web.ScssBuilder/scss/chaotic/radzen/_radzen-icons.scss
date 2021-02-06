@@ -1,0 +1,64 @@
+﻿@font-face {
+    font-family: "Material Icons";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Material Icons"), local("MaterialIcons-Regular"), url("../_content/Radzen.Blazor/fonts/MaterialIcons-Regular.woff") format("woff");
+}
+
+.material-icons,
+.ui-fileupload-row .ui-button .fa-close,
+.ui-fileupload-row .ui-paginator-element .fa-close,
+.ui-fileupload-row .ui-button .pi-times,
+.ui-fileupload-row .ui-paginator-element .pi-times,
+.ui-fileupload-row .ui-button .ui-icon-trash,
+.ui-fileupload-row .ui-paginator-element .ui-icon-trash,
+.ui-datatable .fa-chevron-circle-right,
+.ui-datatable .fa-chevron-circle-down,
+.ui-sortable-column .fa, .ui-datatable-header .fa-plus,
+.ui-datatable-loading-content .fa-circle-o-notch,
+.pi,
+.ui-menuitem .ui-menuitem-icon {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.5em;
+    /* Preferred icon size */
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: "liga";
+}
+
+.ui-accordion-toggle-icon.pi-chevron-right:before {
+    content: "arrow_right";
+}
+
+.ui-accordion-toggle-icon.pi-chevron-down:before {
+    content: "arrow_drop_down";
+}
+
+.ui-panel-titlebar-toggler .pi-minus:before {
+    content: "remove";
+}
+
+.ui-panel-titlebar-toggler .pi-plus:before {
+    content: "add";
+}
+
+/* For some reason, radzen sometimes creates icons with both pi and fa when it actually wants to use pi, so we take priority for pi */
+.pi.fa {
+    font-family: "Material Icons", "Font Awesome 5 Free", serif;
+}

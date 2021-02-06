@@ -1,6 +1,7 @@
 using System;
 using ChaosInitiative.Web.ControlPanel.Services;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -41,8 +42,18 @@ namespace ChaosInitiative.Web.ControlPanel
                 .ConfigureLogging(builder =>
                 {
                     builder.ClearProviders();
-                    //builder.AddDebug();
-                    builder.AddConsole();
+                    builder.AddSimpleConsole(options =>
+                    {
+                        options.SingleLine = true;
+                        options.TimestampFormat = "hh:mm:ss ";
+                    });
+#if DEBUG
+                    builder.AddDebug();
+#endif
+                })
+                .ConfigureAppConfiguration(builder =>
+                {
+                    builder.AddUserSecrets<Program>();
                 })
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
