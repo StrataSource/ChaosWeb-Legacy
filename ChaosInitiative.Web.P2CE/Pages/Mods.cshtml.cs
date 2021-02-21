@@ -52,40 +52,6 @@ namespace ChaosInitiative.Web.P2CE.Pages
                         }
                     }
                     
-                },
-                
-                new Mod()
-                {
-                    Name = "catalyst",
-                    DisplayName = "Portal: Catalyst",
-                    Description = "Portal: Catalyst is a mod set in the crossfire of Portal 1’s ending aiming to explain the transitional period of Aperture between the two games with a cohesive story to tie it all together. The mod will benefit from added graphical fidelity that P2CE is able to give, Panorama UI, and the ability to utilise a more streamlined workflow that would help make development an easier task to do, even if marginally.",
-                    Developers = new List<ModDeveloper>
-                    {
-                        new ModDeveloper
-                        {
-                            Name = "Ossy Flawol",
-                            Link = "https://twitter.com/OssyFlawol"
-                        },
-                        new ModDeveloper
-                        {
-                            Name = "Catalyst Team"
-                        }
-                    },
-                    Links = new Dictionary<string, string>
-                    {
-                        {
-                            "Discord", 
-                            "https://discord.gg/3etnrWf"
-                        },
-                        {
-                            "Twitter",
-                            "https://twitter.com/CatalystMod"
-                        },
-                        {
-                            "ModDB",
-                            "https://www.moddb.com/mods/portal-catalyst"
-                        }
-                    }
                 }
             };
         }
