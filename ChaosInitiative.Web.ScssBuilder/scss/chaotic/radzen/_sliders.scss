@@ -1,0 +1,31 @@
+﻿.ui-slider {
+    position: relative;
+    display: inline-block;
+    background-color: theme-color("border");
+
+    &.ui-slider-horizontal {
+        height: 0.2rem;
+        width: 100%;
+    }
+
+    .ui-slider-range {
+        position: absolute;
+        top: -1px;
+        bottom: -1px;
+        left: -1px;
+        background-color: theme-color("primary");
+    }
+
+    .ui-slider-handle {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        margin-left: -0.5rem;
+        background-color: theme-color("primary");
+        width: 0.5rem;
+        height: 1.5rem;
+    }
+
+}
+
+

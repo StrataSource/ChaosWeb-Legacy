@@ -1,9 +1,42 @@
 ﻿@using ChaosInitiative.Web.ControlPanel.Model
-<h3>FeatureEntry</h3>
+@using ChaosInitiative.Web.ControlPanel.Services.Repositories
+@inject GameRepository GameRepository
+
+<EditForm Model="@Feature">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    
+    <div class="form-group">
+        <label>Name:</label>
+        <InputText @bind-Value="Feature.Name"
+                    class="form-control"/>
+
+        <label>Type</label>
+        <InputSelect @bind-Value="Feature.Type"
+                      class="custom-select">
+            @foreach (string type in Enum.GetNames(typeof(FeatureType)))
+            {
+                <option value="@type">@type</option>
+            }
+        </InputSelect>
+        
+        <hr/>
+
+        <label>Related GitHub Issues</label>
+        <ul class="list-group">
+            
+        </ul>
+        
+        
+        <hr/>
+        
+    </div>
+</EditForm>
 
 @code {
 
     [Parameter]
     public Feature Feature { get; set; }
 
+    
 }

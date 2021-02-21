@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Threading.Tasks;
-using Octokit;
 
 namespace ChaosInitiative.Web.ControlPanel.Model
 {
     [Table("Games")]
     public class Game
     {
-        [Key]
+
+        public static readonly IReadOnlyCollection<string> LegalRepositoryOwners = new[]
+        {
+            "ChaosInitiative"
+        };
+        
         public int Id { get; set; }
 
         [Required]
@@ -29,26 +32,8 @@ namespace ChaosInitiative.Web.ControlPanel.Model
         [MaxLength(6, ErrorMessage = "HEX value must be 6 characters long")]
         public string HexColor { get; set; }
 
-        public string GetGitHubRepositoryUri()
-        {
-            return $"https://github.com/{RepositoryOwner}/{RepositoryName}";
-        }
+        public string GitHubRepositoryUri => 
+            $"https://github.com/{RepositoryOwner}/{RepositoryName}";
         
-        // TODO: Move this to application layer
-        public async Task<List<string>> GetRepositoriesOfOwner()
-        {
-
-            GitHubClient client = GitHubUtil.CreateClient();
-            IReadOnlyList<Repository> allRepos = await client.Repository.GetAllForOrg(RepositoryOwner);
-
-            List<string> repoStrings = new List<string>();
-
-            foreach (Repository repo in allRepos)
-            {
-                repoStrings.Add(repo.Name);
-            }
-
-            return repoStrings;
-        }
     }
 }

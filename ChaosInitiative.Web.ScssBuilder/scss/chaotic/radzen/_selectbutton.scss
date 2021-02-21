@@ -1,0 +1,20 @@
+﻿.ui-selectbutton {
+    display: inline-block;
+
+    .ui-button,
+    .ui-paginator-element {
+        margin-left: -1px;
+        display: inline-block;
+        background-color: theme-color("bg");
+        color: theme-color("primary");
+        border: solid 2px theme-color("primary");
+    }
+
+    .ui-button.ui-state-active,
+    .ui-selectbutton,
+    .ui-state-active.ui-paginator-element {
+        background-color: theme-color("primary");
+        color: theme-color("dark");
+        border: solid 2px theme-color("primary");
+    }
+}

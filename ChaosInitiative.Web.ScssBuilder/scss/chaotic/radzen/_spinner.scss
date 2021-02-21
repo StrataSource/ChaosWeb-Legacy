@@ -1,0 +1,66 @@
+﻿.ui-spinner {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+
+    .ui-spinner-input {
+        -moz-appearance: textfield;
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        color: theme-color("text");
+        line-height: 1.5rem;
+        text-align: inherit;
+        
+        &:focus {
+            outline: none;
+        }
+        
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+        
+    &.ui-state-disabled {
+        
+        .ui-spinner-input {
+            color: theme-color("text-muted");
+        }
+        
+        .ui-spinner-button {
+            visibility: hidden;
+        }
+    }
+
+    .ui-spinner-button {
+        position: absolute;
+        right: 0.5rem;
+        padding: 0;
+        width: 1rem;
+        height: 1rem;
+        color: theme-color("text");
+
+        .pi,
+        .ui-menuitem .ui-menuitem-icon {
+            font-size: 1.25rem;
+            vertical-align: top;
+        }
+        
+        .pi-caret-up:before {
+            content: "expand_less";
+        }
+        .pi-caret-down:before {
+            content: "expand_more";
+        }
+        
+        &.ui-spinner-up {
+            top: 3px;
+        }
+        &.ui-spinner-down {
+            bottom: 3px;
+        }
+    }
+    
+}
+
