@@ -165,7 +165,9 @@ namespace ChaosInitiative.Web.HomePage.Services
 
         public void ReadMarkdown()
         {
-            MarkdownText = File.ReadAllText(RawPath);
+            MarkdownText = File.ReadAllText(RawPath)
+                               .Replace("<", "&lt;")
+                               .Replace(">", "&gt;");
         }
 
         public void Build()
