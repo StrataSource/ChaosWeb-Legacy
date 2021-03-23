@@ -165,7 +165,9 @@ namespace ChaosInitiative.Web.HomePage.Services
 
         public void ReadMarkdown()
         {
-            MarkdownText = File.ReadAllText(RawPath);
+            MarkdownText = File.ReadAllText(RawPath)
+                               .Replace("<", "&lt;")
+                               .Replace(">", "&gt;");
         }
 
         public void Build()
@@ -184,7 +186,7 @@ namespace ChaosInitiative.Web.HomePage.Services
             kvTable["#Content"] = HtmlText;
             kvTable["#Title"] = GetTitle();
             kvTable["#Navigation"] = GetSidebar();
-            kvTable["#Date"] = DateTime.Today.ToUniversalTime().ToShortDateString();
+            kvTable["#Date"] = DateTime.Today.ToUniversalTime().ToString("dd MMM yyyy");
             kvTable["#HeadingNavigation"] = GetHeadingNavigation();
             kvTable["#Navbar"] = WikiService.Navbar;
 

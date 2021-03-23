@@ -107,7 +107,7 @@
     margin-bottom: 0; // Removes the default margin-bottom of <hN>
     font-weight: $font-weight-bold; // Boosted mod
     color: $card-cap-color;
-    background-color: $card-cap-bg;
+    background-color: $card-bg;
     border-bottom: $card-border-width solid $card-border-color; // Boosted mod
 
     &:first-child {
@@ -120,7 +120,7 @@
     padding: 0 $card-spacer-x $card-spacer-y / 2;
     font-weight: $font-weight-bold;
     color: $card-footer-color;
-    background-color: $card-cap-color;
+    background-color: $card-bg;
     // End mod
 
     &:last-child {
