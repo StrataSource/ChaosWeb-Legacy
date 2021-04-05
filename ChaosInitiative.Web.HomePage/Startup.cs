@@ -20,7 +20,7 @@ namespace ChaosInitiative.Web.HomePage
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<WikiService>();
+            //services.AddTransient<WikiService>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllers();
         }
@@ -43,12 +43,12 @@ namespace ChaosInitiative.Web.HomePage
             app.UseStaticFiles();
             
             // Wiki pages
-            WikiService wikiService = app.ApplicationServices.GetService<WikiService>();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(wikiService.GetWikiOutputPath()),
-                RequestPath = "/wiki"
-            });
+            //WikiService wikiService = app.ApplicationServices.GetService<WikiService>();
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(wikiService.GetWikiOutputPath()),
+            //    RequestPath = "/wiki"
+            //});
 
             app.UseRouting();
 
