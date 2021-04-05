@@ -19,11 +19,19 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 new TeamMember
                 {
                     UserName = "CitadelCore",
-                    Roles = new []{ "Project Founder", "Engine Programming", "Project Manager" },
+                    Roles = new []
+                    {
+                        "Project Founder", 
+                        "Engine Programming", 
+                        "Project Manager"
+                    },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
                         {
                             SocialMediaService.GitHub, "https://github.com/citadelcore"
+                        },
+                        {
+                            SocialMediaService.Twitter, "https://twitter.com/fabric_operator"
                         }
                     }
                 },
@@ -35,7 +43,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                         "Web & Tool Development", 
                         "Community Manager", 
                         "Campaign Lead", 
-                        "<a href=\"https://store.steampowered.com/app/601360/Portal_Revolution\" class=\"text-dark\">Portal: Revolution Developer</a>" 
+                        @"<a href=""https://store.steampowered.com/app/601360/Portal_Revolution"">Portal: Revolution Developer</a>" 
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
@@ -46,22 +54,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.Twitter, "https://twitter.com/spyce_tewan"
                         }
                     }
-                },/*
-                new TeamMember
-                {
-                    UserName = "EchoesForeAndAft",
-                    Roles = new []
-                    {
-                        "Graphics Programming and advice",
-                        "<a href=\"https://www.moddb.com/mods/vance\">VANCE Developer</a>"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.GitHub, "https://github.com/blightedlight"
-                        }
-                    }
-                },*/
+                },
                 new TeamMember
                 {
                     UserName = "JJI77",
@@ -76,21 +69,47 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.GitHub, "https://github.com/jjl772"
                         }
                     }
-                },/*
+                },
                 new TeamMember
                 {
-                    UserName = "BenVlodgi",
+                    UserName = "Blenderiste09",
                     Roles = new []
                     {
-                        "<a href=\"https://portal2backstock.com/bee/\">BEEMod Developer</a>"
+                        "Speedrun Support",
+                        "Quality of Life"
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
                         {
-                            SocialMediaService.GitHub, "https://github.com/benvlodgi"
+                            SocialMediaService.GitHub, "https://github.com/Blenderiste09"
+                        },
+                        {
+                            SocialMediaService.YouTube, "https://www.youtube.com/channel/UCLs0a4Fi1d6AXDxcCaLZpAw"
+                        },
+                        {
+                            SocialMediaService.Steam, "https://steamcommunity.com/profiles/76561198251755710"
                         }
                     }
-                }*/
+                },
+                new TeamMember
+                {
+                    UserName = "mlugg",
+                    Roles = new []
+                    {
+                        "Linux Port",
+                        "Engine Programming",
+                        "Speedrun Support"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.GitHub, "https://github.com/mlugg"
+                        },
+                        {
+                            SocialMediaService.Twitter, "https://twitter.com/matthew_lugg"
+                        }
+                    }
+                }
             };
 
             Contributors = new Dictionary<string, string>
@@ -126,6 +145,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
         Twitter,
         Steam,
         Reddit,
-        Facebook
+        Facebook,
+        YouTube
     }
 }

@@ -5,7 +5,7 @@
     ViewData["Title"] = "The Team";
 }
 
-<div class="bg-primary-alt">
+<div class="bg-light">
     <div class="container">
 
         <div class="row d-flex pt-3 pb-3">
@@ -14,36 +14,37 @@
                 string picturePath = $"{member.UserName.ToLower()}.png";
                 <div class="col col-12 col-sm-12 col-md-6 flex-grow-1 mb-3" style="min-height: 15rem">
                     <div class="card h-100 border-0">
-                        <div class="card-body" style="background-color: rgb(250, 164, 85)">
-                            <div class="row h-100">
-                                <div class="col col-sm-12 col-md-3">
-                                    
-                                    <div class="d-flex flex-column h-100">
-                                        <div>
-                                            <img src="~/img/team/@picturePath"
-                                                 alt="@member.UserName's Profile Picture"
-                                                 class="w-100"/>
-                                        </div>
-                                        <div class="mt-auto">
-                                            @foreach (KeyValuePair<SocialMediaService, string> socialMedia in member.SocialMediaServices)
-                                            {
-                                                <a href="@socialMedia.Value" class="ml-2 text-decoration-none">
-                                                    <i class="fab fa-@socialMedia.Key.ToString().ToLower()"></i>
-                                                </a>
-                                            }
-                                        </div>
-                                    </div>
+                        <div class="card-body bg-dark">
+                            <div class="h-100 d-flex flex-column">
+                                
+                                <div class="row flex-grow-1 align-content-start">
+                                    <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-4 no-gutters">
 
+                                        <img src="~/img/team/@picturePath"
+                                             alt="@member.UserName's Profile Picture"
+                                             class="w-100 rounded-circle"/>
+
+                                    </div>
+                                    <div class="col no-gutters ml-lg-3 mt-lg-2">
+                                        <h4>@member.UserName</h4>
+                                        <ul class="pl-4" style="font-size: 1.2rem">
+                                            @foreach (string role in member.Roles)
+                                            {
+                                                <li>@Html.Raw(role)</li>
+                                            }
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <h4>@member.UserName</h4>
-                                    <ul>
-                                        @foreach (string role in member.Roles)
-                                        {
-                                            <li class="text-dark">@Html.Raw(role)</li>
-                                        }
-                                    </ul>
+
+                                <div class="d-flex justify-content-start flex-row mt-2">
+                                    @foreach (KeyValuePair<SocialMediaService, string> socialMedia in member.SocialMediaServices)
+                                    {
+                                        <a href="@socialMedia.Value" class="mr-1 text-decoration-none">
+                                            <i class="fab fa-@socialMedia.Key.ToString().ToLower()"></i>
+                                        </a>
+                                    }
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -78,5 +79,7 @@
     </div>
 </div>
     
-<h4 class="text-center pt-2 pb-5 text-primary">P2CE uses the Chaos Source Engine. More about Chaos Source can be found <a href="https://www.chaosinitiative.com" class="text-primary">here</a></h4>
+<div class="container">
+    <h4 class="text-center pt-2 pb-5 text-primary">P2CE uses the Chaos Source Engine. More about Chaos Source can be found <a href="https://www.chaosinitiative.com" class="text-primary">here</a></h4>
+</div>
 
