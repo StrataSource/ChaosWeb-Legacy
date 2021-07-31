@@ -1,7 +1,6 @@
 @model Mod
 
 <section>
-            
     <div class="row">
         <div class="col col-auto">
             <img src="~/img/mod/@Model.Name/logo.png" alt="Image"/> <!-- 360x240 -->
@@ -11,9 +10,9 @@
             <p>
                 <i class="fas fa-users"></i>
                 @{
-                    foreach (ModDeveloper dev in Model.Developers)
+                    foreach (var dev in Model.Developers)
                     {
-                        if (String.IsNullOrWhiteSpace(dev.Link))
+                        if (string.IsNullOrWhiteSpace(dev.Link))
                         {
                             <span>@dev.Name</span>
                         }
@@ -27,9 +26,9 @@
             <p>
                 <i class="fas fa-heart"></i>
                 @{
-                    foreach (KeyValuePair<string, string> link in Model.Links)
+                    foreach (var (text, uri) in Model.Links)
                     {
-                        <a href="@link.Value">@link.Key</a>
+                        <a href="@uri">@text</a>
                     }
                 }
             </p>
@@ -40,7 +39,6 @@
     </div>
             
     <div class="row pt-2">
-                
         <div class="col-4">
             <img src="~/img/mod/@Model.Name/screenshot0.jpg" alt="Image" width="100%"/> <!-- 1600x1200 -->
         </div>
@@ -50,8 +48,5 @@
         <div class="col-4">
             <img src="~/img/mod/@Model.Name/screenshot2.jpg" alt="Image" width="100%"/>
         </div>
-                
     </div>
-            
-            
 </section>
