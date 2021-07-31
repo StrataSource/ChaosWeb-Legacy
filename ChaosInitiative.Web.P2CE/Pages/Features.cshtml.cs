@@ -24,7 +24,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
     public class IssuesCache
     {
         
-        public static readonly List<IssuesCache> ClosedIssuesCaches = new List<IssuesCache>
+        public static readonly List<IssuesCache> ClosedIssuesCaches = new()
         {
             new IssuesCache("type/bug", "Bugs"),
             new IssuesCache("type/enhancement", "Features")
@@ -42,13 +42,13 @@ namespace ChaosInitiative.Web.P2CE.Pages
         
         public async Task RefreshCount()
         {
-            GitHubClient client = new GitHubClient(new ProductHeaderValue("Portal2CommunityEdition.com"));
+            var client = new GitHubClient(new ProductHeaderValue("Portal2CommunityEdition.com"));
             var issueProperties = new RepositoryIssueRequest
             {
                 State = ItemStateFilter.Closed,
                 Labels = { LabelName }
             };
-            IReadOnlyList<Issue> issues = await client.Issue.GetAllForRepository(Constants.REPO_OWNER, Constants.REPO_NAME_P2CE, issueProperties);
+            var issues = await client.Issue.GetAllForRepository(Constants.REPO_OWNER, Constants.REPO_NAME_P2CE, issueProperties);
             Count = issues.Count;
         }
     }
