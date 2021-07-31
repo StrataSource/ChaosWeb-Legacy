@@ -15,3 +15,11 @@
     max-height: 8rem;
     image-rendering: high-quality;
 }
+
+.nav-link.active::before {
+    display: none !important;
+}
+
+.nav-link {
+    word-break: keep-all;
+}

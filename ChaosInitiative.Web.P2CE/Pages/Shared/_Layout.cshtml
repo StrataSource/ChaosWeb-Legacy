@@ -40,7 +40,7 @@
         <div class="container">
     
             <header role="banner">
-                <nav role="navigation" class="navbar navbar-dark navbar-expand-lg">
+                <nav role="navigation" style="padding: 0 !important" class="navbar navbar-dark navbar-expand-lg">
                     <div class="container">
                         <button class="navbar-toggler"
                                 type="button"
@@ -58,11 +58,20 @@
                                     var requestPath = Context.Request.Path.ToString();
                                     foreach (var (uri, text) in navbar)
                                     {
-                                        if (requestPath == uri && !text.Contains("Wiki"))
+                                        if (requestPath == uri)
                                         {
-                                            <li class="nav-item">
-                                                <a style="text-decoration: none" class="nav-link active" aria-current="page" href="@uri">@text</a>
-                                            </li>
+                                            if (!text.Contains("Wiki"))
+                                            {
+                                                <li class="nav-item">
+                                                    <a style="text-decoration: underline !important; text-underline-offset: 17px" class="nav-link active" aria-current="page" href="@uri">@text</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li class="nav-item">
+                                                    <a style="text-decoration: none" class="nav-link active" aria-current="page" href="@uri">@text</a>
+                                                </li>
+                                            }
                                         }
                                         else
                                         {
