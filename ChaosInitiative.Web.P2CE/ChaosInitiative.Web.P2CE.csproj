@@ -77,4 +77,11 @@
       <PackageReference Include="Octokit" Version="0.48.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\img\mod\catalyst\logo.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\mod\catalyst\screenshot0.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\mod\catalyst\screenshot1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\mod\catalyst\screenshot2.jpg" />
+    </ItemGroup>
+
 </Project>
