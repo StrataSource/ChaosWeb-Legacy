@@ -44,7 +44,6 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     {
                         "Lead Programmer",
                         "Linux Port Maintainer",
-                        "Graphics Programming",
                         "Core Chaos Engine Maintainer"
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
