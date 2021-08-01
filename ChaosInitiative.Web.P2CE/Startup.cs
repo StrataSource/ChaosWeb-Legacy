@@ -41,7 +41,8 @@ namespace ChaosInitiative.Web.P2CE
             else
             {
                 app.UseExceptionHandler("/NotFound");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios
+                // See https://aka.ms/aspnetcore-hsts
                 app.UseHsts();
             }
 

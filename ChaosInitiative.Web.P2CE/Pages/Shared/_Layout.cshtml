@@ -40,7 +40,7 @@
         <div class="container">
     
             <header role="banner">
-                <nav role="navigation" class="navbar navbar-dark navbar-expand-lg">
+                <nav role="navigation" style="padding: 0 !important" class="navbar navbar-dark navbar-expand-lg">
                     <div class="container">
                         <button class="navbar-toggler"
                                 type="button"
@@ -54,20 +54,29 @@
                         <div class="collapse navbar-collapse justify-content-between" id="collapsing-navbar">
                             <ul class="navbar-nav mr-auto">
                                 @{
-                                    Dictionary<string, string> navbar = NavbarP2CE.GetNavbar();
-                                    string requestPath = Context.Request.Path.ToString();
-                                    foreach (KeyValuePair<string, string> pair in navbar)
+                                    var navbar = NavbarP2CE.GetNavbar();
+                                    var requestPath = Context.Request.Path.ToString();
+                                    foreach (var (uri, text) in navbar)
                                     {
-                                        if (requestPath == pair.Key)
+                                        if (requestPath == uri)
                                         {
-                                            <li class="nav-item">
-                                                <a class="nav-link active" aria-current="page" href="@pair.Key">@pair.Value</a>
-                                            </li>
+                                            if (!text.Contains("Wiki"))
+                                            {
+                                                <li class="nav-item">
+                                                    <a style="text-decoration: underline !important; text-underline-offset: 17px" class="nav-link active" aria-current="page" href="@uri">@text</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li class="nav-item">
+                                                    <a style="text-decoration: none" class="nav-link active" aria-current="page" href="@uri">@text</a>
+                                                </li>
+                                            }
                                         }
                                         else
                                         {
                                             <li class="nav-item">
-                                                <a class="nav-link" href="@pair.Key">@pair.Value</a>
+                                                <a style="color: #ffffff" class="nav-link" href="@uri">@text</a>
                                             </li>
                                         }
                                     }
@@ -75,23 +84,23 @@
                             </ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="@Constants.LINK_STEAM_STORE_P2CE">
-                                        <i class="fab fa-steam navbar-icon"></i>Steam
+                                    <a style="text-decoration: none" class="nav-link" href="@Constants.LINK_STEAM_STORE_P2CE">
+                                        <i class="fab fa-steam navbar-icon"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="@Constants.LINK_DISCORD_P2CE">
-                                        <i class="fab fa-discord navbar-icon"></i>Discord
+                                    <a style="text-decoration: none" class="nav-link" href="@Constants.LINK_DISCORD_P2CE">
+                                        <i class="fab fa-discord navbar-icon"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="@Constants.LINK_GITHUB_P2CE">
-                                        <i class="fab fa-github navbar-icon"></i>GitHub
+                                    <a style="text-decoration: none" class="nav-link" href="@Constants.LINK_GITHUB_P2CE">
+                                        <i class="fab fa-github navbar-icon"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="@Constants.LINK_TWITTER_P2CE">
-                                        <i class="fab fa-twitter navbar-icon"></i>Twitter
+                                    <a style="text-decoration: none" class="nav-link" href="@Constants.LINK_TWITTER_P2CE">
+                                        <i class="fab fa-twitter navbar-icon"></i>
                                     </a>
                                 </li>
                             </ul>

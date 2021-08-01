@@ -6,16 +6,15 @@ namespace ChaosInitiative.Web.P2CE
     {
         public static Dictionary<string, string> GetNavbar()
         {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>
+            var dictionary = new Dictionary<string, string>
             {
                 {"/", "Home"},
                 {"/features", "Features"},
-                {"/team", "Who we are"},
+                {"/team", "Team Members"},
                 {"/mods", "Mods"},
-                //{"/wiki", "Wiki"},
+                {"https://chaosinitiative.github.io/Wiki/", "Wiki"},
                 {"/faq", "FAQ"},
             };
-
             return dictionary;
         }
     }
