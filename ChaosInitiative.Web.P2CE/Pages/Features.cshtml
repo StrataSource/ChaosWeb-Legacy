@@ -7,32 +7,14 @@
 
 
 <div class="bg-primary-alt selection-bg-dark selection-color-primary-alt">
-    <div class="container pt-6 pb-5">
-        <div class=" pl-md-7 pr-md-7">
-            <div class="row">
-                
-                <div class="col-md-5 text-right">
-                    <h1 class="mb-0">Features</h1>
-                    <p class="text-dark">All available right now</p>
-                </div>
-                <div class="col-md-3 ml-md-5">
-                    <h3 class="mb-0 mt-1">
-                        Closed Issues
-                    </h3>
-                    @{
-                        foreach (var closedIssues in Model.Caches)
-                        {
-                            <div class="text-dark">
-                                <strong>
-                                    @closedIssues.DisplayName:
-                                </strong>
-                                @closedIssues.Count
-                            </div>
-                        }
-                    }
-                </div>
-
-            </div>
+    <div class="container pt-4 pb-2">
+        <div class=" pl-md-2 pr-md-2">
+            @{
+            <h3>
+            @Model.Features.Count @Model.Features.DisplayName
+            @Model.Bugs.Count @Model.Bugs.DisplayName 
+            </h3>
+            }
         </div>
 
         @if (false) // TODO: Integrate features list with backend 
@@ -48,12 +30,13 @@
 </div>
 
 <div class="container">
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialCsgo"/>
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialChaos"/>
     <partial name="Shared/FeaturesPartials/_FeaturesPartialElements"/>
-    <partial name="Shared/FeaturesPartials/_FeaturesPartialWebm"/>
+    <partial name="Shared/FeaturesPartials/_FeaturesPartialPanorama"/>
     <partial name="Shared/FeaturesPartials/_FeaturesPartialPlatforms"/>
 </div>
 
+<!-- Disabled for now, don't really want to talk about things that might come in the future...
 <div class="container text-center">
     <h1>Planned features</h1>
 </div>
@@ -85,3 +68,4 @@
         on their workshop page. All subscribed assets will be usable in the tools as well. 
     </p>
 </div>
+-->

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using ChaosInitiative.Web.Shared;
@@ -12,8 +13,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
 { 
     public class FeaturesModel : PageModel
     {
-        
-        public List<IssuesCache> Caches => IssuesCache.ClosedIssuesCaches;
+        public IssuesCache Features = IssuesCache.Features;
+        public IssuesCache Bugs = IssuesCache.Bugs;
         
         public void OnGet()
         {
@@ -23,12 +24,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
 
     public class IssuesCache
     {
-        
-        public static readonly List<IssuesCache> ClosedIssuesCaches = new()
-        {
-            new IssuesCache("type/bug", "Bugs"),
-            new IssuesCache("type/enhancement", "Features")
-        };
+        public static IssuesCache Features = new IssuesCache("type/enhancement", "new features.");
+        public static IssuesCache Bugs = new IssuesCache("type/bug", "bugs fixed.");
         
         public string LabelName { get; set; }
         public string DisplayName { get; set; }
@@ -66,9 +63,14 @@ namespace ChaosInitiative.Web.P2CE.Pages
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("Refreshing issue cache");
+            List<IssuesCache> issues = new List<IssuesCache>()
+            {
+                IssuesCache.Bugs,
+                IssuesCache.Features
+            };
             while (!stoppingToken.IsCancellationRequested)
             {
-                IssuesCache.ClosedIssuesCaches.ForEach(async cache =>
+                issues.ForEach(async cache =>
                 {
                     try
                     {
