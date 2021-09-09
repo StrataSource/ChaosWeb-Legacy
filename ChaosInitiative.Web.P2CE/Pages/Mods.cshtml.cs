@@ -12,47 +12,43 @@ namespace ChaosInitiative.Web.P2CE.Pages
             // Filling the list manually for now. This can later be hooked up to control panel if needed
             Mods = new List<Mod>
             {
-                // TODO: Integrate mod list into backend
                 new Mod()
                 {
-                    Name = "revolution",
-                    DisplayName = "Portal: Revolution",
-                    Description = "Portal: Revolution is a mod developed alongside P2CE by Tewan." +
-                                  "The features that the mod could benefit from the most when jumping to Portal 2: Community Edition's engine are " +
-                                  "several graphical enhancements, panorama ui, fixed and improved tools and other small features needed for development.",
+                    Name = "abyss",
+                    DisplayName = "Portal: Abyss",
+                    Description = "In an alternate universe, set during the Seven Hour War, you find yourself plunged" +
+                                  " into the depths of an abandoned Aperture Science facility." +
+                                  "Abyss explores the failed ambitions of a once-flourishing company," + 
+                                  " and the legacy it left behind. " +
+                                  " Your choices have consequences, and your actions dictate your survival -- or lack thereof..",
                     Developers = new List<ModDeveloper>
                     {
                         new ModDeveloper
                         {
-                            Name = "Tewan",
-                            Link = "https://twitter.com/spyce_tewan"
+                            Name = "Distanced",
+                            Link = ""
                         },
                         new ModDeveloper
                         {
-                            Name = "MysticalAce"
-                        },
-                        new ModDeveloper
-                        {
-                            Name = "ZRezlon"
+                            Name = "Jeremy (peefTube / spiro9)"
                         }
                     },
                     Links = new Dictionary<string, string>
                     {
                         {
-                            "Steam", 
-                            "https://store.steampowered.com/app/601360/Portal_Revolution/"
-                        },
-                        {
                             "Discord",
-                            "https://discord.gg/zrSVsM7"
+                            "https://discord.gg/zcrqaFS"
                         },
                         {
                             "ModDB",
-                            "https://www.moddb.com/mods/portal-revolution-spyce-software"
+                            "http://www.moddb.com/mods/portal-2-abyss"
+                        },
+                        {
+                            "Twitter",
+                            "https://twitter.com/AbyssPortal"
                         }
                     }
-                    
-                }
+                },
             };
         }
     }
