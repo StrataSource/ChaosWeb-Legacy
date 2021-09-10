@@ -46,7 +46,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ChaosInitiative.Web.ControlPanel\ChaosInitiative.Web.ControlPanel.csproj" />
       <ProjectReference Include="..\ChaosInitiative.Web.Shared\ChaosInitiative.Web.Shared.csproj" />
     </ItemGroup>
 

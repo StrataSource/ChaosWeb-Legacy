@@ -39,8 +39,7 @@ namespace ChaosInitiative.Web.ScssBuilder
                     Name = "chaos",
                     TargetFolders = new []
                     {
-                        "ChaosInitiative.Web.HomePage/wwwroot/css/",
-                        "ChaosInitiative.Web.ControlPanel/wwwroot/css/"
+                        "ChaosInitiative.Web.HomePage/wwwroot/css/"
                     },
                     InputFile = "chaotic.scss",
                     OutputFileName = "chaotic_chaos"
