@@ -85,7 +85,6 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     {
                         "Programmer",
                         "Graphics Programming"
-                        // another role for echoes?
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
@@ -195,13 +194,10 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.YouTube, "https://www.youtube.com/channel/UC-w_GVUnPT9LuSm5z9eLbbQ"
                         },
                         {
-                            SocialMediaService.Twitter, "https://twitter.com/craftablscience"
-                        },
-                        {
-                            SocialMediaService.Instagram, "https://www.instagram.com/craftablescience/"
-                        },
-                        {
                             SocialMediaService.Steam, "https://steamcommunity.com/id/craftablescience/"
+                        },
+                        {
+                            SocialMediaService.PortfolioLink, "https://belewis.me/"
                         }
                     }
                 },
@@ -252,6 +248,12 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     {
                         {
                             SocialMediaService.Discord, "BenVlodgi#0001"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/BenVlodgi"
+                        },
+                        {
+                            SocialMediaService.PortfolioLink, "https://benvlodgi.github.io/"
                         }
                     }
                 },
@@ -340,6 +342,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
 
     public enum SocialMediaService
     {
+        PortfolioLink,
         Discord,
         GitHub,
         Twitter,
