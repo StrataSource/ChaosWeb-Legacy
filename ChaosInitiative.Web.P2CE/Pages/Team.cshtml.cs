@@ -203,7 +203,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "MysticalAce",
+                    UserName = "Mystical Λce",
                     Roles = new []
                     {
                         "Level Design",
@@ -216,6 +216,15 @@ namespace ChaosInitiative.Web.P2CE.Pages
                         },
                         {
                             SocialMediaService.GitHub, "https://github.com/Mystical-Ace"
+                        },
+                        {
+                            SocialMediaService.YouTube, "https://www.youtube.com/channel/UC-EJjmfZiNfVO2ETXlf_dTA"
+                        },
+                        {
+                            SocialMediaService.Steam, "https://steamcommunity.com/profiles/76561198110464793"
+                        },
+                        {
+                            SocialMediaService.Twitter, "https://twitter.com/ace_mystical"
                         }
                     }
                 },
