@@ -1,0 +1,46 @@
+@page
+@model LibsModel
+@{
+    ViewData["Title"] = "Libraries";
+    ViewData["Description"] = "Listing the libraries used in Chaos Initiative Projects";
+}
+<div class="h-100 d-flex flex-column">
+
+    <div class="bg-primary">
+        <div class="container pt-6 pb-6">
+            <h1>Chaos Source Libraries</h1>
+            <p>
+                These are all the libraries Chaos Source currently uses.
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-light">
+        <div class="container">
+            <div class="row py-3">
+                @foreach (var lib in Model.Libs)
+                {
+                    <div class="col col-12 col-sm-12 col-md-6 flex-grow-1 mb-3" style="min-height: 15rem">
+                        <div class="card h-100 border-0">
+                            <div class="card-body bg-dark">
+                                <div class="h-100 d-flex flex-column">
+                                    <div class="row flex-grow-1 align-content-start" style="padding-left: 0 !important; padding-right: 0 !important">
+
+                                        <div class="col no-gutters ml-lg-3 mt-lg-2">
+                                            <h4 style="padding-top: 8px; padding-bottom: 3px; margin-bottom: 0">@lib.LibName</h4>
+                                            <p style="font-size: 1.2rem; margin-left: 0; margin-top: 4px">
+                                                @Html.Raw(lib.LibDesc)
+                                            </p>
+                                            <a class="btn btn-dark-frame text-white border-white" href="@lib.LibDownload">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -12,6 +12,7 @@ namespace ChaosInitiative.Web.HomePage
                 {"/engine", "Chaos Source"}, 
                 {"/games", "Games"},
                 {"/contact", "Contact"},
+		{"/libs", "Libraries" },
                 //{"/wiki", "Wiki"}
             };
 
