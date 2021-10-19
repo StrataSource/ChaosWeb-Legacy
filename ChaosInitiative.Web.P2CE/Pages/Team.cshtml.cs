@@ -224,7 +224,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.Steam, "https://steamcommunity.com/profiles/76561198110464793"
                         },
                         {
-                            SocialMediaService.Twitter, "https://twitter.com/ace_mystical"
+                            SocialMediaService.Twitter, "https://twitter.com/mystical_aceYT"
                         }
                     }
                 },
