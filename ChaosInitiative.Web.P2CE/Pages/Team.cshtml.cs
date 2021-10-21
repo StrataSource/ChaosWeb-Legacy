@@ -55,7 +55,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.GitHub, "https://github.com/jjl772"
                         },
                         {
-                            SocialMediaService.Twitter, "https://twitter.com/jlorelli77"
+                            SocialMediaService.Twitter, "https://twitter.com/jjl772"
                         }
                     }
                 },
