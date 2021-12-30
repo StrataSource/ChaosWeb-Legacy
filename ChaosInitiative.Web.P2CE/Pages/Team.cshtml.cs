@@ -230,23 +230,6 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "Permatemp",
-                    Roles = new []
-                    {
-                        "UI/UX Designer"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "Permatemp#6669"
-                        },
-                        {
-                            SocialMediaService.GitHub, "https://github.com/Permatemp"
-                        }
-                    }
-                },
-                new TeamMember
-                {
                     UserName = "BenVlodgi",
                     Roles = new []
                     {
