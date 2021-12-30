@@ -305,10 +305,96 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     }
                 },
                 new TeamMember
-				{
+                {
+                    UserName = "Frosti",
+                    Roles = new []
+                    {
+                        "Artist",
+                        "Level Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "Frosti#5313" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "don simone",
+                    Roles = new []
+                    {
+                        "Level Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "don simone#4089" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Ferni",
+                    Roles = new []
+                    {
+                        "Media Designer",
+                        "Level Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "Ferni#8018" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Baguettery",
+                    Roles = new []
+                    {
+                        "Website Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "Baguettery#5797" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "-Smaed",
+                    Roles = new []
+                    {
+                        "Programmer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "-Smaed#5712" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "l3ops",
+                    Roles = new []
+                    {
+                        "Programmer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "l3ops#4486" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Demez",
+                    Roles = new []
+                    {
+                        "Programmer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "Demez#3220" }
+                    }
+                },
+                new TeamMember
+                {
                     UserName = "Erin",
                     Roles = new []
-					{
+                    {
                         "UI Developer",
                         "Open Source Tools Developer"
                     },
@@ -320,7 +406,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                         {
                             SocialMediaService.GitHub, "https://github.com/AWildErin"
                         },
-						{
+                        {
                             SocialMediaService.Steam, "https://steamcommunity.com/id/AWildErin/"
                         }
                     }
