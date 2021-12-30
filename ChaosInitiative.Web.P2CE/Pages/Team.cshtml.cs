@@ -178,6 +178,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     UserName = "craftablescience",
                     Roles = new []
                     {
+                        "Programmer",
                         "Web Developer",
                         "UI/UX Designer",
                         "Open Source Tools Developer"
