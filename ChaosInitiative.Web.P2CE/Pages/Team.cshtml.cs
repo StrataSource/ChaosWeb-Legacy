@@ -319,6 +319,27 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.GitHub, "https://github.com/distributivgesetz"
                         }
                     }
+                },
+                new TeamMember
+				{
+                    UserName = "Erin",
+                    Roles = new []
+					{
+                        "UI Developer",
+                        "Open Source Tools Developer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "Erin#3059"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/AWildErin"
+                        },
+						{
+                            SocialMediaService.Steam, "https://steamcommunity.com/id/AWildErin/"
+                        }
+                    }
                 }
             };
 
