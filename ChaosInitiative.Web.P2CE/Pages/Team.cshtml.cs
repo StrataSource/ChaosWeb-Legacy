@@ -231,81 +231,6 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "BenVlodgi",
-                    Roles = new []
-                    {
-                        "Programmer",
-                        "Spirit Animal"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "BenVlodgi#0001"
-                        },
-                        {
-                            SocialMediaService.GitHub, "https://github.com/BenVlodgi"
-                        },
-                        {
-                            SocialMediaService.PortfolioLink, "https://benvlodgi.github.io/"
-                        }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "Luke18033",
-                    Roles = new []
-                    {
-                        "Scripting Support",
-                        "GitHub Moderator"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "Luke18033#2342"
-                        },
-                        {
-                            SocialMediaService.GitHub, "https://github.com/Luke18033"
-                        }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "ThePiGuy24",
-                    Roles = new []
-                    {
-                        "Infrastructure Support",
-                        "Systems Administration"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "ThePiGuy24#0369"
-                        },
-                        {
-                            SocialMediaService.GitHub, "https://github.com/ThePiGuy24"
-                        }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "_distrilul",
-                    Roles = new []
-                    {
-                        "GitHub Moderator",
-                        "Discord Community Manager"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "_distrilul#3755"
-                        },
-                        {
-                            SocialMediaService.GitHub, "https://github.com/distributivgesetz"
-                        }
-                    }
-                },
-                new TeamMember
-                {
                     UserName = "Frosti",
                     Roles = new []
                     {
@@ -408,6 +333,81 @@ namespace ChaosInitiative.Web.P2CE.Pages
                         },
                         {
                             SocialMediaService.Steam, "https://steamcommunity.com/id/AWildErin/"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "BenVlodgi",
+                    Roles = new []
+                    {
+                        "Programmer",
+                        "Spirit Animal"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "BenVlodgi#0001"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/BenVlodgi"
+                        },
+                        {
+                            SocialMediaService.PortfolioLink, "https://benvlodgi.github.io/"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Luke18033",
+                    Roles = new []
+                    {
+                        "Scripting Support",
+                        "GitHub Moderator"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "Luke18033#2342"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/Luke18033"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "ThePiGuy24",
+                    Roles = new []
+                    {
+                        "Infrastructure Support",
+                        "Systems Administration"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "ThePiGuy24#0369"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/ThePiGuy24"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "_distrilul",
+                    Roles = new []
+                    {
+                        "GitHub Moderator",
+                        "Discord Community Manager"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "_distrilul#3755"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/distributivgesetz"
                         }
                     }
                 }
