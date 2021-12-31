@@ -20,8 +20,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     UserName = "CitadelCore",
                     Roles = new []
                     {
-                        "Project Founder", 
-                        "Infrastructure Maintainer", 
+                        "Project Founder",
+                        "Infrastructure Maintainer",
                         "Core Chaos Engine Maintainer"
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
@@ -239,7 +239,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
-                        { SocialMediaService.Discord, "Frosti#5313" }
+                        { SocialMediaService.Discord, "Frosti#5313" },
+                        { SocialMediaService.ArtStation, "https://www.artstation.com/uc26c7abd" }
                     }
                 },
                 new TeamMember
@@ -303,7 +304,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
-                        { SocialMediaService.Discord, "l3ops#4486" }
+                        { SocialMediaService.Discord, "l3ops#4486" },
+                        { SocialMediaService.GitHub, "https://github.com/leops" }
                     }
                 },
                 new TeamMember
@@ -315,7 +317,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
-                        { SocialMediaService.Discord, "Demez#3220" }
+                        { SocialMediaService.Discord, "Demez#3220" },
+                        { SocialMediaService.GitHub, "https://github.com/Demez" }
                     }
                 },
                 new TeamMember
@@ -453,6 +456,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
         Instagram,
         Steam,
         YouTube,
-        DeviantArt // it's here for a good reason I promise
+        DeviantArt, // it's here for a good reason I promise
+        ArtStation
     }
 }
