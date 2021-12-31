@@ -288,7 +288,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
-                        { SocialMediaService.Discord, "-Smaed#5712" }
+                        { SocialMediaService.Discord, "-Smaed#5712" },
+                        { SocialMediaService.GitHub, "https://github.com/Smaedd" }
                     }
                 },
                 new TeamMember
