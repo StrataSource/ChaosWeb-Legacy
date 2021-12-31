@@ -264,7 +264,9 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
-                        { SocialMediaService.Discord, "Ferni#8018" }
+                        { SocialMediaService.Discord, "Ferni#8018" },
+                        { SocialMediaService.Steam, "https://steamcommunity.com/id/FerniCheo/" },
+                        { SocialMediaService.Twitter, "https://twitter.com/FerniCheo" }
                     }
                 },
                 new TeamMember
