@@ -20,9 +20,9 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     Description = "Long time ago Aperture Science tried to make minature holes for Portal Guns. It turns out that they needed a giant one to make them." +
                                   "Because GLaDOS killed all of the employees of the facilty, the black hole has become VERY unstable and can suck Earth at any time." +
                                   "The question is: Will you save Earth and Aperture Science, or use the black hole to your advantage?",
-                    Developers = new List<ModDeveloper>()
+                    Developers = new List<ModDeveloper>
                     {
-                        new ModDeveloper()
+                        new ModDeveloper
                         {
                             Name = "Enderek0"
                         }
