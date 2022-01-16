@@ -1,38 +1,45 @@
 @model Mod
 
 <section>
-    <div class="row">
+    <div class="row" id="@Model.Name">
         <div class="col col-auto">
             <!-- Mod logo must be 360x240 -->
             <img src="~/img/mod/@Model.Name/logo.png" alt="Image"/>
         </div>
         <div class="col">
             <h1>@Model.DisplayName</h1>
-            <p>
-                <i class="fas fa-users"></i>
-                @{
-                    foreach (var dev in Model.Developers)
-                    {
-                        if (string.IsNullOrWhiteSpace(dev.Link))
+            @if (Model.Developers != null)
+            {
+                <p>
+                    <i class="fas fa-users"></i>
+                    @{
+                        foreach (var dev in Model.Developers)
                         {
-                            <span>@dev.Name</span>
-                        }
-                        else
-                        {
-                            <a href="@dev.Link">@dev.Name</a>
+                            if (string.IsNullOrWhiteSpace(dev.Link))
+                            {
+                                <span>@dev.Name</span>
+                            }
+                            else
+                            {
+                                <a href="@dev.Link">@dev.Name</a>
+                            }
                         }
                     }
-                }
-            </p>
-            <p>
-                <i class="fas fa-heart"></i>
-                @{
-                    foreach (var (text, uri) in Model.Links)
-                    {
-                        <a href="@uri">@text</a>
+                </p>
+            }
+
+            @if (Model.Links != null)
+            {
+                <p>
+                    <i class="fas fa-heart"></i>
+                    @{
+                        foreach (var (text, uri) in Model.Links)
+                        {
+                            <a href="@uri">@text</a>
+                        }
                     }
-                }
-            </p>
+                </p>
+            }
             <p>
                 @Model.Description
             </p>
