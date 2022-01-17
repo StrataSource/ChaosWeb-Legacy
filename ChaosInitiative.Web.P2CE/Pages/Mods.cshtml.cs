@@ -38,6 +38,42 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             "https://discord.gg/Azv6bfsXS8"
                         }
                     }
+                },
+                new Mod()
+                {
+                    Name = "abyss",
+                    DisplayName = "Portal: Abyss",
+                    Description = "In an alternate universe, set during the Seven Hour War, you find yourself plunged" +
+                                  " into the depths of an abandoned Aperture Science facility." +
+                                  " Abyss explores the failed ambitions of a once-flourishing company," + 
+                                  " and the legacy it left behind. " +
+                                  " Your choices have consequences, and your actions dictate your survival -- or lack thereof..",
+                    Developers = new List<ModDeveloper>
+                    {
+                        new ModDeveloper
+                        {
+                            Name = "Team Abyss"
+                        },
+                    },
+                    Links = new Dictionary<string, string>
+                    {
+                        {
+                            "Discord",
+                            "https://discord.gg/zcrqaFS"
+                        },
+                        {
+                            "Website",
+                            "https://abyssmod.com/"
+                        },
+                        {
+                            "ModDB",
+                            "http://www.moddb.com/mods/portal-2-abyss"
+                        },
+                        {
+                            "Twitter",
+                            "https://twitter.com/AbyssPortal"
+                        }
+                    }
                 }
             };
         }
