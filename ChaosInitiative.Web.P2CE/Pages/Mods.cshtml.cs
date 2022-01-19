@@ -52,7 +52,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     {
                         new ModDeveloper
                         {
-                            Name = "Team Abyss"
+                            Name = "Team Abyss",
+                            Link = "https://abyssmod.com/credits"
                         },
                     },
                     Links = new Dictionary<string, string>
