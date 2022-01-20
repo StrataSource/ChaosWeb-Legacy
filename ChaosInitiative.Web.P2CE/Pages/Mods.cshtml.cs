@@ -59,16 +59,16 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     Links = new Dictionary<string, string>
                     {
                         {
+                            "ModDB",
+                            "http://www.moddb.com/mods/portal-2-abyss"
+                        },
+                        {
                             "Discord",
                             "https://discord.gg/zcrqaFS"
                         },
                         {
                             "Website",
                             "https://abyssmod.com/"
-                        },
-                        {
-                            "ModDB",
-                            "http://www.moddb.com/mods/portal-2-abyss"
                         },
                         {
                             "Twitter",
