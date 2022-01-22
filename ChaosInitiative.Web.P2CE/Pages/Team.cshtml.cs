@@ -344,27 +344,6 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "BenVlodgi",
-                    Roles = new []
-                    {
-                        "Programmer",
-                        "Spirit Animal"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "BenVlodgi#0001"
-                        },
-                        {
-                            SocialMediaService.GitHub, "https://github.com/BenVlodgi"
-                        },
-                        {
-                            SocialMediaService.PortfolioLink, "https://benvlodgi.github.io/"
-                        }
-                    }
-                },
-                new TeamMember
-                {
                     UserName = "Luke18033",
                     Roles = new []
                     {
