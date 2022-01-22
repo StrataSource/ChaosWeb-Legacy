@@ -42,7 +42,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 new Mod()
                 {
                     Name = "abyss",
-                    DisplayName = "Portal: Abyss",
+                    DisplayName = "Abyss",
                     Description = "In an alternate universe, set during the Seven Hour War, you find yourself plunged" +
                                   " into the depths of an abandoned Aperture Science facility." +
                                   " Abyss explores the failed ambitions of a once-flourishing company," + 
