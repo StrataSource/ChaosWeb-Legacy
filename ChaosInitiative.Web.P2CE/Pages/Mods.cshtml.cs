@@ -75,6 +75,39 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             "https://twitter.com/AbyssPortal"
                         }
                     }
+                },
+                new Mod()
+                {
+                    Name = "sep",
+                    DisplayName = "Scorched Earth Policy",
+                    Description = "The Portal franchise has stated before that there are an infinite amount of universes with an " +
+                                  "infinite amount of Earths and an infinite amount of Apertures... But sometimes in those universes things change.<br/><br/>" +
+                                  "One crazy artist late for work.<br/>" +
+                                  "One test subject never deployed.<br/>"+
+                                  "One AI never killed.<br/>" +
+                                  "One alliance made.<br/><br/>" +
+                                  "In this universe The Combine and Aperture Labs are business partners and the finest at it in all the universe too! " +
+                                  "Come visit their Citadel's fine Galleria on Earth! So many amazing products waiting for you! You can also take home your very own human slave straight from the cloning lab! "+
+                                  "More the type to be entertained ? Watch humans scramble trying to solve horrifyingly deadly puzzles in our theatre! We'll be waiting...",
+
+                    Developers = new List<ModDeveloper>
+                    {
+                        new ModDeveloper
+                        {
+                            Name = "War The Nuclear Shill"
+                        }
+                    },
+                    Links = new Dictionary<string, string>
+                    {
+                        {
+                            "ModDB",
+                            "https://www.moddb.com/mods/scorched-earth-policy/"
+                        },
+                        {
+                            "Discord",
+                            "https://discord.gg/FrzmaybCnY"
+                        }
+                    }
                 }
             };
         }
