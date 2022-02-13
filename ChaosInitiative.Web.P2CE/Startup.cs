@@ -11,12 +11,17 @@ namespace ChaosInitiative.Web.P2CE
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+
+        // HACK: I'm not sure of the best way for this
+        // but we need to access the host env to check is a file exists...
+        public static IHostEnvironment Environment { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
