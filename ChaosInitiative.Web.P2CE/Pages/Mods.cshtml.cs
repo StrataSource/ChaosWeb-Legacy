@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace ChaosInitiative.Web.P2CE.Pages
 {
@@ -75,8 +79,36 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             "https://twitter.com/AbyssPortal"
                         }
                     }
+                },
+                new Mod()
+                {
+                    Name = "gis",
+                    DisplayName = "Growth: Infinite Stories",
+                    Description = "Playing as a former scientist, you follow the lead of the Core And Subject Special Initiative Engineer, or CASSIE, as they guide you through the Multiverse Exploration Initiative." +
+                                  " Your goal is to explore as any universes as possible, discovering new and exciting universes and technology." +
+                                  " But as you explore, you start to question the intentions of this initiative... why does Aperture need to explore the Multiverse for new technologies? Is there something more to this?",
+                    Developers = new List<ModDeveloper>
+                    {
+                        new ModDeveloper
+                        {
+                            Name = "Erin-Rose"
+                        },
+                    }, 
+                    Links = new Dictionary<string, string>
+                    {
+                        {
+                            "Discord",
+                            "https://discord.gg/DHrCFPJ"
+                        },
+                    }
                 }
             };
         }
+
+        // HACK: asp.net sucks and this is the only way I can do this :)
+        public static bool DoesFileExist(string filename)
+		{
+            return System.IO.File.Exists($"{Startup.Environment.ContentRootPath}/wwwroot/{filename}");
+		}
     }
 }
