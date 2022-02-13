@@ -85,7 +85,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                     Name = "gis",
                     DisplayName = "Growth: Infinite Stories",
                     Description = "Playing as a former scientist, you follow the lead of the Core And Subject Special Initiative Engineer, or CASSIE, as they guide you through the Multiverse Exploration Initiative." +
-                                  " Your goal is to explore as any universes as possible, discovering new and exciting universes and technology." +
+                                  " Your goal is to explore as many universes as possible, discovering new and exciting universes and technology." +
                                   " But as you explore, you start to question the intentions of this initiative... why does Aperture need to explore the Multiverse for new technologies? Is there something more to this?",
                     Developers = new List<ModDeveloper>
                     {
