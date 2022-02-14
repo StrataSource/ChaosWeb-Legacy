@@ -107,8 +107,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
 
         // HACK: asp.net sucks and this is the only way I can do this :)
         public static bool DoesFileExist(string filename)
-		{
+        {
             return System.IO.File.Exists($"{Startup.Environment.ContentRootPath}/wwwroot/{filename}");
-		}
+        }
     }
 }
