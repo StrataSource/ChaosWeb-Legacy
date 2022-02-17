@@ -61,25 +61,6 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "Ossy Flawol",
-                    Roles = new []
-                    {
-                        "Lead Gameplay/Campaign Designer",
-                        "Mapper",
-                        "𝓘𝓭𝓮𝓪𝓼 𝓖𝓾𝔂"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "Ossy Flawol#3580"
-                        },
-                        {
-                            SocialMediaService.Twitter, "https://twitter.com/OssyFlawol"
-                        }
-                    }
-                },
-                new TeamMember
-                {
                     UserName = "EchoesForeAndAft",
                     Roles = new []
                     {
