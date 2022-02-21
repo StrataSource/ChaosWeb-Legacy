@@ -26,8 +26,8 @@ namespace ChaosInitiative.Web.P2CE.Pages
         
         public static readonly List<IssuesCache> ClosedIssuesCaches = new()
         {
-            new IssuesCache("type/bug", "Bugs"),
-            new IssuesCache("type/enhancement", "Features")
+            new IssuesCache("Type: bug", "Bugs"),
+            new IssuesCache("Type: enhancement", "Features")
         };
         
         public string LabelName { get; set; }
