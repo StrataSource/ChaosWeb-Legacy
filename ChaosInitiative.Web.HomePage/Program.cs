@@ -1,6 +1,4 @@
-using ChaosInitiative.Web.HomePage.Services;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace ChaosInitiative.Web.HomePage
@@ -10,7 +8,6 @@ namespace ChaosInitiative.Web.HomePage
         public static void Main(string[] args)
         {
             IHost builder = CreateHostBuilder(args).Build();
-            builder.Services.GetService<WikiService>()?.InitWikiGitRepository();
             builder.Run();
         }
 
