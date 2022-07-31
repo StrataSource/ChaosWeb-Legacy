@@ -39,11 +39,12 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "JJI77",
+                    UserName = "JJl77",
                     Roles = new []
                     {
                         "Senior Programmer",
                         "Linux Port Maintainer",
+                        "Open Source Tools Developer",
                         "Core Chaos Engine Maintainer"
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
@@ -61,29 +62,10 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "EchoesForeAndAft",
-                    Roles = new []
-                    {
-                        "Senior Programmer",
-                        "Graphics Programming"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "EchoesForeAndAft#8982"
-                        },
-                        {
-                            SocialMediaService.GitHub, "https://github.com/EchoesForeAndAft"
-                        }
-                    }
-                },
-                new TeamMember
-                {
                     UserName = "craftablescience",
                     Roles = new []
                     {
                         "Senior Programmer",
-                        "Web Developer",
                         "UI/UX Designer",
                         "Open Source Tools Developer"
                     },
@@ -102,7 +84,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.Steam, "https://steamcommunity.com/id/craftablescience/"
                         },
                         {
-                            SocialMediaService.PortfolioLink, "https://belewis.me/"
+                            SocialMediaService.PortfolioLink, "https://craftablescience.info/"
                         }
                     }
                 },
@@ -131,6 +113,202 @@ namespace ChaosInitiative.Web.P2CE.Pages
                         {
                             SocialMediaService.Twitter, "https://twitter.com/mystical_aceYT"
                         }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Erin",
+                    Roles = new []
+                    {
+                        "UI Developer",
+                        "Open Source Tools Developer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "Erin#3059"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/AWildErin"
+                        },
+                        {
+                            SocialMediaService.Steam, "https://steamcommunity.com/id/AWildErin/"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "OzxyBox",
+                    Roles = new []
+                    {
+                        "Programmer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "OzxyBox#1389"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/ozxybox"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Frosti",
+                    Roles = new []
+                    {
+                        "Artist",
+                        "Level Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "Frosti#5313" },
+                        { SocialMediaService.ArtStation, "https://www.artstation.com/uc26c7abd" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "don simone",
+                    Roles = new []
+                    {
+                        "Level Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "don simone#4089" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Ferni",
+                    Roles = new []
+                    {
+                        "Media Designer",
+                        "Level Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "Ferni#8018" },
+                        { SocialMediaService.Steam, "https://steamcommunity.com/id/FerniCheo/" },
+                        { SocialMediaService.Twitter, "https://twitter.com/FerniCheo" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "TheCCGuy",
+                    Roles = new []
+                    {
+                        "Level Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "theCCguy#4798"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/TheCCGuy"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "didokiller",
+                    Roles = new []
+                    {
+                        "Level Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "didokiller#8778"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Baguettery",
+                    Roles = new []
+                    {
+                        "Website Designer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "Baguettery#5797" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Luke18033",
+                    Roles = new []
+                    {
+                        "Scripting Support",
+                        "GitHub Moderator"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "Luke18033#2342"
+                        },
+                        {
+                            SocialMediaService.GitHub, "https://github.com/Luke18033"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "BonnyAnimations",
+                    Roles = new []
+                    {
+                        "Animator",
+                        "3D Artist"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        {
+                            SocialMediaService.Discord, "Bon#6445"
+                        },
+                        {
+                            SocialMediaService.YouTube, "https://youtube.com/channel/UCRWXDDaEdCb6T0hG12uXT8w"
+                        },
+                        {
+                            SocialMediaService.DeviantArt, "https://www.deviantart.com/bonnyanimations"
+                        },
+                        {
+                            SocialMediaService.Reddit, "https://www.reddit.com/u/BonnyGaming"
+                        },
+                        {
+                            SocialMediaService.Twitter, "https://twitter.com/BonnyTweets?s=09"
+                        },
+                        {
+                            SocialMediaService.Instagram, "https://www.instagram.com/bonnyanimations"
+                        }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "-Smaed",
+                    Roles = new []
+                    {
+                        "Programmer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "-Smaed#5712" },
+                        { SocialMediaService.GitHub, "https://github.com/Smaedd" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "l3ops",
+                    Roles = new []
+                    {
+                        "Programmer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "l3ops#4486" },
+                        { SocialMediaService.GitHub, "https://github.com/leops" }
                     }
                 },
                 new TeamMember
@@ -181,115 +359,6 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "BonnyAnimations",
-                    Roles = new []
-                    {
-                        "Animator",
-                        "3D Artist"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        {
-                            SocialMediaService.Discord, "Bon#6445"
-                        },
-                        {
-                            SocialMediaService.YouTube, "https://youtube.com/channel/UCRWXDDaEdCb6T0hG12uXT8w"
-                        },
-                        {
-                            SocialMediaService.DeviantArt, "https://www.deviantart.com/bonnyanimations"
-                        },
-                        {
-                            SocialMediaService.Reddit, "https://www.reddit.com/u/BonnyGaming"
-                        },
-                        {
-                            SocialMediaService.Twitter, "https://twitter.com/BonnyTweets?s=09"
-                        },
-                        {
-                            SocialMediaService.Instagram, "https://www.instagram.com/bonnyanimations"
-                        }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "Frosti",
-                    Roles = new []
-                    {
-                        "Artist",
-                        "Level Designer"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        { SocialMediaService.Discord, "Frosti#5313" },
-                        { SocialMediaService.ArtStation, "https://www.artstation.com/uc26c7abd" }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "don simone",
-                    Roles = new []
-                    {
-                        "Level Designer"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        { SocialMediaService.Discord, "don simone#4089" }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "Ferni",
-                    Roles = new []
-                    {
-                        "Media Designer",
-                        "Level Designer"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        { SocialMediaService.Discord, "Ferni#8018" },
-                        { SocialMediaService.Steam, "https://steamcommunity.com/id/FerniCheo/" },
-                        { SocialMediaService.Twitter, "https://twitter.com/FerniCheo" }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "Baguettery",
-                    Roles = new []
-                    {
-                        "Website Designer"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        { SocialMediaService.Discord, "Baguettery#5797" }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "-Smaed",
-                    Roles = new []
-                    {
-                        "Programmer"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        { SocialMediaService.Discord, "-Smaed#5712" },
-                        { SocialMediaService.GitHub, "https://github.com/Smaedd" }
-                    }
-                },
-                new TeamMember
-                {
-                    UserName = "l3ops",
-                    Roles = new []
-                    {
-                        "Programmer"
-                    },
-                    SocialMediaServices = new Dictionary<SocialMediaService, string>
-                    {
-                        { SocialMediaService.Discord, "l3ops#4486" },
-                        { SocialMediaService.GitHub, "https://github.com/leops" }
-                    }
-                },
-                new TeamMember
-                {
                     UserName = "Demez",
                     Roles = new []
                     {
@@ -303,40 +372,48 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 },
                 new TeamMember
                 {
-                    UserName = "Erin",
+                    UserName = "Agrimar",
                     Roles = new []
                     {
-                        "UI Developer",
-                        "Open Source Tools Developer"
+                        "Programmer"
+                    },
+                    SocialMediaServices = new Dictionary<SocialMediaService, string>
+                    {
+                        { SocialMediaService.Discord, "Agrimar#8794" },
+                        { SocialMediaService.GitHub, "https://github.com/AgentAgrimar" }
+                    }
+                },
+                new TeamMember
+                {
+                    UserName = "Ostojλ",
+                    Roles = new []
+                    {
+                        "UI/UX Designer"
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
                         {
-                            SocialMediaService.Discord, "Erin#3059"
+                            SocialMediaService.Discord, "Ostojλ#7073"
                         },
                         {
-                            SocialMediaService.GitHub, "https://github.com/AWildErin"
-                        },
-                        {
-                            SocialMediaService.Steam, "https://steamcommunity.com/id/AWildErin/"
+                            SocialMediaService.GitHub, "https://github.com/OstojaOfficial"
                         }
                     }
                 },
                 new TeamMember
                 {
-                    UserName = "Luke18033",
+                    UserName = "Orinji Neko",
                     Roles = new []
                     {
-                        "Scripting Support",
-                        "GitHub Moderator"
+                        "Composer"
                     },
                     SocialMediaServices = new Dictionary<SocialMediaService, string>
                     {
                         {
-                            SocialMediaService.Discord, "Luke18033#2342"
+                            SocialMediaService.Discord, "Orinji Neko#7592"
                         },
                         {
-                            SocialMediaService.GitHub, "https://github.com/Luke18033"
+                            SocialMediaService.GitHub, "https://github.com/OrinjiNeko"
                         }
                     }
                 },
