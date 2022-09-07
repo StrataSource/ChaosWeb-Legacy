@@ -17,7 +17,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
             {
                 new TeamMember
                 {
-                    UserName = "CitadelCore",
+                    UserName = "Alex Zero",
                     Roles = new []
                     {
                         "Project Founder",
@@ -111,7 +111,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                             SocialMediaService.Steam, "https://steamcommunity.com/profiles/76561198110464793"
                         },
                         {
-                            SocialMediaService.Twitter, "https://twitter.com/mystical_aceYT"
+                            SocialMediaService.Twitter, "https://twitter.com/Mystical__Ace"
                         }
                     }
                 },
