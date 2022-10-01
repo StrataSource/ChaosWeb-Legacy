@@ -17,7 +17,7 @@ namespace ChaosInitiative.Web.P2CE.Pages
                 new("How much will it cost?", "Nothing! P2:CE is a completely free, non-profit project- you just need to own Portal 2!"),
                 new("Do I need to own Portal 2 to play P2:CE?", "Yes, Portal 2 must be owned and installed in order to play P2:CE. Portal 2's content will automatically be mounted by P2:CE when the game starts."),
                 new("How do I get access to the closed beta?", "We have a beta access application form in our Discord server. We tend to prioritize active members of our community and those with technical experience, but anyone can apply!"),
-                new("When does P2:CE release?", "We're currently aiming for mid-2022. Keep an eye on our Discord or Twitter for updates."),
+                new("When does P2:CE release?", "We haven't announce a release date for P2:CE yet. Keep an eye on our Discord or Twitter to be the first person to know when we do."),
                 new("Which operating systems does it run on?", "Currently P2:CE supports 64-bit Windows and Linux. In the future we may support OSX, depending on interest in the platform. See the Steam page for more detailed system requirements."),
                 new("Is there a workshop?", "Yes."),
                 new("Is 2+ multiplayer supported?", "Yes."),
